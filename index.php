@@ -13,6 +13,8 @@
 <main class="container mt-5">
     <h1 class="font-weight-bold">PILOWY WEBSITE</h1>
 </main>
+
+<?php include './partials/script.html';?>
 </body>
 
 
