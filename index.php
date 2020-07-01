@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php include './partials/head.html'?>
-    <title>pilowy</title>
+    <title>test pilowy</title>
 </head>
 <body>
 <?php include './partials/navbar.php'; ?>
@@ -14,4 +14,6 @@
     <h1 class="font-weight-bold">PILOWY WEBSITE</h1>
 </main>
 </body>
+
+
 </html>
