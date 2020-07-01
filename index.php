@@ -20,8 +20,8 @@
     <script>
   var div = document.createElement('div');
   div.className = 'fb-customerchat';
-  div.setAttribute('page_id', '102864244803756');
-  div.setAttribute('ref', 'b64:cGlsb3d5');
+  div.setAttribute('page_id', '103141214799677');
+  div.setAttribute('ref', '');
   document.body.appendChild(div);
   window.fbMessengerPlugins = window.fbMessengerPlugins || {
     init: function () {
