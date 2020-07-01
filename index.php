@@ -16,29 +16,40 @@
 
 <?php include './partials/script.html';?>
 </body>
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-      <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            xfbml            : true,
-            version          : 'v7.0'
-          });
-        };
+    <!-- Load Facebook SDK for JavaScript -->
+    <script>
+  var div = document.createElement('div');
+  div.className = 'fb-customerchat';
+  div.setAttribute('page_id', '102864244803756');
+  div.setAttribute('ref', 'b64:cGlsb3d5');
+  document.body.appendChild(div);
+  window.fbMessengerPlugins = window.fbMessengerPlugins || {
+    init: function () {
+      FB.init({
+        appId            : '1678638095724206',
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v3.3'
+      });
+    }, callable: []
+  };
+  window.fbAsyncInit = window.fbAsyncInit || function () {
+    window.fbMessengerPlugins.callable.forEach(function (item) { item(); });
+    window.fbMessengerPlugins.init();
+  };
+  setTimeout(function () {
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  }, 0);
+</script>
 
-        (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/th_TH/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));</script>
 
-      <!-- Your Chat Plugin code -->
-      <div class="fb-customerchat"
-        attribution=setup_tool
-        page_id="103141214799677"
-  theme_color="#ffc300">
       </div>
 
 </html>
