@@ -363,8 +363,7 @@ require("head.html");
     <script src="js/mail-script.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
-</body>
-<!-- Load Facebook SDK for JavaScript -->
+    <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
 <script>
     window.fbAsyncInit = function () {
@@ -385,6 +384,8 @@ require("head.html");
 <!-- Your Chat Plugin code -->
 <div class="fb-customerchat" attribution=setup_tool page_id="103141214799677" theme_color="0084ff">
 </div>
+</body>
+
 
 
 </html>
