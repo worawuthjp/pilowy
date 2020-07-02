@@ -13,19 +13,19 @@ require("head.html");
         <!-- Header part end-->
 
     <!-- breadcrumb part start-->
-    <section class="breadcrumb_part">
+    <section class="breadcrumb_part bg-info">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
-                        <h2>About</h2>
+                        <h2>เกี่ยวกับเรา</h2>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- breadcrumb part end-->
-    
+
     <!-- product list part start-->
     <section class="about_us padding_top">
         <div class="container">
@@ -91,7 +91,7 @@ require("head.html");
         </div>
     </section>
     <!-- feature part end -->
-    
+
     <!-- client review part here -->
     <section class="client_review">
         <div class="container">
