@@ -29,7 +29,7 @@ require("head.html");
   <!-- ================ contact section start ================= -->
   <section class="contact-section section_padding">
     <div class="container">
-      <div class="d-none d-sm-block mb-5 pb-4">
+      <!-- <div class="d-none d-sm-block mb-5 pb-4">
         <div id="map" style="height: 480px;"></div>
         <script>
           function initMap() {
@@ -69,7 +69,7 @@ require("head.html");
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap">
         </script>
 
-      </div>
+      </div> -->
 
 
       <div class="row">
