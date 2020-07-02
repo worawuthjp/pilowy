@@ -3,7 +3,7 @@
 <?php
 require("head.html");
 ?>
-<body class="test">
+<body>
     <!--::header part start::-->
     <?php
     require("header.html");
