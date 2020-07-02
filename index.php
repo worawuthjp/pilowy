@@ -25,7 +25,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <h1>หมอนยางพาราคุณภาพสูง
                                 </h1>
                             <p>หมอนยางพารา Pilowy เป็นหมอนยางพาราแท้ 100% จากบริษัท Thai rubber ผู้ผลิตและจำหน่ายยางพารา Top 3 ของประเทศไทย</p>
-                            <a href="product_list.html" class="btn_1">shop now</a>
+                            <a href="product_list.php" class="btn_1">shop now</a>
                         </div>
                     </div>
                 </div>
