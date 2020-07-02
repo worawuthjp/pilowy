@@ -54,8 +54,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>ราคาใบละ 590 บาท</h5>
-                                    <h2> <a href="single-product.html">หมอนแบบ Massage </a> </h2>
-                                    <a href="product_list.html" class="btn_3">Explore Now</a>
+                                    <h2> <a href="single-product.php">หมอนแบบ Massage </a> </h2>
+                                    <a href="product_list.php" class="btn_3">Explore Now</a>
                                 </div>
                             </div>
                         </div>
@@ -71,9 +71,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>ราคาใบละ 590 บาท</h5>
-                                    <h2> <a href="single-product.html">หมอนแบบ Contour
+                                    <h2> <a href="single-product.php">หมอนแบบ Contour
                                             </a> </h2>
-                                    <a href="product_list.html" class="btn_3">Explore Now</a>
+                                    <a href="product_list.php" class="btn_3">Explore Now</a>
                                 </div>
                             </div>
                         </div>
@@ -89,8 +89,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>ราคาใบละ 590 บาท</h5>
-                                    <h2> <a href="single-product.html">หมอนแบบ Heart</a> </h2>
-                                    <a href="product_list.html" class="btn_3">Explore Now</a>
+                                    <h2> <a href="single-product.php">หมอนแบบ Heart</a> </h2>
+                                    <a href="product_list.php" class="btn_3">Explore Now</a>
                                 </div>
                             </div>
                         </div>
@@ -106,8 +106,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>ราคาใบละ 590 บาท</h5>
-                                    <h2> <a href="single-product.html">หมอนแบบ Durian </a> </h2>
-                                    <a href="product_list.html" class="btn_3">Explore Now</a>
+                                    <h2> <a href="single-product.php">หมอนแบบ Durian </a> </h2>
+                                    <a href="product_list.php" class="btn_3">Explore Now</a>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="single_product_item_thumb">
                             <img src="img/tranding_item/tranding_item_1.png" alt="#" class="img-fluid">
                         </div>
-                        <h3> <a href="single-product.html">Cervical pillow for airplane
+                        <h3> <a href="single-product.php">Cervical pillow for airplane
                                 car office nap pillow</a> </h3>
                         <p>From $5</p>
                     </div>
@@ -143,21 +143,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="col-lg-4 col-sm-6">
                     <div class="single_product_item">
                         <img src="img/tranding_item/tranding_item_2.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Foam filling cotton slow rebound pillows</a> </h3>
+                        <h3> <a href="single-product.php">Foam filling cotton slow rebound pillows</a> </h3>
                         <p>From $5</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <div class="single_product_item">
                         <img src="img/tranding_item/tranding_item_3.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Memory foam filling cotton Slow rebound pillows</a> </h3>
+                        <h3> <a href="single-product.php">Memory foam filling cotton Slow rebound pillows</a> </h3>
                         <p>From $5</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <div class="single_product_item">
                         <img src="img/tranding_item/tranding_item_4.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Cervical pillow for airplane
+                        <h3> <a href="single-product.php">Cervical pillow for airplane
                                 car office nap pillow</a> </h3>
                         <p>From $5</p>
                     </div>
@@ -165,14 +165,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="col-lg-4 col-sm-6">
                     <div class="single_product_item">
                         <img src="img/tranding_item/tranding_item_5.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Foam filling cotton slow rebound pillows</a> </h3>
+                        <h3> <a href="single-product.php">Foam filling cotton slow rebound pillows</a> </h3>
                         <p>From $5</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <div class="single_product_item">
                         <img src="img/tranding_item/tranding_item_6.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Memory foam filling cotton Slow rebound pillows</a> </h3>
+                        <h3> <a href="single-product.php">Memory foam filling cotton Slow rebound pillows</a> </h3>
                         <p>From $5</p>
                     </div>
                 </div>
