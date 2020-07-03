@@ -86,7 +86,7 @@ require("header.html");
                     <div class="row align-items-center justify-content-between">
                         <div class="col-lg-6 col-sm-6">
                             <div class="single_product_img">
-                                <img src="img/single_product_3.webp" width="548" height="460" class="img-fluid border-circle-square" alt="#">
+                                <img src="img/single_product_33.webp" width="548" height="460" class="img-fluid border-circle-square" alt="#">
                             </div>
                         </div>
                         <div class="col-lg-5 col-sm-6">
