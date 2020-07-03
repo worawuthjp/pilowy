@@ -139,7 +139,7 @@
         }
     }
     .single_product_text{
-        margin: 100px 0 200px;
+        margin: 50px 0 200px;
         @media #{$tab}{
             margin: 40px 0 70px;
         }
@@ -147,28 +147,35 @@
             margin: 50px 0 80px;
         }
         h3{
-            font-size: 40px;
+            font-size: 50px;
             @media #{$tab}{
-                font-size: 25px;
+                font-size: 35px;
                 br{
                     display: none;
                 }
             }
         }
         p{
-            margin-top: 50px;
+            margin-top: 25px;
+            font-size: 20px;
             color: #707070;
             @media #{$tab}{
-                margin-top:20px;
+                margin-top:30px;
+                font-size: 20px;
             }
             @media #{$medium_device}{
                 margin-top:20px;
+                font-size: 18px;
+            }
+            @media #{$small_mobile}{
+                margin-top:20px;
+                font-size: 18px;
             }
         }
     }
 }
 .card_area{
-    margin-top: 60px;
+    margin-top: 40px;
     .product_count_area{
         display: flex;
         align-items: center;

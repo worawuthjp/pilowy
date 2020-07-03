@@ -65,7 +65,7 @@ require("header.html");
                                     ผู้ผลิตและจำหน่ายยางพารา Top
                                     3 ของประเทศไทย
                                 </p>
-                                <a href="single-product.php" class="btn_3 mt-2">Explore Now</a>
+                                <a href="single-product.php?id=1" class="btn_3 mt-2">Explore Now</a>
                             </div>
                         </div>
                     </div>
