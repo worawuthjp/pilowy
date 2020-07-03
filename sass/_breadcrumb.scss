@@ -5,6 +5,9 @@
 	align-items: center;
 	justify-content: center;
 	background-color: #B08EAD;
+	@media #{$small_mobile} {
+		height: 70px;
+	}
 	.breadcrumb_iner {
 		text-align: center;
 		h2 {
