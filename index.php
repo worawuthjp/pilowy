@@ -58,7 +58,7 @@ require("header.html");
                         </div>
                         <div class="col-lg-5 col-sm-6">
                             <div class="single_product_content">
-                                <h5>ราคาใบละ 590 บาท</h5>
+                                <h5>ราคาใบละ 590 บาท ส่งฟรี!!!</h5>
                                 <h2>หมอนแบบ Massage</h2>
                                 <p class="col-sm-12 pl-0">
                                     -รูปทรงแบบ Contour แล้วเพิ่มปุ่มแบบ Durian <br/>
@@ -79,7 +79,7 @@ require("header.html");
                         </div>
                         <div class="col-lg-5 col-sm-12">
                             <div class="single_product_content">
-                                <h5>ราคาใบละ 590 บาท</h5>
+                                <h5>ราคาใบละ 590 บาท ส่งฟรี!!!</h5>
                                 <h2>หมอนแบบ Contour (เรียบ)</h2>
                                 <p class="col-sm-12 pl-0">
                                     -เน้นส่วนโค้งเพื่อพยุงศรีษะ ไหล่ คอ <br/>
@@ -99,7 +99,7 @@ require("header.html");
                         </div>
                         <div class="col-lg-5 col-sm-12">
                             <div class="single_product_content">
-                                <h5>ราคาใบละ 590 บาท</h5>
+                                <h5>ราคาใบละ 590 บาท ส่งฟรี!!!</h5>
                                 <h2>หมอนแบบ Contour (มีปุ่ม)</h2>
                                 <p class="col-sm-12 pl-0">
                                     -เน้นส่วนโค้งเพื่อพยุงศรีษะ ไหล่ คอ <br/>
@@ -119,7 +119,7 @@ require("header.html");
                         </div>
                         <div class="col-lg-5 col-sm-12 ">
                             <div class="single_product_content">
-                                <h5>ราคาใบละ 590 บาท</h5>
+                                <h5>ราคาใบละ 590 บาท ส่งฟรี!!!</h5>
                                 <h2>หมอนแบบ Heart</h2>
                                 <p class="col-sm-12 pl-0">
                                     -หมอนทรงหัวใจลดอาการปวดคอ <br/>
@@ -139,7 +139,7 @@ require("header.html");
                         </div>
                         <div class="col-lg-5 col-sm-12">
                             <div class="single_product_content">
-                                <h5>ราคาใบละ 590 บาท</h5>
+                                <h5>ราคาใบละ 590 บาท ส่งฟรี!!!</h5>
                                 <h2>หมอนแบบ Durian</h2>
                                 <p class="col-sm-12 pl-0">
                                     -หมอนทุเรียนลดอาการปวดคอ <br/>
