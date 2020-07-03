@@ -80,7 +80,27 @@ require("header.html");
                         <div class="col-lg-5 col-sm-12">
                             <div class="single_product_content">
                                 <h5>ราคาใบละ 590 บาท</h5>
-                                <h2>หมอนแบบ Contour</h2>
+                                <h2>หมอนแบบ Contour (เรียบ)</h2>
+                                <p class="col-sm-12 pl-0">
+                                    -เน้นส่วนโค้งเพื่อพยุงศรีษะ ไหล่ คอ <br/>
+                                    -การนอนถูกต้องตามสรีระ <br/>
+                                    -ลดการปวดเมื่อย ลดการปวดคอ ลดการนอนกรน <br/><br/>
+                                </p>
+                                <a href="single-product.php" class="btn_3 mt-2">Explore Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single_product_iner">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-lg-6 col-sm-12">
+                            <img src="img/single_product_5.webp"
+                                 class="img-fluid border-circle-square col-md-12 col-sm-12" alt="#">
+                        </div>
+                        <div class="col-lg-5 col-sm-12">
+                            <div class="single_product_content">
+                                <h5>ราคาใบละ 590 บาท</h5>
+                                <h2>หมอนแบบ Contour (มีปุ่ม)</h2>
                                 <p class="col-sm-12 pl-0">
                                     -เน้นส่วนโค้งเพื่อพยุงศรีษะ ไหล่ คอ <br/>
                                     -การนอนถูกต้องตามสรีระ <br/>
@@ -100,7 +120,7 @@ require("header.html");
                         <div class="col-lg-5 col-sm-12 ">
                             <div class="single_product_content">
                                 <h5>ราคาใบละ 590 บาท</h5>
-                                <h2>หมอนแบบ Contour</h2>
+                                <h2>หมอนแบบ Heart</h2>
                                 <p class="col-sm-12 pl-0">
                                     -หมอนทรงหัวใจลดอาการปวดคอ <br/>
                                     -ป้องกันการตกหมอน <br/>
@@ -120,9 +140,9 @@ require("header.html");
                         <div class="col-lg-5 col-sm-12">
                             <div class="single_product_content">
                                 <h5>ราคาใบละ 590 บาท</h5>
-                                <h2>หมอนแบบ Contour</h2>
+                                <h2>หมอนแบบ Durian</h2>
                                 <p class="col-sm-12 pl-0">
-                                    -หมอนทรงหัวใจลดอาการปวดคอ <br/>
+                                    -หมอนทุเรียนลดอาการปวดคอ <br/>
                                     -ป้องกันการตกหมอน <br/>
                                     -กระตุ้นการไหลเวียนโลหิต <br/><br/>
                                 </p>
@@ -131,6 +151,7 @@ require("header.html");
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
