@@ -44,7 +44,7 @@ require("header.html");
 <!-- banner part start-->
 
 <!-- product list start-->
-<section class="single_product_list">
+<section class="single_product_list mt-5 pt-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -52,8 +52,8 @@ require("header.html");
                     <div class="row align-items-center justify-content-between">
                         <div class="col-lg-6 col-sm-6">
                             <div class="single_product_img">
-                                <img src="img/single_product_1.webp" width="548" height="460" class="img-fluid" alt="#">
-                                <img src="img/product_overlay.png" alt="#" class="product_overlay img-fluid">
+                                <img src="img/single_product_1.webp" width="548" height="460" class="img-fluid border-circle-square " alt="#">
+
                             </div>
                         </div>
                         <div class="col-lg-5 col-sm-6">
@@ -69,8 +69,7 @@ require("header.html");
                     <div class="row align-items-center justify-content-between">
                         <div class="col-lg-6 col-sm-6">
                             <div class="single_product_img">
-                                <img src="img/single_product_2.webp" width="548" height="460" class="img-fluid" alt="#">
-                                <img src="img/product_overlay.png" alt="#" class="product_overlay img-fluid">
+                                <img src="img/single_product_2.webp" width="548" height="460" class="img-fluid border-circle-square" alt="#">
                             </div>
                         </div>
                         <div class="col-lg-5 col-sm-6">
@@ -87,8 +86,7 @@ require("header.html");
                     <div class="row align-items-center justify-content-between">
                         <div class="col-lg-6 col-sm-6">
                             <div class="single_product_img">
-                                <img src="img/single_product_3.webp" width="548" height="460" class="img-fluid" alt="#">
-                                <img src="img/product_overlay.png" alt="#" class="product_overlay img-fluid">
+                                <img src="img/single_product_3.webp" width="548" height="460" class="img-fluid border-circle-square" alt="#">
                             </div>
                         </div>
                         <div class="col-lg-5 col-sm-6">
@@ -104,8 +102,7 @@ require("header.html");
                     <div class="row align-items-center justify-content-between">
                         <div class="col-lg-6 col-sm-6">
                             <div class="single_product_img">
-                                <img src="img/single_product_4.webp" width="548" height="460" class="img-fluid" alt="#">
-                                <img src="img/product_overlay.png" alt="#" class="product_overlay img-fluid">
+                                <img src="img/single_product_4.webp" width="548" height="460" class="img-fluid border-circle-square" alt="#">
                             </div>
                         </div>
                         <div class="col-lg-5 col-sm-6">
@@ -125,7 +122,7 @@ require("header.html");
 
 
 <!-- trending item start-->
-<section class="trending_items">
+<!--<section class="trending_items">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -183,7 +180,7 @@ require("header.html");
             </div>
         </div>
     </div>
-</section>
+</section>-->
 <!-- trending item end-->
 
 <!--::footer_part start::-->

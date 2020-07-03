@@ -5235,6 +5235,12 @@ h6 {
         top: 32%; } }
 
 /************ about_us css end ***************/
+.border-circle-square {
+  border-style: solid;
+  border-width: thin;
+  border-radius: 0.5em;
+  border-color: #E9E9E9; }
+
 .breadcrumb_part {
   height: 350px;
   display: flex;
