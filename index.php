@@ -86,7 +86,7 @@ require("header.html");
                                     -การนอนถูกต้องตามสรีระ <br/>
                                     -ลดการปวดเมื่อย ลดการปวดคอ ลดการนอนกรน <br/><br/>
                                 </p>
-                                <a href="single-product.php" class="btn_3 mt-2">Explore Now</a>
+                                <a href="single-product.php?id=2" class="btn_3 mt-2">Explore Now</a>
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ require("header.html");
                                     -การนอนถูกต้องตามสรีระ <br/>
                                     -ลดการปวดเมื่อย ลดการปวดคอ ลดการนอนกรน <br/><br/>
                                 </p>
-                                <a href="single-product.php" class="btn_3 mt-2">Explore Now</a>
+                                <a href="single-product.php?id=5" class="btn_3 mt-2">Explore Now</a>
                             </div>
                         </div>
                     </div>
@@ -126,7 +126,7 @@ require("header.html");
                                     -ป้องกันการตกหมอน <br/>
                                     -กระตุ้นการไหลเวียนโลหิต <br/><br/>
                                 </p>
-                                <a href="single-product.php" class="btn_3 mt-2">Explore Now</a>
+                                <a href="single-product.php?id=3" class="btn_3 mt-2">Explore Now</a>
                             </div>
                         </div>
                     </div>
@@ -146,12 +146,12 @@ require("header.html");
                                     -ป้องกันการตกหมอน <br/>
                                     -กระตุ้นการไหลเวียนโลหิต <br/><br/>
                                 </p>
-                                <a href="single-product.php" class="btn_3 mt-2">Explore Now</a>
+                                <a href="single-product.php?id=4" class="btn_3 mt-2">Explore Now</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
