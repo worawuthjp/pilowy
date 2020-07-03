@@ -47,7 +47,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="img/single_product_1.png" class="img-fluid" alt="#">
+                                    <img src="img/single_product_1.webp" class="img-fluid" alt="#">
                                     <img src="img/product_overlay.png" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
