@@ -15,7 +15,7 @@ $port = '5432';
 * Now connect to the database
 */
 $db->connect($host,$user,$pass,$dbname);
-if($db){
+/*if($db){
     echo "connect";
 }
 else{
@@ -24,5 +24,5 @@ else{
 
 $sql = 'SELECT * FROM product';
 $rs = $db->getAll($sql);
-print_r($rs);
+print_r($rs);*/
 ?>
