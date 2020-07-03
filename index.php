@@ -19,27 +19,26 @@ require("header.html");
 <!-- Header part end-->
 
 <!-- banner part start-->
-<section class="banner_part">
+<section class="main_part">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row">
+            <div class="col-md-7 pl-0 pr-0">
+                <img src="img/banner.webp" alt="#" class="img-fluid col-sm-12 col-md-12 mt-sm-0 pl-0 pr-0">
+                <!-- <img src="img/banner_pattern.png " alt="#" class="pattern_img img-fluid"> -->
+            </div>
             <div class="col-md-5">
                 <div class="banner_text col-sm-12 pl-0 pr-0">
-                    <div class="banner_text_iner">
+                    <div class="">
                         <h1>หมอนยางพาราคุณภาพสูง</h1>
                         <p>
                             หมอนยางพารา Pilowy เป็นหมอนยางพาราแท้ 100% จากบริษัท Thai rubber ผู้ผลิตและจำหน่ายยางพารา Top
                             3 ของประเทศไทย
                         </p>
                         <a href="product_list.php" class="btn_1">shop now</a>
-
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="banner_img">
-        <img src="img/banner.webp" alt="#" class="img-fluid col-sm-12">
-        <!-- <img src="img/banner_pattern.png " alt="#" class="pattern_img img-fluid"> -->
     </div>
 </section>
 <!-- banner part start-->
