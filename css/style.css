@@ -5261,6 +5261,9 @@ h6 {
   align-items: center;
   justify-content: center;
   background-color: #B08EAD; }
+  @media (max-width: 576px) {
+    .breadcrumb_part {
+      height: 70px; } }
   .breadcrumb_part .breadcrumb_iner {
     text-align: center; }
     .breadcrumb_part .breadcrumb_iner h2 {
