@@ -31,7 +31,8 @@ require("header.html");
                     <div class="">
                         <h1>หมอนยางพาราคุณภาพสูง</h1>
                         <p>
-                            หมอนยางพารา Pilowy เป็นหมอนยางพาราแท้ 100% จากบริษัท Thai rubber ผู้ผลิตและจำหน่ายยางพารา Top
+                            หมอนยางพารา Pilowy เป็นหมอนยางพาราแท้ 100% จากบริษัท Thai rubber ผู้ผลิตและจำหน่ายยางพารา
+                            Top
                             3 ของประเทศไทย
                         </p>
                         <a href="product_list.php" class="btn_1">shop now</a>
@@ -44,23 +45,47 @@ require("header.html");
 <!-- banner part start-->
 
 <!-- product list start-->
-<section class="single_product_list mt-5 pt-5">
+<section class="single_product_list pt-3 mt-md-5 pt-md-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="single_product_iner">
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col-lg-6 col-sm-6">
-                            <div class="single_product_img">
-                                <img src="img/single_product_1.webp" width="548" height="460" class="img-fluid border-circle-square " alt="#">
+                    <div class="row align-items-center justify-content-between pt-md-5">
+                        <div class="col-lg-6 col-sm-12">
+                            <img src="img/single_product_1.webp"
+                                 class="img-fluid border-circle-square col-md-12 col-sm-12" alt="#">
 
-                            </div>
                         </div>
                         <div class="col-lg-5 col-sm-6">
                             <div class="single_product_content">
                                 <h5>ราคาใบละ 590 บาท</h5>
-                                <h2><a href="single-product.php">หมอนแบบ Massage </a></h2>
-                                <a href="product_list.php" class="btn_3">Explore Now</a>
+                                <h2>หมอนแบบ Massage</h2>
+                                <p class="col-sm-12 pl-0">
+                                    หมอนยางพารา Pilowy เป็นหมอนยางพาราแท้ 100% จากบริษัท Thai rubber
+                                    ผู้ผลิตและจำหน่ายยางพารา Top
+                                    3 ของประเทศไทย
+                                </p>
+                                <a href="product_list.php" class="btn_3 mt-2">Explore Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single_product_iner">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-lg-6 col-sm-12">
+                            <img src="img/single_product_2.webp"
+                                 class="img-fluid border-circle-square col-md-12 col-sm-12" alt="#">
+                        </div>
+                        <div class="col-lg-5 col-sm-12">
+                            <div class="single_product_content">
+                                <h5>ราคาใบละ 590 บาท</h5>
+                                <h2>หมอนแบบ Contour</h2>
+                                <p class="col-sm-12 pl-0">
+                                    หมอนยางพารา Pilowy เป็นหมอนยางพาราแท้ 100% จากบริษัท Thai rubber
+                                    ผู้ผลิตและจำหน่ายยางพารา Top
+                                    3 ของประเทศไทย
+                                </p>
+                                <a href="product_list.php" class="btn_3 mt-2">Explore Now</a>
                             </div>
                         </div>
                     </div>
@@ -68,16 +93,19 @@ require("header.html");
                 <div class="single_product_iner">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-lg-6 col-sm-6">
-                            <div class="single_product_img">
-                                <img src="img/single_product_2.webp" width="548" height="460" class="img-fluid border-circle-square" alt="#">
-                            </div>
+                            <img src="img/single_product_3.webp" width="548" height="460"
+                                 class="img-fluid border-circle-square" alt="#">
                         </div>
-                        <div class="col-lg-5 col-sm-6">
+                        <div class="col-lg-5 col-sm-12 ">
                             <div class="single_product_content">
                                 <h5>ราคาใบละ 590 บาท</h5>
-                                <h2><a href="single-product.php">หมอนแบบ Contour
-                                    </a></h2>
-                                <a href="product_list.php" class="btn_3">Explore Now</a>
+                                <h2>หมอนแบบ Contour</h2>
+                                <p class="col-sm-12 pl-0">
+                                    หมอนยางพารา Pilowy เป็นหมอนยางพาราแท้ 100% จากบริษัท Thai rubber
+                                    ผู้ผลิตและจำหน่ายยางพารา Top
+                                    3 ของประเทศไทย
+                                </p>
+                                <a href="product_list.php" class="btn_3 mt-2">Explore Now</a>
                             </div>
                         </div>
                     </div>
@@ -85,31 +113,19 @@ require("header.html");
                 <div class="single_product_iner">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-lg-6 col-sm-6">
-                            <div class="single_product_img">
-                                <img src="img/single_product_3.webp" width="548" height="460" class="img-fluid border-circle-square" alt="#">
-                            </div>
+                            <img src="img/single_product_4.webp" width="548" height="460"
+                                 class="img-fluid border-circle-square" alt="#">
                         </div>
-                        <div class="col-lg-5 col-sm-6">
+                        <div class="col-lg-5 col-sm-12">
                             <div class="single_product_content">
                                 <h5>ราคาใบละ 590 บาท</h5>
-                                <h2><a href="single-product.php">หมอนแบบ Heart</a></h2>
-                                <a href="product_list.php" class="btn_3">Explore Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single_product_iner">
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col-lg-6 col-sm-6">
-                            <div class="single_product_img">
-                                <img src="img/single_product_4.webp" width="548" height="460" class="img-fluid border-circle-square" alt="#">
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-sm-6">
-                            <div class="single_product_content">
-                                <h5>ราคาใบละ 590 บาท</h5>
-                                <h2><a href="single-product.php">หมอนแบบ Durian </a></h2>
-                                <a href="product_list.php" class="btn_3">Explore Now</a>
+                                <h2>หมอนแบบ Contour</h2>
+                                <p class="col-sm-12 pl-0">
+                                    หมอนยางพารา Pilowy เป็นหมอนยางพาราแท้ 100% จากบริษัท Thai rubber
+                                    ผู้ผลิตและจำหน่ายยางพารา Top
+                                    3 ของประเทศไทย
+                                </p>
+                                <a href="product_list.php" class="btn_3 mt-2">Explore Now</a>
                             </div>
                         </div>
                     </div>

@@ -3,6 +3,11 @@
 
 <?php
 require("head.html");
+require ("connectDB.php");
+if(isset($_GET['id'])){
+    $sql = 'SELECT id,name,img,price FROM product WHERE id = \''.$_GET['id'].'\'';
+    echo $sql;
+}
 ?>
 
 <body>
