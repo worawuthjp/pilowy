@@ -32,8 +32,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
         </div>
         <div class="banner_img">
-            <img src="img/banner.png" alt="#" class="img-fluid">
-            <img src="img/banner_pattern.png " alt="#" class="pattern_img img-fluid">
+            <img src="img/banner.webp"width="1073" height="800"  alt="#" class="img-fluid">
+            <!-- <img src="img/banner_pattern.png " alt="#" class="pattern_img img-fluid"> -->
         </div>
     </section>
     <!-- banner part start-->
