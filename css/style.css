@@ -1612,6 +1612,80 @@ ul {
         right: auto; } }
 
 /**************** hero part css end ****************/
+.main_part {
+  height: 500px;
+  display: flex; }
+  @media (max-width: 991px) {
+    .main_part {
+      height: 550px; } }
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .main_part {
+      height: 420px; } }
+  @media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .main_part {
+      height: 420px; } }
+  @media only screen and (min-width: 1200px) and (max-width: 1440px) {
+    .main_part {
+      height: 600px; } }
+  .main_part .btn_1 {
+    margin-top: 50px;
+    position: absolute; }
+    @media (max-width: 991px) {
+      .main_part .btn_1 {
+        margin-top: 20px;
+        padding: 12px 25px; } }
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+      .main_part .btn_1 {
+        margin-top: 20px; } }
+    @media (max-width: 576px) {
+      .main_part .btn_1 {
+        margin-top: 20px;
+        left: 30%;
+        right: auto; } }
+  @media (max-width: 991px) {
+    .main_part .banner_text {
+      margin-top: 0; } }
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .main_part .banner_text {
+      margin-top: 0; } }
+  @media (max-width: 576px) {
+    .main_part .banner_text {
+      margin-top: 0; } }
+  .main_part .banner_text h1 {
+    font-size: 68px;
+    font-weight: 500;
+    line-height: 78px;
+    margin-bottom: 10px; }
+    @media (max-width: 576px) {
+      .main_part .banner_text h1 {
+        font-size: 1.6rem;
+        margin-top: 0rem;
+        line-height: 1.3; } }
+    @media only screen and (min-width: 576px) and (max-width: 767px) {
+      .main_part .banner_text h1 {
+        font-size: 30px;
+        margin-bottom: 15px;
+        line-height: 1.3; } }
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+      .main_part .banner_text h1 {
+        font-size: 40px;
+        margin-bottom: 15px;
+        line-height: 1.3; } }
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+      .main_part .banner_text h1 {
+        font-size: 40px;
+        margin-bottom: 15px;
+        line-height: 1.4; } }
+    .main_part .banner_text h1 span {
+      color: #B08EAD; }
+  .main_part .banner_text p {
+    font-size: 20px;
+    line-height: 1.5; }
+    @media (max-width: 576px) {
+      .main_part .banner_text p {
+        font-size: 18px;
+        line-height: 1.3; } }
+
 .single_product_list {
   padding: 200px 0 100px; }
   @media (max-width: 991px) {
