@@ -21,8 +21,14 @@ $db->connect($host,$user,$pass,$dbname);
 else{
     echo $db;
 }
+*/
 
-$sql = 'SELECT * FROM product';
-$rs = $db->getAll($sql);
-print_r($rs);*/
-?>
+function selectAll($db,$sql){
+    $result = $db->getAll($sql);
+    return $result;
+}
+
+function selectOne($db,$sql){
+    $result = $db->getAll($sql);
+    return $result;
+}

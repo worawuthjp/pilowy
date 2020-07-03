@@ -66,7 +66,7 @@ require("header.html");
                                     -การพักผ่อนมีประสิทธิ์ภาพมากขึ้น <br/>
                                     -ได้รับความนิยมจากในประเทศและนอกประเทศ  <br/><br/>
                                 </p>
-                                <a href="single-product.php" class="btn_3 mt-2">Explore Now</a>
+                                <a href="single-product.php?id=1" class="btn_3 mt-2">Explore Now</a>
                             </div>
                         </div>
                     </div>
