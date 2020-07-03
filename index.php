@@ -9,6 +9,7 @@ require("head.html");
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZNSRF2"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
     <!--::header part start::-->
     <?php
     require("header.html");
@@ -22,8 +23,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="col-md-5">
                     <div class="banner_text">
                         <div class="banner_text_iner">
-                            <h1>หมอนยางพาราคุณภาพสูง
-                                </h1>
+                            <h1>หมอนยางพาราคุณภาพสูง</h1>
                             <p>หมอนยางพารา Pilowy เป็นหมอนยางพาราแท้ 100% จากบริษัท Thai rubber ผู้ผลิตและจำหน่ายยางพารา Top 3 ของประเทศไทย</p>
                             <a href="product_list.php" class="btn_1">shop now</a>
                         </div>
@@ -32,7 +32,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
         </div>
         <div class="banner_img">
-            <img src="img/banner.webp"width="1073" height="800"  alt="#" class="img-fluid">
+            <img src="img/banner.webp" alt="#" class="img-fluid col-sm-12">
             <!-- <img src="img/banner_pattern.png " alt="#" class="pattern_img img-fluid"> -->
         </div>
     </section>
@@ -185,7 +185,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <?php
     require("footer.html");
   ?>
-    <!--::footer_part end::--> 
+    <!--::footer_part end::-->
 
     <!-- jquery plugins here-->
     <script src="js/jquery-1.12.1.min.js"></script>
@@ -216,4 +216,3 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 </html>
- 
