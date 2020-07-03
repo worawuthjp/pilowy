@@ -36,14 +36,14 @@
     }
     .banner_text{
         @media #{$tab}{
-            margin-top: -105px;
+            margin-top: -150;
         }
         @media #{$tab_device}{
             margin-top: 0;
         }
-        /*@media #{$small_mobile} {
-            margin-top: -150;
-        }*/
+        @media #{$small_mobile} {
+            margin-top: 0;
+        }
 
         h1{
             font-size: 68px;
@@ -51,8 +51,9 @@
             line-height: 78px;
             margin-bottom: 10px;
             @media #{$small_mobile}{
-                font-size: 30px;
-                margin-bottom: 15px;
+                font-size: 1.6rem;
+                margin-top: -7.5rem;
+                margin-bottom: 85%;
                 line-height: 1.3;
             }
             @media #{$large_mobile}{
@@ -78,7 +79,7 @@
             font-size: 20px;
             line-height: 1.5;
             @media #{$small_mobile}{
-                margin-top: 85%;
+                font-size: 18px;
                 line-height: 1.3;
             }
 
@@ -88,20 +89,21 @@
         position: absolute;
         right: 0;
         top: 0;
-        max-width: 55%;
+        max-width: 50%;
         @media #{$big_screen}{
-            max-width: 55%;
+            max-width: 50%;
             top: auto;
+            max-height: 420px;
             bottom: 0;
         }
         @media #{$medium_device}{
-            max-width: 55%;
+            max-width: 50%;
             top: auto;
             bottom: 0;
         }
         @media #{$small_mobile}{
-            max-width: 100%;
-            top: 10%;
+            max-width: 100rem;
+            top: 4rem;
             bottom: 0;
         }
         @media #{$large_mobile}{
@@ -110,7 +112,8 @@
             bottom: 0;
         }
         @media #{$tab_device}{
-            max-width: 60.6%;
+            max-width: 60%;
+            margin-top: -150;
             top: auto;
             bottom: 0;
         }
@@ -144,6 +147,8 @@
         }
         @media #{$small_mobile} {
             margin-top: 20px;
+            left: 30%;
+            right: auto;
         }
     }
 }
