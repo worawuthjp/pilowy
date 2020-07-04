@@ -17,7 +17,7 @@ if (isset($_GET['add'])) {
     }
 
 }
-?>>
+?>
 
 <body>
        <!--::header part start::-->

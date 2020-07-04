@@ -36,7 +36,7 @@ require("head.html");
                             <h2>ไม่เคยซื้อของกับเรา ?</h2>
                             <p>ก่อนซื้อของกับเรากรุณากรอกเบอร์โทรศัพท์เพื่อเป็นการลงทะเบียนยืนยันตัวตนกับเรา</p><br/><br/>
 
-                            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                            <form class="row contact_form" action="createuser.php" method="post" novalidate="novalidate">
                                 <div class="col-md-12 form-group p_star">
                                     <input type="text" class="form-control" id="phone" name="phone" value=""
                                         placeholder="เบอร์โทรศัพท์" maxlength="10">
@@ -48,9 +48,11 @@ require("head.html");
                                         <label for="f-option">Remember me</label>
                                     </div> -->
 
-                                    <button type="submit" value="submit" class="btn_3">
+                                    <!-- <button type="submit" value="submit" class="btn_3">
                                         ซื้อของต่อ
-                                    </button>
+                                    </button> -->
+
+                                    <input name="submit" onclick="return confirm('คุณกรอกเลขโทรศัพท์ถูกต้องแล้ว ?')" type="submit" value="ซื้อของต่อ" class="btn_3" />
 
                                     <!-- <a class="lost_pass" href="#">forget password?</a> -->
                                 <!-- </div> -->
@@ -63,7 +65,7 @@ require("head.html");
                         <div class="login_part_form_iner">
                             <h3>ยินดีต้อนรับ ! <br>
                                 กรอกเบอร์โทรศัพท์เพื่อเข้าใช้งาน</h3>
-                            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                            <form class="row contact_form" action="checkuser.php" method="post" novalidate="novalidate">
                                 <div class="col-md-12 form-group p_star">
                                     <input type="text" class="form-control" id="phone" name="phone" value=""
                                         placeholder="เบอร์โทรศัพท์" maxlength="10">
@@ -75,9 +77,10 @@ require("head.html");
                                         <label for="f-option">Remember me</label>
                                     </div> -->
                                     <br/><br/><br/>
-                                    <button type="submit" value="submit" class="btn_3">
+                                    <!-- <button type="submit" value="submit" class="btn_3">
                                         ซื้อของต่อ
-                                    </button>
+                                    </button> -->
+                                    <input name="submit" onclick="return confirm('คุณกรอกเลขโทรศัพท์ถูกต้องแล้ว ?')" type="submit" value="ซื้อของต่อ" class="btn_3" />
                                     <!-- <a class="lost_pass" href="#">forget password?</a> -->
                                 </div>
                             </form>
