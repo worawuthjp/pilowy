@@ -60,7 +60,7 @@ require("header.php");
                                             </a></h3>
                                         <p><?php $record[$i]['price'] ?></p>
                                         <div class="add_to_cart mt-4">
-                                            <a href="cart.php?add=<?php echo $record[$i]['id'];?>&quantity=1" class="btn_3">add to cart</a>
+                                            <a href="single-product.php?id=<?php echo $record[$i]['id'];?>&quantity=1" class="btn_3">Explore Now</a>
                                         </div>
                                     </div>
                                 </div>
