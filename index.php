@@ -128,7 +128,7 @@ if(isset($_GET['time']))
                             3 ของประเทศไทย
                         </p>
                         <!-- <a href="product_list.php" class="btn_1">shop now</a> -->
-                        <a href="login.php" class="btn_1">shop now</a>
+                        <a href="login.php?from=index" class="btn_1">shop now</a>
                     </div>
                 </div>
             </div>

@@ -28,6 +28,8 @@ $rs = selectOne($db, $sql);
     
     }
     session_start();
+
+
     $_SESSION['id'] = $record[0]['id'];
     $_SESSION['f_name'] = $record[0]['f_name'];
     $_SESSION['l_name'] = $record[0]['l_name'];
@@ -36,7 +38,13 @@ $rs = selectOne($db, $sql);
     $_SESSION['address'] = $record[0]['address'];
     $_SESSION['phone'] = $record[0]['phone'];
     
-    header("location:test.php");
+    if (isset($_SESSION['from'])) {
+        // echo $_SESSION['from'];
+        unset($_SESSION['from']);
+        header("location:product_list.php");
+    } else {
+        header("location:cart.php");
+    }
 }
 }
 ?>
