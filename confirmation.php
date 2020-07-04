@@ -59,42 +59,20 @@ require("head.html");
             <h4>ที่อยู่เรียกเก็บเงิน</h4>
             <ul>
               <li>
-                <p>บ้านเลขที่/ถนน</p><span>: 56/8</span>
+                <p>ที่อยู่</p><span>: address</span>
               </li>
-              <li>
-                <p>ตำบล</p><span>: กำแพงแสน</span>
-              </li>
-              <li>
-                <p>อำเภอ</p><span>: กำแพงแสน</span>
-              </li>
-              <li>
-                <p>จังหวัด</p><span>: นครปฐม</span>
-              </li>
-              <li>
-                <p>รหัสไปรษณีย์</p><span>: 73140</span>
-              </li>
+              
             </ul>
           </div>
         </div>
         <div class="col-lg-6 col-lx-4">
           <div class="single_confirmation_details">
-            <h4>สถานที่รับสินค้า</h4>
+            <h4>ที่อยู่รับสินค้า</h4>
             <ul>
-            <li>
-                <p>บ้านเลขที่/ถนน</p><span>: 56/8</span>
-              </li>
               <li>
-                <p>ตำบล</p><span>: กำแพงแสน</span>
+                <p>ที่อยู่</p><span>: address</span>
               </li>
-              <li>
-                <p>อำเภอ</p><span>: กำแพงแสน</span>
-              </li>
-              <li>
-                <p>จังหวัด</p><span>: นครปฐม</span>
-              </li>
-              <li>
-                <p>รหัสไปรษณีย์</p><span>: 73140</span>
-              </li>
+             
             </ul>
           </div>
         </div>
