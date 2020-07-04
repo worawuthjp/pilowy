@@ -3657,7 +3657,7 @@ input:focus {
 .login_part .form-group .btn_3 {
   display: block;
   width: 100%;
-  margin: 30px 0 17px; }
+  margin: 30px 100px 17px; }
 
 .login_part .lost_pass {
   color: #777777;
