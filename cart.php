@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zxx">
+<html lang="en">
 
 <?php
 require("head.html");
@@ -11,12 +11,12 @@ require("connectDB.php");
 <?php
 require("header.php");
 if(isset($_SESSION['id'])){
-    $sql = 'Select cart.total_price,cart_product.product_id,cart_product.quantity,
+    $sql = 'Select cart.total_price,cart_product.id,cart_product.product_id,cart_product.quantity,
 cart_product.price,product.name,product.img,product.price,product.detail
 From cart 
 INNER JOIN cart_product on cart_product.cart_id = cart.id
 INNER JOIN product on product.id = cart_product.product_id
-WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\'';
+WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
     //echo $sql;
     $rs = selectOne($db,$sql);
 }
@@ -59,15 +59,15 @@ WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\'';
                         <td>
                             <div class="media">
                                 <div class="d-flex">
-                                    <img src="img/arrivel/arrivel_1.png" alt=""/>
+                                    <img src="<?php echo $row['img']?>" alt=""/>
                                 </div>
                                 <div class="media-body">
-                                    <p>Minimalistic shop for multipurpose use</p>
+                                    <p><?php echo $row['name']?></p>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <h5>$360.00</h5>
+                            <h5><?php echo number_format($row['price'],2) ?></h5>
                         </td>
                         <td>
                             <div class="product_count">
@@ -81,9 +81,13 @@ WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\'';
                                   class="reduced input-number-decrement items-count" type="button">
                                   <i class="ti-angle-down"></i>
                                 </button> -->
-                                <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                                <input class="input-number" type="text" value="1" min="1" max="10">
-                                <span class="input-number-increment"> <i class="ti-plus"></i></span>
+<<<<<<< HEAD
+                                
+=======
+                                <span class="input-number-decrement" id="<?php echo "numchange".$row['id']?>"> <i class="ti-minus"></i></span>
+                                <input class="input-number" name="<?php echo "num".$row['id']?>" id="<?php echo "num".$row['id']?>" type="text" value="1" min="0" max="99">
+                                <span class="input-number-increment" id="<?php echo "numchange".$row['id']?>"> <i class="ti-plus"></i></span>
+>>>>>>> origin/master
                             </div>
                         </td>
                         <td>
