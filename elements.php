@@ -8,7 +8,7 @@ require("head.html");
 <body>
    <!--::header part start::-->
     <?php
-    require("header.html");
+    require("header.php");
     ?>
     <!-- Header part end-->
 

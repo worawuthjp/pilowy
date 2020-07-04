@@ -15,7 +15,7 @@ foreach ($rs as $row) {
 <body>
 <!--::header part start::-->
 <?php
-require("header.html");
+require("header.php");
 ?>
 <!-- Header part end-->
 

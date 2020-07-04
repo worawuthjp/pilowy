@@ -1,4 +1,27 @@
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+<?php
+//กำหนดเวลาที่สามารถอยู่ในระบบ
+session_start();
+$sessionlifetime = 3; //กำหนดเป็นนาที
+// print_r($_SESSION["timeLasetdActive"]); 
+if(isset($_SESSION["timeLasetdActive"])){
+	$seclogin = (time()-$_SESSION["timeLasetdActive"])/60;
+	//หากไม่ได้ Active ในเวลาที่กำหนด
+	if($seclogin>$sessionlifetime){
+        //goto logout page
+        session_destroy();echo "<script type=\"text/javascript\">";
+        echo "alert(\"Test<<\");";
+        echo "</script>";
+		header("location:index.php");
+		exit;
+	}else{
+		$_SESSION["timeLasetdActive"] = time();
+	}
+}else{
+	$_SESSION["timeLasetdActive"] = time();
+}
+//
+?>
+<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171494050-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
