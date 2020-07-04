@@ -12,7 +12,7 @@ if (isset($_POST['phone'])) {
     foreach ($rs as $row) {
         $record[] = $row;
     }
-    
+
 // print_r($record[0]['id']);
 // echo "<br/>";
 // print_r($record[0]['phone']);
@@ -27,7 +27,7 @@ $_SESSION['email'] = $record[0]['email'];
 $_SESSION['address'] = $record[0]['address'];
 $_SESSION['phone'] = $record[0]['phone'];
 
-header("location:test.php");
+header("location:cart.php");
 }
 ?>
 
