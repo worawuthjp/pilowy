@@ -2,7 +2,7 @@
 //กำหนดเวลาที่สามารถอยู่ในระบบ
 session_start();
 $sessionlifetime = 30; //กำหนดเป็นนาที
-// print_r($_SESSION["timeLasetdActive"]); 
+// print_r($_SESSION["timeLasetdActive"]);
 if(isset($_SESSION["timeLasetdActive"])){
 	$seclogin = (time()-$_SESSION["timeLasetdActive"])/60;
 	//หากไม่ได้ Active ในเวลาที่กำหนด
@@ -87,7 +87,7 @@ if(isset($_SESSION["timeLasetdActive"])){
                                 </li> -->
                             </ul>
                         </div>
-                        <div class="hearer_icon d-flex align-items-center mr-5">
+                        <div class="hearer_icon d-flex align-items-center mr-md-5 mr-sm-5 mr-4">
                             <!-- <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a> -->
                             <a href="cart.php">
                                 <i class="flaticon-shopping-cart-black-shape"></i>
@@ -97,7 +97,7 @@ if(isset($_SESSION["timeLasetdActive"])){
                 </div>
             </div>
         </div>
-        <div class="search_input" id="search_input_box">
+        <!--<div class="search_input" id="search_input_box">
             <div class="container ">
                 <form class="d-flex justify-content-between search-inner">
                     <input type="text" class="form-control" id="search_input" placeholder="Search Here">
@@ -105,6 +105,6 @@ if(isset($_SESSION["timeLasetdActive"])){
                     <span class="ti-close" id="close_search" title="Close Search"></span>
                 </form>
             </div>
-        </div>
+        </div>-->
     </header>
     <!-- Header part end-->
