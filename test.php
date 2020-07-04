@@ -9,13 +9,17 @@ $email = $_SESSION['email'];
 $address = $_SESSION['address'];
 $phone = $_SESSION['phone'];
 
+$product_id = $_POST['product_id'];
+$num = $_POST['num'];
+$price = $_POST['price'];
+
 echo session_id();
 echo "<br/>";
-print_r($id);
+print_r($product_id);
 echo "<br/>";
-print_r($f_name);
+print_r($num);
 echo "<br/>";
-print_r($phone);
+print_r($price);
 ?>
 
 </html>
