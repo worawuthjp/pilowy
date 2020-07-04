@@ -27,9 +27,16 @@ $rs = selectOne($db, $sql);
         $record[] = $row;
     
     }
-    $id = $record[0]['id'];
-    $phone = $record[0]['phone'];
-    header("location:test.php?id=$id&phone=$phone");
+    session_start();
+    $_SESSION['id'] = $record[0]['id'];
+    $_SESSION['f_name'] = $record[0]['f_name'];
+    $_SESSION['l_name'] = $record[0]['l_name'];
+    $_SESSION['postal_code'] = $record[0]['postal_code'];
+    $_SESSION['email'] = $record[0]['email'];
+    $_SESSION['address'] = $record[0]['address'];
+    $_SESSION['phone'] = $record[0]['phone'];
+    
+    header("location:test.php");
 }
 }
 ?>

@@ -17,8 +17,7 @@ if (isset($_POST['phone'])) {
 // echo "<br/>";
 // print_r($record[0]['phone']);
 
-$id = $record[0]['id'];
-$phone = $record[0]['phone'];
+
 session_start();
 $_SESSION['id'] = $record[0]['id'];
 $_SESSION['f_name'] = $record[0]['f_name'];
@@ -28,7 +27,7 @@ $_SESSION['email'] = $record[0]['email'];
 $_SESSION['address'] = $record[0]['address'];
 $_SESSION['phone'] = $record[0]['phone'];
 
-header("location:test.php?id=$id&phone=$phone");
+header("location:test.php");
 }
 ?>
 

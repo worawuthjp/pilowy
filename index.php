@@ -2,6 +2,13 @@
 <html lang="zxx">
 <?php
 require("head.html");
+function function_alert($msg) {
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+}
+if(isset($_GET['time']))
+    function_alert("หมดเวลากรเชื่อมต่อของคุณ");
+
+
 ?>
 <body class="test">
 

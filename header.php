@@ -1,17 +1,15 @@
 <?php
 //กำหนดเวลาที่สามารถอยู่ในระบบ
 session_start();
-$sessionlifetime = 3; //กำหนดเป็นนาที
+$sessionlifetime = 2; //กำหนดเป็นนาที
 // print_r($_SESSION["timeLasetdActive"]); 
 if(isset($_SESSION["timeLasetdActive"])){
 	$seclogin = (time()-$_SESSION["timeLasetdActive"])/60;
 	//หากไม่ได้ Active ในเวลาที่กำหนด
 	if($seclogin>$sessionlifetime){
         //goto logout page
-        session_destroy();echo "<script type=\"text/javascript\">";
-        echo "alert(\"Test<<\");";
-        echo "</script>";
-		header("location:index.php");
+        session_destroy();
+		header("location:index.php?time=0");
 		exit;
 	}else{
 		$_SESSION["timeLasetdActive"] = time();
