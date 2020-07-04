@@ -59,7 +59,7 @@ require("header.html");
                         <div class="product_count_area">
                             <div class="product_count d-inline-block">
                                 <span class="product_count_item inumber-decrement" id="change-num1" > <i class="ti-minus"></i></span>
-                                <input class="product_count_item input-number" id="num" type="text" value="1" min="0" max="99">
+                                <input class="product_count_item input-number" id="num" type="text" value="1" min="1" max="99">
                                 <span class="product_count_item number-increment" id="change-num2"> <i class="ti-plus"></i></span>
                                 <input type="hidden" name="price" id="price" value="<?php echo $record[0]['price'];?>">
                             </div>
