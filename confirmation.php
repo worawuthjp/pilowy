@@ -18,7 +18,7 @@ require("head.html");
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
-                        <h2>confirmation</h2>
+                        <h2>ยืนยันการชำระเงิน</h2>
                     </div>
                 </div>
             </div>
@@ -37,57 +37,63 @@ require("head.html");
         </div>
         <div class="col-lg-6 col-lx-4">
           <div class="single_confirmation_details">
-            <h4>order info</h4>
+            <h4>ข้อมูลการสั่งซื้อสินค้า</h4>
             <ul>
               <li>
-                <p>order number</p><span>: 60235</span>
+                <p>เลขที่คำสั่งซื้อ</p><span>: 60235</span>
               </li>
               <li>
-                <p>data</p><span>: Oct 03, 2017</span>
+                <p>วันที่</p><span>: Oct 03, 2017</span>
               </li>
               <li>
-                <p>total</p><span>: USD 2210</span>
+                <p>ราคารวมทั้งสิ้น</p><span>: USD 2210</span>
               </li>
               <li>
-                <p>mayment methord</p><span>: Check payments</span>
+                <p>ช่องทางการชำระเงิน</p><span>: Check payments</span>
               </li>
             </ul>
           </div>
         </div>
         <div class="col-lg-6 col-lx-4">
           <div class="single_confirmation_details">
-            <h4>Billing Address</h4>
+            <h4>ที่อยู่เรียกเก็บเงิน</h4>
             <ul>
               <li>
-                <p>Street</p><span>: 56/8</span>
+                <p>บ้านเลขที่/ถนน</p><span>: 56/8</span>
               </li>
               <li>
-                <p>city</p><span>: Los Angeles</span>
+                <p>ตำบล</p><span>: กำแพงแสน</span>
               </li>
               <li>
-                <p>country</p><span>: United States</span>
+                <p>อำเภอ</p><span>: กำแพงแสน</span>
               </li>
               <li>
-                <p>postcode</p><span>: 36952</span>
+                <p>จังหวัด</p><span>: นครปฐม</span>
+              </li>
+              <li>
+                <p>รหัสไปรษณีย์</p><span>: 73140</span>
               </li>
             </ul>
           </div>
         </div>
         <div class="col-lg-6 col-lx-4">
           <div class="single_confirmation_details">
-            <h4>shipping Address</h4>
+            <h4>สถานที่รับสินค้า</h4>
             <ul>
-              <li>
-                <p>Street</p><span>: 56/8</span>
+            <li>
+                <p>บ้านเลขที่/ถนน</p><span>: 56/8</span>
               </li>
               <li>
-                <p>city</p><span>: Los Angeles</span>
+                <p>ตำบล</p><span>: กำแพงแสน</span>
               </li>
               <li>
-                <p>country</p><span>: United States</span>
+                <p>อำเภอ</p><span>: กำแพงแสน</span>
               </li>
               <li>
-                <p>postcode</p><span>: 36952</span>
+                <p>จังหวัด</p><span>: นครปฐม</span>
+              </li>
+              <li>
+                <p>รหัสไปรษณีย์</p><span>: 73140</span>
               </li>
             </ul>
           </div>
@@ -96,13 +102,13 @@ require("head.html");
       <div class="row">
         <div class="col-lg-12">
           <div class="order_details_iner">
-            <h3>Order Details</h3>
+            <h3>รายละเอียดการสั่งซื้อสินค้า</h3>
             <table class="table table-borderless">
               <thead>
                 <tr>
-                  <th scope="col" colspan="2">Product</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Total</th>
+                  <th scope="col" colspan="2">สินค้า</th>
+                  <th scope="col">จำนวน</th>
+                  <th scope="col">รวม</th>
                 </tr>
               </thead>
               <tbody>
@@ -122,18 +128,19 @@ require("head.html");
                   <th> <span>$720.00</span></th>
                 </tr>
                 <tr>
-                  <th colspan="3">Subtotal</th>
+                  <th colspan="3">รวมสินค้าทั้งหมด</th>
                   <th> <span>$2160.00</span></th>
                 </tr>
                 <tr>
-                  <th colspan="3">shipping</th>
-                  <th><span>flat rate: $50.00</span></th>
+                  <th colspan="3">ค่าจัดส่งสินค้า</th>
+                  <th><span> $50.00</span></th>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
-                  <th scope="col" colspan="3">Quantity</th>
-                  <th scope="col">Total</th>
+                  <th scope="col" colspan="2">จำนวน</th>
+                  <th>รวมทั้งสิ้น</th>
+                  <th> <span>$2210.00</span></th>
                 </tr>
               </tfoot>
             </table>
@@ -145,10 +152,99 @@ require("head.html");
   <!--================ confirmation part end =================-->
 
       <!--::footer_part start::-->
-  <?php
-    require("footer.html");
-  ?>
+      <section class="client_review">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                
+            </div>
+        </div>
+    </div>
+
+</section>
+<footer class="footer_part">
+    <div class="footer_iner">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-8">
+                    <div class="footer_menu">
+                        <div class="footer_logo">
+                            <a href="index.html"><img src="img/favicon.gif" alt="#"></a>
+                        </div>
+                        <div class="footer_menu_item">
+                            <a href="index.html">Home</a>
+                            <a href="about.html">About</a>
+                            <a href="product_list.html">Products</a>
+                            <!-- <a href="#">Pages</a>
+                            <a href="blog.html">Blog</a>
+                            <a href="contact.html">Contact</a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="social_icon">
+                        <a href="https://www.facebook.com/Pilowy-%E0%B8%AB%E0%B8%A1%E0%B8%AD%E0%B8%99%E0%B8%A2%E0%B8%B2%E0%B8%87%E0%B8%9E%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B9%80%E0%B8%9E%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%A0%E0%B8%B2%E0%B8%9E-103141214799677/" target="new">
+                            <i class="fab fa-facebook-f"></i></a>
+                        <!-- <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright_part">
+        <div class="container">
+            <div class="row ">
+                <div class="col-lg-12">
+                    <div class="copyright_text">
+                        <P>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script>
+                            All rights reserved | This
+                            template is made with <i class="ti-heart" aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </P>
+                        <div class="copyright_link">
+                            <a href="#">Turms & Conditions</a>
+                            <a href="#">FAQ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
     <!--::footer_part end::-->
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            xfbml: true,
+            version: 'v7.0'
+        })
+        ;
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/th_TH/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Your Chat Plugin code -->
+<div class="fb-customerchat"
+     attribution=setup_tool
+     page_id="103141214799677"
+     theme_color="#0084ff">
+</div>
 
     <!-- jquery plugins here-->
     <script src="js/jquery-1.12.1.min.js"></script>
