@@ -82,7 +82,7 @@ WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\'';
                                   <i class="ti-angle-down"></i>
                                 </button> -->
                                 <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                                <input class="input-number" type="text" value="1" min="0" max="10">
+                                <input class="input-number" type="text" value="1" min="1" max="10">
                                 <span class="input-number-increment"> <i class="ti-plus"></i></span>
                             </div>
                         </td>
