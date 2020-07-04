@@ -22,7 +22,7 @@ if (isset($_GET['add'])) {
 <body>
        <!--::header part start::-->
     <?php
-    require("header.html");
+    require("header.php");
     ?>
     <!-- Header part end-->
 

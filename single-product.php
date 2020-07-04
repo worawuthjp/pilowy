@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
 <body>
 <!--::header part start::-->
 <?php
-require("header.html");
+require("header.php");
 ?>
 <!-- Header part end-->
 
