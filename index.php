@@ -35,7 +35,8 @@ require("header.html");
                             Top
                             3 ของประเทศไทย
                         </p>
-                        <a href="product_list.php" class="btn_1">shop now</a>
+                        <!-- <a href="product_list.php" class="btn_1">shop now</a> -->
+                        <a href="login.php" class="btn_1">shop now</a>
                     </div>
                 </div>
             </div>

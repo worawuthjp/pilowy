@@ -3,6 +3,20 @@
 
 <?php
 require("head.html");
+require("connectDB.php");
+$quantity = $_GET['quantity'];
+if (isset($_GET['add'])) {
+    $sql = 'SELECT product.id,product.name,product.img,product.price,product.detail FROM product WHERE id = \'' . $_GET['add'] . '\'';
+    $rs = selectOne($db, $sql);
+    //print_r($rs);
+    echo "<br>";
+
+    $record = array();
+    foreach ($rs as $row) {
+        $record[] = $row;
+    }
+
+}
 ?>>
 
 <body>

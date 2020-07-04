@@ -55,12 +55,12 @@ require("header.html");
                                 <div class="col-lg-5 col-md-5 col-sm-6 border-circle-square pt-4 mt-5">
                                     <div class="single_product_item pl-2 ml-0 text-center">
                                         <img src="<?php echo $record[$i]['img']; ?>" alt="#" class="img-fluid">
-                                        <h3><a href="single-product.php?id=">
+                                        <h3><a href="single-product.php?id=<?php echo $record[$i]['id'] ;?>">
                                                 <?php echo $record[$i]['name']; ?>
                                             </a></h3>
                                         <p><?php $record[$i]['price'] ?></p>
                                         <div class="add_to_cart mt-4">
-                                            <a href="cart.php?add=" class="btn_3">add to cart</a>
+                                            <a href="cart.php?add=<?php echo $record[$i]['id'];?>&quantity=1" class="btn_3">add to cart</a>
                                         </div>
                                     </div>
                                 </div>
