@@ -198,7 +198,7 @@ VALUES ($count+1,'{$cart_id}','$add_product','1','{$price}')";
 <?php
 require("footer.html");
 ?>
-<!--::footer_part end::-->>
+<!--::footer_part end::-->
 
 <!-- jquery plugins here-->
 <script src="js/jquery-1.12.1.min.js"></script>

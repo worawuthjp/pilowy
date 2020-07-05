@@ -3,6 +3,23 @@
 
 <?php
 require("head.html");
+require('connectDB.php');
+if(isset($_SESSION['id'])){
+    $sql = 'SELECT cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.status , tracking.track_code FROM 
+    cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
+    INNER JOIN product ON cart_product.product_id = product.id
+    INNER JOIN payment ON payment.cart_id = cart.id
+    INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = cart.id)
+    WHERE cart.cus_id = \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
+    //echo $sql;
+    $rs = selectAll($db, $sql);
+$record = array();
+foreach ($rs as $row) {
+    $record[] = $row;
+}
+}
+
+
 ?>
 
 <body>
@@ -32,40 +49,29 @@ require("head.html");
       <div class="row">
         <div class="col-lg-6 col-lx-4">
           <div class="single_confirmation_details">
-            <h4>ข้อมูลการสั่งซื้อสินค้า</h4>
+            <h4>ข้อมูลลูกค้า</h4>
             <ul>
               <li>
-                <p>เลขที่คำสั่งซื้อ</p><span>: 60235</span>
+                <p>ชื่อ-นามสกุล</p><span>: <?php echo $_SESSION['f_name']; echo " "; echo $_SESSION['l_name']; ?></span>
               </li>
               <li>
-                <p>วันที่</p><span>: Oct 03, 2017</span>
+                <p>อีเมล</p><span>: <?php echo $_SESSION['email'];?></span>
               </li>
               <li>
-                <p>ราคารวมทั้งสิ้น</p><span>: USD 2210</span>
-              </li>
-              <li>
-                <p>ช่องทางการชำระเงิน</p><span>: Check payments</span>
+                <p>เบอร์โทร</p><span>: <?php echo $_SESSION['phone'];?></span>
               </li>
             </ul>
           </div>
         </div>
         <div class="col-lg-6 col-lx-4">
-          <div class="single_confirmation_details">
-            <h4>ที่อยู่เรียกเก็บเงิน</h4>
-            <ul>
-              <li>
-                <p>ที่อยู่</p><span>: address</span>
-              </li>
-              
-            </ul>
-          </div>
+          
         </div>
         <div class="col-lg-6 col-lx-4">
           <div class="single_confirmation_details">
             <h4>ที่อยู่รับสินค้า</h4>
             <ul>
               <li>
-                <p>ที่อยู่</p><span>: address</span>
+                <p>ที่อยู่</p><span>: <?php echo $_SESSION['address']; echo " "; echo $_SESSION['postal_code'];?></span>
               </li>
              
             </ul>
@@ -75,16 +81,30 @@ require("head.html");
       <div class="row">
         <div class="col-lg-12">
           <div class="order_details_iner">
-            <h3>สถานะสินค้า</h3>
+            <h3>รายละเอียดการสั่งซื้อสินค้า</h3>
             <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col" colspan="2">เลขที่คำสั่งซื้อ</th>
+                  <th scope="col">วันที่ทำรายการ</th>
+                  <th scope="col">สินค้า</th>
+                  <th scope="col">จำนวน</th>
+                  <th scope="col">ยอดชำระ</th>
+                  <th scope="col">สถานะการชำระเงิน</th>
+                  <th scope="col">สถานะการจัดส่งสินค้า</th>
+                  <th scope="col">เลขพัสดุ</th>
+                </tr>
+              </thead>
               <tbody>
                 <tr>
-                  <th colspan="2"><span>สถานะการจัดส่ง</span></th>
-                  <th colspan="2"><span>ยังไม่ส่ง</span></th>
-                </tr>
-                <tr>
-                  <th colspan="2"><span>เลขพัสดุของคุณคือ</span></th>
-                  <th colspan="2"><span>eiei78910</span></th>
+                  <th colspan="2"><span>KU18888</span></th>
+                  <th> <span>15/02/20</span></th>
+                  <th>หมอนทุเรียน</th>
+                  <th>x 1</th>
+                  <th> <span>590 บาท</span></th>
+                  <th> <span>ชำระแล้ว</span></th>
+                  <th> <span>จัดส่งเรียบร้อยแล้ว</span></th>
+                  <th> <span>eieizazababakrukri</span></th>
                 </tr>
             </table>
           </div>
