@@ -6,7 +6,7 @@ require("head.html");
 require("connectDB.php");
 if (isset($_GET['id'])) {
     $sql = 'SELECT product.id,product.name,product.img,product.price,product.detail FROM product WHERE id = \'' . $_GET['id'] . '\'';
-    $rs = selectOne($db, $sql);
+    $rs = selectAll($db, $sql);
     //print_r($rs);
     echo "<br>";
 
@@ -54,7 +54,7 @@ if (isset($_GET['id'])) {
                         </p>
                         <?php
                             if(isset($_SESSION['id'])){
-                                $page ="cart.php";
+                                $page ="cart.php?add=".$record[0]['id'];
                             }
                             else {
                                 $page ="login.php";
@@ -68,7 +68,7 @@ if (isset($_GET['id'])) {
                                         <span class="product_count_item inumber-decrement" id="change-num1"> <i class="ti-minus"></i></span>
                                         <input class="product_count_item input-number" name="num" id="num" type="text" value="1" min="1" max="99">
                                         <span class="product_count_item number-increment" id="change-num2"> <i class="ti-plus"></i></span>
-                                        <span id="price_change" > 
+                                        <span id="price_change" >
                                             <input type="hidden" name="price" id="price" value="<?php echo $record[0]['price']; ?>">
                                         </span>
                                         <input type="hidden" name="product_id" id="product_id" value="<?php echo $record[0]['id']; ?>">
@@ -80,7 +80,7 @@ if (isset($_GET['id'])) {
                             </div>
                         </div>
 
-                        <div class=" add_to_cart mt-0">
+                        <div class=" add_to_cart mt-md-3 mt-sm-2 mt-3">
                                         <button value="submit" type="submit" class="btn_3">add to cart</button>
                                 </div>
                             </div>
