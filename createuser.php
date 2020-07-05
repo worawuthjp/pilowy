@@ -41,12 +41,15 @@ if (isset($_POST['phone'])) {
 
             unset($_SESSION['from']);
             header("location:product_list.php");
+            exit(0);
         } else if (isset($_SESSION['check'])) {
             print_r($_SESSION['check']);
             unset($_SESSION['check']);
             header("location:statusgoods.php");
+            exit(0);
         } else {
             header("location:cart.php");
+            exit(0);
         }
     }
 }

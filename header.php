@@ -10,13 +10,23 @@ if (isset($_SESSION["timeLasetdActive"])) {
         //goto logout page
         session_destroy();
         header("location:index.php?time=0");
-        exit;
+        exit(0);
     } else {
         $_SESSION["timeLasetdActive"] = time();
     }
 } else {
     $_SESSION["timeLasetdActive"] = time();
 }
+
+function console_log($output, $with_script_tags = true) {
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
+');';
+    if ($with_script_tags) {
+        $js_code = '<script>' . $js_code . '</script>';
+    }
+    echo $js_code;
+}
+// console_log($_SESSION['f_name']);
 //
 ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->

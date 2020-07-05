@@ -2,6 +2,7 @@
 <html lang="zxx">
 
 <?php
+
 require("head.html");
 
 ?>
@@ -10,21 +11,18 @@ require("head.html");
     <!--::header part start::-->
     <?php
     require("header.php");
-    // $page_create = "createuser.php";
-    // $page_check = "checkuser.php";
+
 
     if (isset($_POST['product_id'])) {
         $_SESSION['product_id'] = $_POST['product_id'];
         $_SESSION['num'] = $_POST['num'];
         $_SESSION['price'] = $_POST['price'];
-        // $page = "cart.php";
-        // $page_create = "createuser.php";
-        // $page_check = "checkuser.php";
+
     }
     if (isset($_GET['from'])) {
         $from = $_GET['from'];
         $_SESSION['from'] = $from;
-        // echo $_SESSION['from'];
+
     }
     ?>
     <!-- Header part end-->

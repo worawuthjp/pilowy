@@ -2,6 +2,17 @@
 <html lang="zxx">
 <?php
 require("head.html");
+session_start();
+function console_log($output, $with_script_tags = true)
+{
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+        ');';
+    if ($with_script_tags) {
+        $js_code = '<script>' . $js_code . '</script>';
+    }
+    echo $js_code;
+}
+
 function function_alert($msg)
 {
     echo "<script type='text/javascript'>alert('$msg');</script>";
@@ -11,6 +22,8 @@ if (isset($_GET['time']))
 
 if (isset($_GET['allow']))
     function_alert("คุณไม่ได้รับอณุญาติให้ดูหน้านี้");
+
+console_log($_SESSION['f_name']);
 ?>
 
 <body class="test">
@@ -85,9 +98,10 @@ if (isset($_GET['allow']))
 
                                 </li>
                                 <?php
-                                if (isset($_SESSION['id']))
+
+                                if (isset($_SESSION['id'])) {
                                     $page = 'statusgoods.php';
-                                else {
+                                } else {
                                     $page = 'login.php';
                                     $_SESSION['check'] = true;
                                 }
@@ -162,7 +176,14 @@ if (isset($_GET['allow']))
                                 3 ของประเทศไทย
                             </p>
                             <!-- <a href="product_list.php" class="btn_1">shop now</a> -->
-                            <a href="login.php?from=index" class="btn_1">shop now</a>
+                            <?php
+                            if (isset($_SESSION['id'])) {
+                                $from = "product_list.php";
+                            } else {
+                                $from = "login.php?from=index";
+                            }
+                            ?>
+                            <a href="<?php echo $from; ?>" class="btn_1">shop now</a>
                         </div>
                     </div>
                 </div>
