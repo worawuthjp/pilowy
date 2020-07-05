@@ -53,6 +53,7 @@ WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
                     </thead>
                     <tbody>
                     <?php
+                    if(isset($_SESSION['id']))
                     foreach ($rs as $row){
                     ?>
                     <tr>
@@ -81,7 +82,7 @@ WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
                                   class="reduced input-number-decrement items-count" type="button">
                                   <i class="ti-angle-down"></i>
                                 </button> -->
-                                <span class="input-number-decrement" id="<?php echo "numchange".$row['id']?>"> <i class="ti-minus"></i></span>
+                                <span class="input-number-decrement" id="<?php echo "numchange".$row['id']?>" onclick="numpad()"> <i class="ti-minus"></i></span>
                                 <input class="input-number" name="<?php echo "num".$row['id']?>" id="<?php echo "num".$row['id']?>" type="text" value="1" min="0" max="99">
                                 <span class="input-number-increment" id="<?php echo "numchange".$row['id']?>"> <i class="ti-plus"></i></span>
                             </div>
@@ -202,6 +203,13 @@ require("footer.html");
 <script src="js/mail-script.js"></script>
 <!-- custom js -->
 <script src="js/custom.js"></script>
+
+<script type="text/javascript">
+    function numpad() {
+        alert("NUM");
+    }
+</script>
+
 </body>
 
 </html>
