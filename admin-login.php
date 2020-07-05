@@ -79,7 +79,7 @@
 
     <h2>Admin Login</h2>
 
-    <form action="./admin.php" method="post">
+    <form action="./checkuser.php" method="post">
         <div class="container">
             <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required>
