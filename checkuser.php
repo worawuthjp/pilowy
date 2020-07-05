@@ -44,6 +44,10 @@ if (isset($_POST['phone'])) {
 
         unset($_SESSION['from']);
         header("location:product_list.php");
+    } else if (isset($_SESSION['check'])) {
+        print_r($_SESSION['check']);
+        unset($_SESSION['check']);
+        header("location:statusgoods.php");
     } else {
         header("location:cart.php");
     }

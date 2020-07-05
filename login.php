@@ -68,7 +68,7 @@ require("head.html");
                                 ซื้อของต่อ
                             </button> -->
 
-                                <input name="submit"  type="submit" value="ซื้อของต่อ" class="btn_3 ml-auto mr-auto" />
+                                <input name="submit" type="submit" value="ซื้อของต่อ" class="btn_3 ml-auto mr-auto" />
 
                                 <!-- <a class="lost_pass" href="#">forget password?</a> -->
                                 <!-- </div> -->
@@ -95,7 +95,7 @@ require("head.html");
                                 <!-- <button type="submit" value="submit" class="btn_3">
                                 ซื้อของต่อ
                             </button> -->
-                                <input name="submit"  type="submit" value="ซื้อของต่อ" class="btn_3 ml-auto mr-auto" />
+                                <input name="submit" type="submit" value="ซื้อของต่อ" class="btn_3 ml-auto mr-auto" />
                                 <!-- <a class="lost_pass" href="#">forget password?</a> -->
                                 <!--</div>-->
                             </form>
