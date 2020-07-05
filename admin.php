@@ -8,13 +8,12 @@ require("head.html");
 // }
 // if(isset($_GET['time']))
 //     function_alert("หมดเวลากรเชื่อมต่อของคุณ");
-
-if(isset($_POST['uname'])){
-    if(($_POST['uname']!="admin")||$_POST['psw']!="admin"){
-        header("location:index.php?allow=0");
-    }
-}
 session_start();
+if (!(isset($_SESSION['admin']))) {
+    session_destroy();
+    header("location:index.php?allow=0");
+}
+
 ?>
 
 <body class="test">
@@ -58,13 +57,13 @@ session_start();
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">
-                                       tracking
+                                        tracking
                                     </a>
 
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">
-                                       logout
+                                        logout
                                     </a>
 
                                 </li>

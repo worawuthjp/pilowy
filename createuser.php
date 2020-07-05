@@ -1,6 +1,7 @@
 <html>
 <?php
 require("connectDB.php");
+session_start();
 $quantity = $_POST['phone'];
 if (isset($_POST['phone'])) {
     $sql = 'SELECT * FROM customer WHERE phone  = \'' . $_POST['phone'] . '\'';
@@ -27,7 +28,7 @@ $rs = selectOne($db, $sql);
         $record[] = $row;
     
     }
-    session_start();
+    
 
 
     $_SESSION['id'] = $record[0]['id'];
