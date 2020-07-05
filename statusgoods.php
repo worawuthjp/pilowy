@@ -2,9 +2,37 @@
 <html lang="zxx">
 
 <?php
+session_start();
 require("head.html");
 require('connectDB.php');
-session_start();
+
+$sessionlifetime = 30; //กำหนดเป็นนาที
+// print_r($_SESSION["timeLasetdActive"]);
+if (isset($_SESSION["timeLasetdActive"])) {
+  $seclogin = (time() - $_SESSION["timeLasetdActive"]) / 60;
+  //หากไม่ได้ Active ในเวลาที่กำหนด
+  if ($seclogin > $sessionlifetime) {
+    //goto logout page
+    session_destroy();
+    header("location:index.php?time=0");
+    exit(0);
+  } else {
+    $_SESSION["timeLasetdActive"] = time();
+  }
+} else {
+  $_SESSION["timeLasetdActive"] = time();
+}
+
+function console_log($output, $with_script_tags = true)
+{
+  $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+    ');';
+  if ($with_script_tags) {
+    $js_code = '<script>' . $js_code . '</script>';
+  }
+  echo $js_code;
+}
+console_log($_SESSION['id']);
 if (isset($_SESSION['id'])) {
   $sql = 'SELECT cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.status , tracking.track_code FROM 
     cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
@@ -26,32 +54,6 @@ if (isset($_SESSION['id'])) {
 <body>
   <!--::header part start::-->
   <?php
-  $sessionlifetime = 30; //กำหนดเป็นนาที
-  // print_r($_SESSION["timeLasetdActive"]);
-  if (isset($_SESSION["timeLasetdActive"])) {
-    $seclogin = (time() - $_SESSION["timeLasetdActive"]) / 60;
-    //หากไม่ได้ Active ในเวลาที่กำหนด
-    if ($seclogin > $sessionlifetime) {
-      //goto logout page
-      session_destroy();
-      header("location:index.php?time=0");
-      exit(0);
-    } else {
-      $_SESSION["timeLasetdActive"] = time();
-    }
-  } else {
-    $_SESSION["timeLasetdActive"] = time();
-  }
-
-  function console_log($output, $with_script_tags = true)
-  {
-    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
-      ');';
-    if ($with_script_tags) {
-      $js_code = '<script>' . $js_code . '</script>';
-    }
-    echo $js_code;
-  }
   // console_log($_SESSION['f_name']);
   //
   ?>

@@ -3,6 +3,15 @@
 session_start();
 require("connectDB.php");
 
+function console_log($output, $with_script_tags = true)
+{
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+        ');';
+    if ($with_script_tags) {
+        $js_code = '<script>' . $js_code . '</script>';
+    }
+    echo $js_code;
+}
 if (isset($_POST['uname'])) {
     if (($_POST['uname'] != "admin") || $_POST['psw'] != "admin") {
         header("location:index.php?allow=0");
@@ -15,8 +24,8 @@ if (isset($_POST['uname'])) {
 $quantity = $_POST['phone'];
 if (isset($_POST['phone'])) {
     $sql = 'SELECT * FROM customer WHERE phone  = \'' . $_POST['phone'] . '\'';
-    $rs = selectOne($db, $sql);
-    //print_r($rs);
+    $rs = selectAll($db, $sql);
+    // console_log($rs);
     echo "<br>";
 
     $record = array();
@@ -39,7 +48,7 @@ if (isset($_POST['phone'])) {
     $_SESSION['address'] = $record[0]['address'];
     $_SESSION['phone'] = $record[0]['phone'];
 
-
+    console_log($_SESSION['id']);
     if (isset($_SESSION['from'])) {
 
         unset($_SESSION['from']);

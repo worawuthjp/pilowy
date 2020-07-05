@@ -1,6 +1,7 @@
 <?php
 //กำหนดเวลาที่สามารถอยู่ในระบบ
 session_start();
+console_log($_SESSION['id']);
 $sessionlifetime = 30; //กำหนดเป็นนาที
 // print_r($_SESSION["timeLasetdActive"]);
 if (isset($_SESSION["timeLasetdActive"])) {
@@ -18,9 +19,10 @@ if (isset($_SESSION["timeLasetdActive"])) {
     $_SESSION["timeLasetdActive"] = time();
 }
 
-function console_log($output, $with_script_tags = true) {
-    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
-');';
+function console_log($output, $with_script_tags = true)
+{
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+        ');';
     if ($with_script_tags) {
         $js_code = '<script>' . $js_code . '</script>';
     }
