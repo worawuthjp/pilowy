@@ -196,3 +196,4 @@ inputNumber($('.input-number'));
 
 
 }(jQuery));
+
