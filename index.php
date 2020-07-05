@@ -89,9 +89,15 @@ if(isset($_GET['allow']))
                                 </li> -->
                             </ul>
                         </div>
-                        <div class="hearer_icon d-flex align-items-center mr-5">
+                        <?php
+                        if(isset($_SESSION['id']))
+                            $p = 'cart.php';
+                        else
+                            $p = 'login.php';
+                        ?>
+                        <div class="hearer_icon d-flex align-items-center mr-md-5 mr-sm-5 mr-4">
                             <!-- <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a> -->
-                            <a href="cart.php">
+                            <a href="<?php echo $p; ?>">
                                 <i class="flaticon-shopping-cart-black-shape"></i>
                             </a>
                         </div>

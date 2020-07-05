@@ -19,8 +19,6 @@ INNER JOIN product on product.id = cart_product.product_id
 WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
     //echo $sql;
     $rs = selectOne($db,$sql);
-}else {
-    header("location:index.php?time=0");
 }
 else{
     echo "<meta http-equiv=\"refresh\" content=\"0;url=./login.php\">";
@@ -180,7 +178,7 @@ else{
 <?php
 require("footer.html");
 ?>
-<!--::footer_part end::-->>
+<!--::footer_part end::-->
 
 <!-- jquery plugins here-->
 <script src="js/jquery-1.12.1.min.js"></script>
@@ -209,13 +207,6 @@ require("footer.html");
 <!-- custom js -->
 <script src="js/custom.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(){
-        function numpad() {
-            alert('tttt');
-        }
-    }
-</script>
 
 </body>
 
