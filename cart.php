@@ -10,18 +10,42 @@ require("connectDB.php");
 <!--::header part start::-->
 <?php
 require("header.php");
-if(isset($_SESSION['id'])){
-    $sql = 'Select cart.total_price,cart_product.id,cart_product.product_id,cart_product.quantity,
+if (isset($_SESSION['id'])) {
+    $sql = 'Select cart.total_price,cart.id,cart_product.id,cart_product.cart_id,cart_product.product_id,cart_product.quantity,
 cart_product.price,product.name,product.img,product.price,product.detail
 From cart 
 INNER JOIN cart_product on cart_product.cart_id = cart.id
 INNER JOIN product on product.id = cart_product.product_id
 WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
     //echo $sql;
-    $rs = selectOne($db,$sql);
-}
-else{
+    $rs = selectAll($db, $sql);
+    $price = $rs[0]['price'];
+    $cart_id = $rs[0]['cart_id'];
+    $count = count($rs);
+} else {
     echo "<meta http-equiv=\"refresh\" content=\"0;url=./login.php\">";
+}
+
+if (isset($_GET['del'])) {
+    $id_product = $_GET['del'];
+    $delsql = 'DELETE From cart_product WHERE cart_product.product_id = \'' . $id_product . '\'';
+    $del = delete($db, $delsql);
+    if ($del) {
+        echo("<meta http-equiv='refresh' content='0;url=./cart.php'>");
+    }
+}
+
+if (isset($_GET['add'])) {
+    $add_product = $_GET['add'];
+    $addSql = "INSERT INTO cart_product (id,cart_id,product_id,quantity,price)
+VALUES ($count+1,'{$cart_id}','$add_product','1','{$price}')";
+    $save = $db->execute($addSql);
+    if ($save) {
+        echo("<meta http-equiv='refresh' content='0;url=./cart.php'>");
+    }
+    else{
+        echo 'Failed to store';
+    }
 }
 ?>
 <!-- Header part end-->
@@ -50,52 +74,48 @@ else{
                     <tr>
                         <th scope="col">Product</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col" class="text-center">Quantity</th>
                         <th scope="col">Total</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
-                    if(isset($_SESSION['id']))
-                    foreach ($rs as $row){
-                    ?>
-                    <tr>
-                        <td>
-                            <div class="media">
-                                <div class="d-flex">
-                                    <img src="<?php echo $row['img']?>" alt=""/>
-                                </div>
-                                <div class="media-body">
-                                    <p><?php echo $row['name']?></p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <h5><?php echo number_format($row['price'],2) ?></h5>
-                        </td>
-                        <td>
-                            <div class="product_count">
-                                <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
-                                  class="input-text qty input-number" />
-                                <button
-                                  class="increase input-number-increment items-count" type="button">
-                                  <i class="ti-angle-up"></i>
-                                </button>
-                                <button
-                                  class="reduced input-number-decrement items-count" type="button">
-                                  <i class="ti-angle-down"></i>
-                                </button> -->
-                                <span class="input-number-decrement" id="<?php echo "numchange".$row['id']?>" onclick="numpad()"> <i class="ti-minus"></i></span>
-                                <input class="input-number" name="<?php echo "num".$row['id']?>" id="<?php echo "num".$row['id']?>" type="text" value="1" min="0" max="99">
-                                <span class="input-number-increment" id="<?php echo "numchange".$row['id']?>"> <i class="ti-plus"></i></span>
-                            </div>
-                        </td>
-                        <td>
-                            <h5>$720.00</h5>
-                        </td>
-                    </tr>
-                    <?php
-                    }
+                    if (isset($_SESSION['id']))
+                        foreach ($rs as $row) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="<?php echo $row['img'] ?>" alt=""/>
+                                        </div>
+                                        <div class="media-body">
+                                            <p><?php echo $row['name'] ?></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5 name="price<?php echo $row['id']; ?>"><?php echo number_format($row['price'], 2) ?></h5>
+                                </td>
+                                <td width="180">
+                                    <div class="col-md-12 ml-auto mr-auto ">
+                                        <input class="col-md-12 "
+                                               onchange="clickaddnum(this,<?php echo $row['price'] ?>,<?php echo $row['id'] ?>)"
+                                               name="<?php echo "num" . $row['id'] ?>"
+                                               id="<?php echo "num" . $row['id'] ?>" type="number" value="1" min="1"
+                                               max="99"/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5 name="total<?php echo $row['id']; ?>"
+                                        id="<?php echo "total" . $row['id']; ?>"><?php echo number_format($row['price'], 2) ?></h5>
+                                </td>
+                                <td><a href="./cart.php?del=<?php echo $row['product_id'] ?>"
+                                       style="text-decoration: underline">ลบ</a></td>
+                            </tr>
+                            <?php
+                        }
                     ?>
                     <tr class="bottom_button">
                         <td>
@@ -206,7 +226,27 @@ require("footer.html");
 <script src="js/mail-script.js"></script>
 <!-- custom js -->
 <script src="js/custom.js"></script>
+<script src="./node_modules/bootstrap-input-spinner/src/bootstrap-input-spinner.js"></script>
+<script>
+    $("input[type='number']").inputSpinner();
+</script>
 
+<script type="text/javascript">
+    function clickaddnum(elem, price, _id) {
+        $.ajax({
+            url: 'sumtotalproduct.php',
+            datatype: 'html',
+            method: 'POST',
+            data: {
+                'num': $(elem).val(),
+                'price': price,
+            }
+        }).done(function (data) {
+            $('#total' + _id).text(data);
+        });
+        console.log('add');
+    }
+</script>
 
 </body>
 

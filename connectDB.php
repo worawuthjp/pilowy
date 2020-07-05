@@ -29,6 +29,18 @@ function selectAll($db,$sql){
 }
 
 function selectOne($db,$sql){
-    $result = $db->getAll($sql);
+    $result = $db->getOne($sql);
+    return $result;
+}
+
+function delete($db,$sql){
+    $result = $db->execute($sql);
+    return $result;
+}
+
+function insertData($db,$sql){
+    $db->execute($sql);
+    $result = $db->insert_Id();
+
     return $result;
 }

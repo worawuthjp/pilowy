@@ -4,13 +4,14 @@
   "description": "Thank you for using our template!",
   "main": "index.js",
   "dependencies": {
+    "bootstrap-input-spinner": "^1.13.9",
     "bootstrap4": "^0.0.1-security",
     "node-sass": "^4.14.1"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scss" : "node-sass --watch sass/style.scss -o css"
+    "scss": "node-sass --watch sass/style.scss -o css"
   },
   "repository": {
     "type": "git",
