@@ -98,6 +98,15 @@ if(isset($_GET['time']))
                 </div>
             </div>
         </div>
+        <!-- <div class="search_input" id="search_input_box">
+            <div class="container ">
+                <form class="d-flex justify-content-between search-inner">
+                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+                    <button type="submit" class="btn"></button>
+                    <span class="ti-close" id="close_search" title="Close Search"></span>
+                </form>
+            </div>
+        </div> -->
     </header>
     <!-- Header part end-->
 
@@ -119,7 +128,7 @@ if(isset($_GET['time']))
                             3 ของประเทศไทย
                         </p>
                         <!-- <a href="product_list.php" class="btn_1">shop now</a> -->
-                        <a href="login.php" class="btn_1">shop now</a>
+                        <a href="login.php?from=index" class="btn_1">shop now</a>
                     </div>
                 </div>
             </div>
