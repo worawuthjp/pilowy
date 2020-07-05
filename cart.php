@@ -178,7 +178,7 @@ else{
 <?php
 require("footer.html");
 ?>
-<!--::footer_part end::-->>
+<!--::footer_part end::-->
 
 <!-- jquery plugins here-->
 <script src="js/jquery-1.12.1.min.js"></script>
@@ -207,13 +207,6 @@ require("footer.html");
 <!-- custom js -->
 <script src="js/custom.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(){
-        function numpad() {
-            alert('tttt');
-        }
-    }
-</script>
 
 </body>
 

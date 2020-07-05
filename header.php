@@ -1,7 +1,7 @@
 <?php
 //กำหนดเวลาที่สามารถอยู่ในระบบ
 session_start();
-$sessionlifetime = 30; //กำหนดเป็นนาที
+$sessionlifetime = 2; //กำหนดเป็นนาที
 // print_r($_SESSION["timeLasetdActive"]);
 if(isset($_SESSION["timeLasetdActive"])){
 	$seclogin = (time()-$_SESSION["timeLasetdActive"])/60;
@@ -87,9 +87,15 @@ if(isset($_SESSION["timeLasetdActive"])){
                                 </li> -->
                             </ul>
                         </div>
+                        <?php
+                        if(isset($_SESSION['id']))
+                            $p = 'cart.php';
+                        else
+                            $p = 'login.php';
+                        ?>
                         <div class="hearer_icon d-flex align-items-center mr-md-5 mr-sm-5 mr-4">
                             <!-- <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a> -->
-                            <a href="cart.php">
+                            <a href="<?php echo $p; ?>">
                                 <i class="flaticon-shopping-cart-black-shape"></i>
                             </a>
                         </div>
