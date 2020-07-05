@@ -22,6 +22,9 @@ WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
 }else {
     header("location:index.php?time=0");
 }
+else{
+    echo "<meta http-equiv=\"refresh\" content=\"0;url=./login.php\">";
+}
 ?>
 <!-- Header part end-->
 
@@ -207,8 +210,10 @@ require("footer.html");
 <script src="js/custom.js"></script>
 
 <script type="text/javascript">
-    function numpad() {
-        alert("NUM");
+    $(document).ready(){
+        function numpad() {
+            alert('tttt');
+        }
     }
 </script>
 
