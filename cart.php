@@ -53,6 +53,7 @@ WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
                     </thead>
                     <tbody>
                     <?php
+                    if(isset($_SESSION['id']))
                     foreach ($rs as $row){
                     ?>
                     <tr>
@@ -205,8 +206,7 @@ require("footer.html");
 
 <script type="text/javascript">
     function numpad() {
-        alert("NUMPAD");
-
+        alert("NUM");
     }
 </script>
 
