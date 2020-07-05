@@ -91,6 +91,8 @@ if (!(isset($_SESSION['admin']))) {
     </section>
     <!-- breadcrumb part end-->
 
+    <center><br/><br/><iframe width="1200" height="600" src="https://datastudio.google.com/embed/reporting/4e3f6a20-4a4e-4c81-a50f-a74c6a03f985/page/jjcY" frameborder="0" style="border:0" allowfullscreen></iframe></center>
+
     <!--::footer_part start::-->
     <footer class="footer_part">
         <div class="footer_iner">
