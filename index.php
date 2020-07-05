@@ -8,7 +8,8 @@ function function_alert($msg) {
 if(isset($_GET['time']))
     function_alert("หมดเวลากรเชื่อมต่อของคุณ");
 
-
+if(isset($_GET['allow']))
+    function_alert("คุณไม่ได้รับอณุญาติให้ดูหน้านี้");
 ?>
 <body class="test">
 

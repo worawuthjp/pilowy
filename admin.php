@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="zxx">
 <?php
+
 require("head.html");
 // function function_alert($msg) {
 //     echo "<script type='text/javascript'>alert('$msg');</script>";
@@ -8,7 +9,12 @@ require("head.html");
 // if(isset($_GET['time']))
 //     function_alert("หมดเวลากรเชื่อมต่อของคุณ");
 
-
+if(isset($_POST['uname'])){
+    if(($_POST['uname']!="admin")||$_POST['psw']!="admin"){
+        header("location:index.php?allow=0");
+    }
+}
+session_start();
 ?>
 
 <body class="test">
