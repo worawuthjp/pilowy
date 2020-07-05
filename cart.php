@@ -19,6 +19,8 @@ INNER JOIN product on product.id = cart_product.product_id
 WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
     //echo $sql;
     $rs = selectOne($db,$sql);
+}else {
+    header("location:index.php?time=0");
 }
 ?>
 <!-- Header part end-->
