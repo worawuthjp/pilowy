@@ -98,7 +98,7 @@ if(isset($_GET['time']))
                 </div>
             </div>
         </div>
-        <div class="search_input" id="search_input_box">
+        <!-- <div class="search_input" id="search_input_box">
             <div class="container ">
                 <form class="d-flex justify-content-between search-inner">
                     <input type="text" class="form-control" id="search_input" placeholder="Search Here">
@@ -106,7 +106,7 @@ if(isset($_GET['time']))
                     <span class="ti-close" id="close_search" title="Close Search"></span>
                 </form>
             </div>
-        </div>
+        </div> -->
     </header>
     <!-- Header part end-->
 

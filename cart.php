@@ -81,13 +81,9 @@ WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
                                   class="reduced input-number-decrement items-count" type="button">
                                   <i class="ti-angle-down"></i>
                                 </button> -->
-<<<<<<< HEAD
-                                
-=======
                                 <span class="input-number-decrement" id="<?php echo "numchange".$row['id']?>"> <i class="ti-minus"></i></span>
                                 <input class="input-number" name="<?php echo "num".$row['id']?>" id="<?php echo "num".$row['id']?>" type="text" value="1" min="0" max="99">
                                 <span class="input-number-increment" id="<?php echo "numchange".$row['id']?>"> <i class="ti-plus"></i></span>
->>>>>>> origin/master
                             </div>
                         </td>
                         <td>
