@@ -12,7 +12,7 @@ require("head.html");
     require("header.php");
     // $page_create = "createuser.php";
     // $page_check = "checkuser.php";
-   
+
     if (isset($_POST['product_id'])) {
         $_SESSION['product_id'] = $_POST['product_id'];
         $_SESSION['num'] = $_POST['num'];
@@ -21,10 +21,10 @@ require("head.html");
         // $page_create = "createuser.php";
         // $page_check = "checkuser.php";
     }
-    $from = $_GET['from'];
-    if (isset($from)) {
+    if (isset($_GET['from'])) {
+        $from = $_GET['from'];
         $_SESSION['from'] = $from;
-        // echo $_SESSION['from']; 
+        // echo $_SESSION['from'];
     }
     ?>
     <!-- Header part end-->
@@ -44,7 +44,7 @@ require("head.html");
     <!-- breadcrumb part end-->
 
     <!--================login_part Area =================-->
-    <section class="login_part section_padding ">
+    <section class="login_part section_padding mt-md-5 pt-md-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6">
