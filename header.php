@@ -3,7 +3,7 @@
 session_start();
 if (isset($_SESSION['id']))
     console_log($_SESSION['id']);
-$sessionlifetime = 30; //กำหนดเป็นนาที
+$sessionlifetime = 1; //กำหนดเป็นนาที
 // print_r($_SESSION["timeLasetdActive"]);
 if (isset($_SESSION["timeLasetdActive"])) {
     $seclogin = (time() - $_SESSION["timeLasetdActive"]) / 60;
@@ -99,8 +99,8 @@ function console_log($output, $with_script_tags = true)
                             if (isset($_SESSION['id']))
                                 $page = 'statusgoods.php';
                             else {
-                                $page = 'login.php';
-                                $_SESSION['check'] = true;
+                                $page = 'login.php?from=track';
+                               
                             }
                             ?>
                             <li class="nav-item">
@@ -110,8 +110,17 @@ function console_log($output, $with_script_tags = true)
                                 </a>
 
                             </li>
+                            <?php
+                            if (isset($_SESSION['id']))
+                                $page = 'payment.php';
+                            else {
+                                $page = 'login.php?from=payment';
+                                
+                            }
+                            ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="payment.php">
+
+                                <a class="nav-link" href="<?php echo $page; ?>">
                                     payment
                                 </a>
 
@@ -135,9 +144,16 @@ function console_log($output, $with_script_tags = true)
                     </div>
                     <div class="header_icon d-flex align-items-center mr-md-5 mr-sm-5 mr-4">
                         <!-- <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a> -->
-                        <a href="cart.php">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
+                        <?php
+                            if (isset($_SESSION['id'])) {
+                                $from2 = "cart.php";
+                            } else {
+                                $from2 = "login.php?from=cart";
+                            }
+                            ?>
+                            <a href="<?php echo $from2; ?>">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
                     </div>
                 </nav>
             </div>
