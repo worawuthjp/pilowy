@@ -44,3 +44,10 @@ function insertData($db,$sql){
 
     return $result;
 }
+
+function updatetData($db,$sql){
+    $db->execute($sql);
+    $result = $db->insert_Id();
+
+    return $result;
+}
