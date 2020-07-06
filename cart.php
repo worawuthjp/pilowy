@@ -16,12 +16,12 @@ cart_product.price,product.name,product.img,product.price,product.detail
 From cart 
 INNER JOIN cart_product on cart_product.cart_id = cart.id
 INNER JOIN product on product.id = cart_product.product_id
-WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
+WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id DESC';
     //echo $sql;
     $rs = selectAll($db, $sql);
     $price = $rs[0]['price'];
     $cart_id = $rs[0]['cart_id'];
-    $count = count($rs);
+    $cartproductid = $rs[0]['id'];
 } else {
     echo "<meta http-equiv=\"refresh\" content=\"0;url=./login.php\">";
 }
@@ -38,7 +38,7 @@ if (isset($_GET['del'])) {
 if (isset($_GET['add'])) {
     $add_product = $_GET['add'];
     $addSql = "INSERT INTO cart_product (id,cart_id,product_id,quantity,price)
-VALUES ($count+1,'{$cart_id}','$add_product','1','{$price}')";
+VALUES ($cartproductid+1,'{$cart_id}','$add_product','1','{$price}')";
     $save = $db->execute($addSql);
     if ($save) {
         echo("<meta http-equiv='refresh' content='0;url=./cart.php'>");
