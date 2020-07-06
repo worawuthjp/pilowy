@@ -50,7 +50,10 @@ if (isset($_POST['phone'])) {
 
     console_log($_SESSION['id']);
     if (isset($_SESSION['from'])) {
-
+        if ($_SESSION['from'] == "cart") {
+            unset($_SESSION['from']);
+            header("location:cart.php");
+        }
         unset($_SESSION['from']);
         header("location:product_list.php");
         exit(0);
