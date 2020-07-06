@@ -3,11 +3,6 @@
 <?php
 
 require("head.html");
-// function function_alert($msg) {
-//     echo "<script type='text/javascript'>alert('$msg');</script>";
-// }
-// if(isset($_GET['time']))
-//     function_alert("หมดเวลากรเชื่อมต่อของคุณ");
 session_start();
 if (!(isset($_SESSION['admin']))) {
     session_destroy();
@@ -90,8 +85,23 @@ if (!(isset($_SESSION['admin']))) {
         </div>
     </section>
     <!-- breadcrumb part end-->
+    <div>
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="2">เลขที่คำสั่งซื้อ</th>
+                        <th scope="col">วันที่ทำรายการ</th>
+                        <th scope="col">สินค้า</th>
+                        <th scope="col">จำนวน</th>
+                        <th scope="col">ยอดชำระ</th>
+                        <th scope="col">สถานะการชำระเงิน</th>
+                        <th scope="col">สถานะการจัดส่งสินค้า</th>
+                        <th scope="col">เลขพัสดุ</th>
+                    </tr>
+                </thead>
 
-    <center><br/><br/><iframe width="1200" height="600" src="https://datastudio.google.com/embed/reporting/4e3f6a20-4a4e-4c81-a50f-a74c6a03f985/page/jjcY" frameborder="0" style="border:0" allowfullscreen></iframe></center>
+            </table>
+        </div>
 
     <!--::footer_part start::-->
     <footer class="footer_part">
@@ -128,6 +138,7 @@ if (!(isset($_SESSION['admin']))) {
                 </div>
             </div>
         </div>
+        
 
         <div class="copyright_part">
             <div class="container">
