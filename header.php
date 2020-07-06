@@ -32,6 +32,7 @@ function console_log($output, $with_script_tags = true)
 // console_log($_SESSION['f_name']);
 //
 ?>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171494050-1"></script>
 <script>

@@ -133,6 +133,12 @@ require('connectDB.php');
             </div>
         </div>
     </section>
+
+    <form class="imgForm" action="leanfrom.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="upload" />
+        <input type="submit" name="save" value="upload" />
+    </form>
+
     <!--================ track post part end =================-->
 
     <!--::footer_part start::-->
