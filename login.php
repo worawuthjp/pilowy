@@ -42,7 +42,7 @@ require("head.html");
     <!-- breadcrumb part end-->
 
     <!--================login_part Area =================-->
-    <section class="login_part section_padding mt-md-5 pt-md-5">
+    <section class="login_part section_padding mt-md-5 pt-md-0">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6">

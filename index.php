@@ -137,15 +137,9 @@ if (isset($_SESSION['id']))
                                 </li> -->
                             </ul>
                         </div>
-                        <?php
-                        if (isset($_SESSION['id']))
-                            $p = 'cart.php';
-                        else
-                            $p = 'login.php';
-                        ?>
                         <div class="hearer_icon d-flex align-items-center mr-md-5 mr-sm-5 mr-4">
                             <!-- <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a> -->
-                            <a href="<?php echo $p; ?>">
+                            <a href="cart.php">
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                         </div>
