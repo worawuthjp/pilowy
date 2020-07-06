@@ -32,7 +32,6 @@ function console_log($output, $with_script_tags = true)
   }
   echo $js_code;
 }
-console_log($_SESSION['id']);
 if (isset($_SESSION['id'])) {
   $sql = 'SELECT cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.status , tracking.track_code FROM 
     cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
