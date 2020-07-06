@@ -87,12 +87,7 @@ if(isset($_SESSION["timeLasetdActive"])){
                                 </li> -->
                             </ul>
                         </div>
-                        <div class="hearer_icon d-flex align-items-center mr-md-5 mr-sm-5 mr-4">
-                            <!-- <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a> -->
-                            <a href="cart.php">
-                                <i class="flaticon-shopping-cart-black-shape"></i>
-                            </a>
-                        </div>
+
                     </nav>
                 </div>
             </div>
