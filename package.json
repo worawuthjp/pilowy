@@ -4,6 +4,7 @@
   "description": "Thank you for using our template!",
   "main": "index.js",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.1",
     "bootstrap-input-spinner": "^1.13.9",
     "bootstrap4": "^0.0.1-security",
     "node-sass": "^4.14.1"
