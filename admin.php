@@ -62,7 +62,7 @@ if (!(isset($_SESSION['admin']))) {
 
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">
+                                    <a class="nav-link" href="adminlogout.php">
                                         logout
                                     </a>
 
