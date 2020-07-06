@@ -8,10 +8,24 @@ if (!(isset($_SESSION['admin']))) {
     session_destroy();
     header("location:index.php?allow=0");
 }
-
+require('connectDB.php');
+$sql = 'SELECT cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.t_status , tracking.track_code FROM 
+cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
+INNER JOIN product ON cart_product.product_id = product.id
+INNER JOIN payment ON payment.cart_id = cart.id
+INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = cart.id)';
+$rs = selectAll($db, $sql);
+$record = array();
+foreach ($rs as $row) {
+    $record[] = $row;
+}
+?>
 ?>
 
 <body class="test">
+    <?php
+    echo $record;
+    ?>
     <!--::header part start::-->
     <header class="main_menu home_menu">
         <div class="">
@@ -27,7 +41,7 @@ if (!(isset($_SESSION['admin']))) {
                             <div class="col-md-3"></div>
                             <ul class="navbar-nav mr-2">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Home</a>
+                                    <a class="nav-link" href="admin.php">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="./order.php">Order</a>
@@ -85,23 +99,57 @@ if (!(isset($_SESSION['admin']))) {
         </div>
     </section>
     <!-- breadcrumb part end-->
-    <div>
-            <table class="table table-borderless">
-                <thead>
-                    <tr>
-                        <th scope="col" colspan="2">เลขที่คำสั่งซื้อ</th>
-                        <th scope="col">วันที่ทำรายการ</th>
-                        <th scope="col">สินค้า</th>
-                        <th scope="col">จำนวน</th>
-                        <th scope="col">ยอดชำระ</th>
-                        <th scope="col">สถานะการชำระเงิน</th>
-                        <th scope="col">สถานะการจัดส่งสินค้า</th>
-                        <th scope="col">เลขพัสดุ</th>
-                    </tr>
-                </thead>
 
-            </table>
+
+    <!--================ track post part start =================-->
+    <section class="confirmation_part section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="order_details_iner">
+                        <h3>รายละเอียดการสั่งซื้อสินค้า</h3>
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th scope="col" colspan="2">เลขที่คำสั่งซื้อ</th>
+                                    <th scope="col">วันที่ทำรายการ</th>
+                                    <th scope="col">สินค้า</th>
+                                    <th scope="col">จำนวน</th>
+                                    <th scope="col">ยอดชำระ</th>
+                                    <th scope="col">สถานะการชำระเงิน</th>
+                                    <th scope="col">สถานะการจัดส่งสินค้า</th>
+                                    <th scope="col">เลขพัสดุ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tbody>
+                <?php
+                for ($i = 0; $i < count($record); $i++) {
+                ?>
+                  <tr>
+                    <th colspan="2"><span><?php echo $record[$i]['id'] ?></span></th>
+                    <th> <span><?php echo $record[$i]['date'] ?></span></th>
+                    <th><?php echo $record[$i]['name'] ?></th>
+                    <th>x <?php echo $record[$i]['quantity'] ?></th>
+                    <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
+                    <th> <span><?php echo $record[$i]['status'] ?></span></th>
+                    <th> <span><?php echo $record[$i]['t_status'] ?></span></th>
+                    <th> <span><?php echo $record[$i]['track_code'] ?></span></th>
+                  </tr>
+
+                <?php
+                }
+                ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
+    <!--================ track post part end =================-->
+
 
     <!--::footer_part start::-->
     <footer class="footer_part">
@@ -114,8 +162,8 @@ if (!(isset($_SESSION['admin']))) {
                                 <a href="#"><img src="img/favicon.gif" alt="#"></a>
                             </div>
                             <div class="footer_menu_item">
-                                <a href="#">Home</a>
-                                <a href="#">Order</a>
+                                <a href="admin.php">Home</a>
+                                <a href="order.php">Order</a>
                                 <a href="#">Product</a>
                                 <a href="#">Customer</a>
                                 <a href="#">Payment</a>
@@ -138,7 +186,7 @@ if (!(isset($_SESSION['admin']))) {
                 </div>
             </div>
         </div>
-        
+
 
         <div class="copyright_part">
             <div class="container">
