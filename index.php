@@ -84,7 +84,7 @@ if (isset($_SESSION['id']))
                         </button>
 
                         <div class="collapse navbar-collapse main-menu-item text-right" id="navbarSupportedContent">
-                            <div class="col-md-8"></div>
+                            <div class="col-md-7"></div>
                             <ul class="navbar-nav mr-2">
                                 <li class="nav-item">
                                     <a class="nav-link" href="index.php">Home</a>
@@ -111,6 +111,12 @@ if (isset($_SESSION['id']))
 
                                     <a class="nav-link" href="<?php echo $page; ?>">
                                         tracking
+                                    </a>
+
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="payment.php">
+                                        payment
                                     </a>
 
                                 </li>
