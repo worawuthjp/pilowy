@@ -23,7 +23,8 @@ if (isset($_GET['time']))
 if (isset($_GET['allow']))
     function_alert("คุณไม่ได้รับอณุญาติให้ดูหน้านี้");
 
-console_log($_SESSION['id']);
+if (isset($_SESSION['id']))
+    console_log($_SESSION['id']);
 ?>
 
 <body class="test">

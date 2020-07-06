@@ -1,7 +1,8 @@
 <?php
 //กำหนดเวลาที่สามารถอยู่ในระบบ
 session_start();
-console_log($_SESSION['id']);
+if (isset($_SESSION['id']))
+    console_log($_SESSION['id']);
 $sessionlifetime = 30; //กำหนดเป็นนาที
 // print_r($_SESSION["timeLasetdActive"]);
 if (isset($_SESSION["timeLasetdActive"])) {
