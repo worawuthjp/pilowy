@@ -34,7 +34,7 @@ function console_log($output, $with_script_tags = true)
 }
 console_log($_SESSION['id']);
 if (isset($_SESSION['id'])) {
-  $sql = 'SELECT cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.status , tracking.track_code FROM 
+  $sql = 'SELECT cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.t_status , tracking.track_code FROM 
     cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
     INNER JOIN product ON cart_product.product_id = product.id
     INNER JOIN payment ON payment.cart_id = cart.id
@@ -256,14 +256,14 @@ if (isset($_SESSION['id'])) {
                 for ($i = 0; $i < count($record); $i++) {
                 ?>
                   <tr>
-                    <th colspan="2"><span>KU18888</span></th>
-                    <th> <span>15/02/20</span></th>
-                    <th>หมอนทุเรียน</th>
-                    <th>x 1</th>
-                    <th> <span>590 บาท</span></th>
-                    <th> <span>ชำระแล้ว</span></th>
-                    <th> <span>จัดส่งเรียบร้อยแล้ว</span></th>
-                    <th> <span>eieizazababakrukri</span></th>
+                    <th colspan="2"><span><?php echo $record[$i]['id'] ?></span></th>
+                    <th> <span><?php echo $record[$i]['date'] ?></span></th>
+                    <th><?php echo $record[$i]['name'] ?></th>
+                    <th>x <?php echo $record[$i]['quantity'] ?></th>
+                    <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
+                    <th> <span><?php echo $record[$i]['status'] ?></span></th>
+                    <th> <span><?php echo $record[$i]['t_status'] ?></span></th>
+                    <th> <span><?php echo $record[$i]['track_code'] ?></span></th>
                   </tr>
 
                 <?php

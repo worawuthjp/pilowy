@@ -32,7 +32,7 @@ if (!(isset($_SESSION['admin']))) {
                             <div class="col-md-3"></div>
                             <ul class="navbar-nav mr-2">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Home</a>
+                                    <a class="nav-link" href="admin.php">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="./order.php">Order</a>
@@ -104,8 +104,8 @@ if (!(isset($_SESSION['admin']))) {
                                 <a href="#"><img src="img/favicon.gif" alt="#"></a>
                             </div>
                             <div class="footer_menu_item">
-                                <a href="#">Home</a>
-                                <a href="#">Order</a>
+                                <a href="admin.php">Home</a>
+                                <a href="order.php">Order</a>
                                 <a href="#">Product</a>
                                 <a href="#">Customer</a>
                                 <a href="#">Payment</a>
