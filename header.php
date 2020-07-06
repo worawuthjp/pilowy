@@ -3,7 +3,7 @@
 session_start();
 if (isset($_SESSION['id']))
     console_log($_SESSION['id']);
-$sessionlifetime = 1; //กำหนดเป็นนาที
+$sessionlifetime = 30; //กำหนดเป็นนาที
 // print_r($_SESSION["timeLasetdActive"]);
 if (isset($_SESSION["timeLasetdActive"])) {
     $seclogin = (time() - $_SESSION["timeLasetdActive"]) / 60;

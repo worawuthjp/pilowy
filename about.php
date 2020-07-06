@@ -62,7 +62,7 @@ require("head.html");
     <!--::footer_part start::-->
     <?php
     echo "<br/><br/><br/>";
-    require("footer.html");
+    require("footer.php");
   ?>
     <!--::footer_part end::-->
 

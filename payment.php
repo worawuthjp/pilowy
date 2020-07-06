@@ -137,7 +137,7 @@ require('connectDB.php');
 
     <!--::footer_part start::-->
     <?php
-    require("footer.html");
+    require("footer.php");
     ?>
     <!--::footer_part end::-->
 
