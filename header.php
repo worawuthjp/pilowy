@@ -110,6 +110,12 @@ function console_log($output, $with_script_tags = true)
                                 </a>
 
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="payment.php">
+                                    payment
+                                </a>
+
+                            </li>
                             <!-- <li class="nav-item">
                                     <a class="nav-link" href="blog.php">
                                         pages
