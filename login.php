@@ -2,6 +2,7 @@
 <html lang="zxx">
 
 <?php
+
 require("head.html");
 
 ?>
@@ -10,21 +11,18 @@ require("head.html");
     <!--::header part start::-->
     <?php
     require("header.php");
-    // $page_create = "createuser.php";
-    // $page_check = "checkuser.php";
+
 
     if (isset($_POST['product_id'])) {
         $_SESSION['product_id'] = $_POST['product_id'];
         $_SESSION['num'] = $_POST['num'];
         $_SESSION['price'] = $_POST['price'];
-        // $page = "cart.php";
-        // $page_create = "createuser.php";
-        // $page_check = "checkuser.php";
+
     }
     if (isset($_GET['from'])) {
         $from = $_GET['from'];
         $_SESSION['from'] = $from;
-        // echo $_SESSION['from'];
+
     }
     ?>
     <!-- Header part end-->
@@ -68,7 +66,7 @@ require("head.html");
                                 ซื้อของต่อ
                             </button> -->
 
-                                <input name="submit" onclick="return confirm('คุณกรอกเลขโทรศัพท์ถูกต้องแล้ว ?')" type="submit" value="ซื้อของต่อ" class="btn_3 ml-auto mr-auto" />
+                                <input name="submit" type="submit" value="ซื้อของต่อ" class="btn_3 ml-auto mr-auto" />
 
                                 <!-- <a class="lost_pass" href="#">forget password?</a> -->
                                 <!-- </div> -->
@@ -95,7 +93,7 @@ require("head.html");
                                 <!-- <button type="submit" value="submit" class="btn_3">
                                 ซื้อของต่อ
                             </button> -->
-                                <input name="submit" onclick="return confirm('คุณกรอกเลขโทรศัพท์ถูกต้องแล้ว ?')" type="submit" value="ซื้อของต่อ" class="btn_3 ml-auto mr-auto" />
+                                <input name="submit" type="submit" value="ซื้อของต่อ" class="btn_3 ml-auto mr-auto" />
                                 <!-- <a class="lost_pass" href="#">forget password?</a> -->
                                 <!--</div>-->
                             </form>
