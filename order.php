@@ -108,6 +108,7 @@ foreach ($rs as $row) {
                 <div class="col-lg-12">
                     <div class="order_details_iner">
                         <h3>รายละเอียดการสั่งซื้อสินค้า</h3>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" data-whatever="@getbootstrap">เพิ่ม</button>
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
@@ -119,6 +120,8 @@ foreach ($rs as $row) {
                                     <th scope="col">สถานะการชำระเงิน</th>
                                     <th scope="col">สถานะการจัดส่งสินค้า</th>
                                     <th scope="col">เลขพัสดุ</th>
+                                    <th scope="col">แก้ไข</th>
+                                    <th scope="col">ลบ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -135,6 +138,8 @@ foreach ($rs as $row) {
                     <th> <span><?php echo $record[$i]['status'] ?></span></th>
                     <th> <span><?php echo $record[$i]['t_status'] ?></span></th>
                     <th> <span><?php echo $record[$i]['track_code'] ?></span></th>
+                    <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal" data-whatever="@mdo">แก้ไข</button></th>
+                    <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModalCenter" data-whatever="@fat">ลบ</button></th>
                   </tr>
 
                 <?php
@@ -149,6 +154,137 @@ foreach ($rs as $row) {
         </div>
     </section>
     <!--================ track post part end =================-->
+
+<!--=============== modal add =============-->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">เพิ่มรายการใหม่</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">เลขที่คำสั่งซื้อ:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">วันที่ทำรายการ:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">สินค้า:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">จำนวน:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">ยอดชำระ:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">สถานะการชำระเงิน:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">สถานะการจัดส่งสินค้า:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">เลขพัสดุ:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-primary">เพิ่ม</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--=============== modal update =============-->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แก้ไขรายการ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">เลขที่คำสั่งซื้อ:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">วันที่ทำรายการ:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">สินค้า:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">จำนวน:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">ยอดชำระ:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">สถานะการชำระเงิน:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">สถานะการจัดส่งสินค้า:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">เลขพัสดุ:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-primary">แก้ไข</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- delete Modal -->
+<div class="modal fade" id="deleteModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Confirm Delete ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        คุณแน่ใจว่าจะลบรายการนี้ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-primary">ลบ</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
 
 
     <!--::footer_part start::-->
