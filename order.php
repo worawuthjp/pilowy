@@ -4,16 +4,25 @@
 
 require("head.html");
 session_start();
+function console_log($output, $with_script_tags = true)
+{
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+        ');';
+    if ($with_script_tags) {
+        $js_code = '<script>' . $js_code . '</script>';
+    }
+    echo $js_code;
+}
 if (!(isset($_SESSION['admin']))) {
   session_destroy();
   header("location:index.php?allow=0");
 }
 require('connectDB.php');
-$sql = 'SELECT cart.id , payment.date ,payment.id AS p_id , product.name , cart_product.quantity , payment.money_received , payment.status ,tracking.id AS t_id , tracking.t_status , tracking.track_code FROM 
+$sql = 'SELECT cart.id , payment.date ,payment.id AS p_id , product.name , cart_product.quantity , cart_product.id AS cp_id , payment.money_received , payment.status ,tracking.id AS t_id , tracking.t_status , tracking.track_code FROM 
 cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
 INNER JOIN product ON cart_product.product_id = product.id
 INNER JOIN payment ON payment.cart_id = cart.id
-INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = cart.id)' ;
+INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = cart.id)';
 $rs = selectAll($db, $sql);
 $record = array();
 foreach ($rs as $row) {
@@ -23,19 +32,20 @@ foreach ($rs as $row) {
 ?>
 
 <body class="test">
-  <?php
-  echo $record;
-  ?>
-  <!--::header part start::-->
-  <header class="main_menu home_menu">
-    <div class="">
-      <div class="row align-items-center justify-content-center">
-        <div class="col-lg-12">
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="#"><img class="img-fluid ml-5" src="img/favicon.gif" alt="logo"></img> </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="menu_icon"><i class="fas fa-bars"></i></span>
-            </button>
+    <?php
+    // echo $record;
+    console_log($record[0]['cp_id']);
+    ?>
+    <!--::header part start::-->
+    <header class="main_menu home_menu">
+        <div class="">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="#"><img class="img-fluid ml-5" src="img/favicon.gif" alt="logo"></img> </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="menu_icon"><i class="fas fa-bars"></i></span>
+                        </button>
 
             <div class="collapse navbar-collapse main-menu-item text-right" id="navbarSupportedContent">
               <div class="col-md-3"></div>
@@ -101,33 +111,7 @@ foreach ($rs as $row) {
   <!-- breadcrumb part end-->
 
 
-<<<<<<< HEAD
-  <!--================ track post part start =================-->
-  <section class="confirmation_part section_padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="order_details_iner">
-            <h3>รายละเอียดการสั่งซื้อสินค้า</h3>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" data-whatever="@getbootstrap">เพิ่ม</button>
-            <table class="table table-borderless">
-              <thead>
-                <tr>
-                  <th scope="col" colspan="2">เลขที่คำสั่งซื้อ</th>
-                  <th scope="col">วันที่ทำรายการ</th>
-                  <th scope="col">สินค้า</th>
-                  <th scope="col">จำนวน</th>
-                  <th scope="col">ยอดชำระ</th>
-                  <th scope="col">สถานะการชำระเงิน</th>
-                  <th scope="col">สถานะการจัดส่งสินค้า</th>
-                  <th scope="col">เลขพัสดุ</th>
-                  <th scope="col">แก้ไข</th>
-                  <th scope="col">ลบ</th>
-                </tr>
-              </thead>
-              <tbody>
-              <tbody>
-=======
+
     <!--================ track post part start =================-->
     <section class="confirmation_part section_padding">
         <div class="container">
@@ -152,29 +136,35 @@ foreach ($rs as $row) {
                             </thead>
                             <tbody>
                             <tbody>
->>>>>>> origin/master
-                <?php
-                for ($i = 0; $i < count($record); $i++) {
-                ?>
-                  <tr>
-                    <th colspan="2"><span><?php echo $record[$i]['id'] ?></span></th>
-                    <th> <span><?php echo $record[$i]['date'] ?></span></th>
-                    <th><?php echo $record[$i]['name'] ?></th>
-                    <th>x <?php echo $record[$i]['quantity'] ?></th>
-                    <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
-                    <th> <span><?php echo $record[$i]['status'] ?></span></th>
-                    <input type="hidden" id="p_id" name="p_id" value="<?php echo $record[$i]['p_id']; ?>"/>
-                    <th> <span><?php echo $record[$i]['t_status'] ?></span></th>
-                    <th> <span><?php echo $record[$i]['track_code'] ?></span></th>
-                    <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal" data-whatever="@mdo">แก้ไข</button></th>
-                    <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModalCenter" data-whatever="@fat">ลบ</button></th>
-                  </tr>
 
-                <?php
-                }
-                ?>
+                                <?php
+                                for ($i = 0; $i < count($record); $i++) {
 
-<<<<<<< HEAD
+                                ?>
+                                    <tr>
+                                        <th colspan="2"><span><?php echo $record[$i]['id'] ?></span></th>
+                                        <th> <span><?php echo $record[$i]['date'] ?></span></th>
+                                        <th><?php echo $record[$i]['name'] ?></th>
+                                        <th>x <?php echo $record[$i]['quantity'] ?></th>
+                                        <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
+                                        <th> <span><?php echo $record[$i]['status'] ?></span></th>
+                                        <input type="hidden" id="p_id" name="p_id" value="<?php echo $record[$i]['p_id']; ?>" />
+                                        <input type="hidden" id="t_id" name="t_id" value="<?php echo $record[$i]['t_id']; ?>" />
+                                        <input type="hidden" id="cp_id" name="cp_id" value="<?php echo $record[$i]['cp_id']; ?>" />
+                                        <th> <span><?php echo $record[$i]['t_status'] ?></span></th>
+                                        <th> <span><?php echo $record[$i]['track_code'] ?></span></th>
+                                        <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal" data-whatever="@mdo">แก้ไข</button></th>
+                                        <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModalCenter" data-whatever="@fat">ลบ</button></th>
+                                    </tr>
+
+                
+
+
+                                <?php
+                                }
+                                ?>
+
+
               </tbody>
             </table>
           </div>
@@ -289,7 +279,7 @@ foreach ($rs as $row) {
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
           <button type="button" id="order_edit" class="btn btn-primary">แก้ไข</button>
         </div>
-=======
+
                             </tbody>
                         </table>
                     </div>
@@ -298,6 +288,70 @@ foreach ($rs as $row) {
         </div>
     </section>
     <!--================ track post part end =================-->
+
+    <!--=============== modal update =============-->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">แก้ไขรายการ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="updateorder.php" method="post">
+                        <div class="form-group">
+                            <label for="statuspayment" class="col-form-label">สถานะการชำระเงิน:</label>
+                            <input type="text" name="statuspayment" value="<?php echo $row['status']; ?>" class="form-control" id="statuspayment">
+                            <input type="hidden" id="p_id" name="p_id" value="<?php echo $row['p_id']; ?>" />
+                            
+                            <input type="hidden" id="t_id" name="t_id" value="<?php echo $row['t_id']; ?>" />
+                        </div>
+                        <div class="form-group">
+                            <label for="statuspost" class="col-form-label">สถานะการจัดส่งสินค้า:</label>
+                            <input type="text" name="statuspost" value="<?php echo $row['t_status']; ?>" class="form-control" id="statuspost">
+                        </div>
+                        <div class="form-group">
+                            <label for="trackcode" class="col-form-label">เลขพัสดุ:</label>
+                            <input type="text" name="trackcode" value="<?php echo $row['track_code']; ?>" class="form-control" id="trackcode">
+                        </div>
+                        <!--recipient-name-->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    <button name="submit" type="submit" class="btn btn-primary">แก้ไข</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- delete Modal -->
+    <div class="modal fade" id="deleteModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Confirm Delete ?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="updateorder.php" method="post">
+                    <div class="modal-body">
+                        คุณแน่ใจว่าจะลบรายการนี้ ?
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="cp_id" name="cp_id" value="<?php echo $row['cp_id']; ?>" />
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <button name="submit" type="submit" class="btn btn-primary">ลบ</button>
+                    </div>
+                    </from>
+            </div>
+        </div>
+    </div>
+
 <!--=============== modal update =============-->
 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -328,7 +382,7 @@ foreach ($rs as $row) {
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
         <button name="submit" type="submit" class="btn btn-primary">แก้ไข</button>
->>>>>>> origin/master
+
       </div>
       </form>
     </div>
@@ -354,11 +408,11 @@ foreach ($rs as $row) {
       </div>
     </div>
   </div>
-<<<<<<< HEAD
 
-=======
+
+
 </div>
->>>>>>> origin/master
+
 
 
   <!--::footer_part start::-->
