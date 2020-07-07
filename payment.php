@@ -40,7 +40,6 @@ require('connectDB.php');
         foreach ($rs as $row) {
             $record2[] = $row;
         }
-        
     }
 
 
@@ -127,7 +126,7 @@ require('connectDB.php');
                                         <th>x <?php echo $record[$i]['quantity'] ?></th>
                                         <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
                                         <th> <span><?php
-                                                    if ($record[$i]['status'] == true) {
+                                                    if ($record[$i]['status'] == "t") {
                                                         $text = "ชำระเงินแล้ว";
                                                     } else {
                                                         $text = "ยังไม่ชำระเงิน";
@@ -156,7 +155,7 @@ require('connectDB.php');
                             if (isset($record2[0]['slip'])) {
                             ?>
                                 <div>
-                                    <img src="img/slip/<?php print_r($record2[0]['slip']) ?>">
+                                    <br /><br /><img src="img/slip/<?php print_r($record2[0]['slip']) ?>">
                                 </div>
                             <?php
                             }
