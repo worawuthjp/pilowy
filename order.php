@@ -13,14 +13,28 @@ $sql = 'SELECT cart.id , payment.date , product.name , cart_product.quantity , p
 cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
 INNER JOIN product ON cart_product.product_id = product.id
 INNER JOIN payment ON payment.cart_id = cart.id
-INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = cart.id)';
+INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = cart.id)' ;
 $rs = selectAll($db, $sql);
 $record = array();
 foreach ($rs as $row) {
     $record[] = $row;
 }
+
 ?>
+
+<!-- update -->
+<?php
+    if (isset($_GET['cart.id']) && $_GET['cart.id']!="") 
+              {
+                    $Update_cart_id = $RS['record[].id'];
+                    $update_payment_status = $RS['record[].status'];
+                    $update_track_status = $RS['record[].t_status'];
+                    $update_track_code = $RS['record[].track_code'];
+                      }
+
 ?>
+
+
 
 <body class="test">
     <?php
@@ -108,7 +122,6 @@ foreach ($rs as $row) {
                 <div class="col-lg-12">
                     <div class="order_details_iner">
                         <h3>รายละเอียดการสั่งซื้อสินค้า</h3>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" data-whatever="@getbootstrap">เพิ่ม</button>
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
@@ -136,6 +149,7 @@ foreach ($rs as $row) {
                     <th>x <?php echo $record[$i]['quantity'] ?></th>
                     <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
                     <th> <span><?php echo $record[$i]['status'] ?></span></th>
+                    
                     <th> <span><?php echo $record[$i]['t_status'] ?></span></th>
                     <th> <span><?php echo $record[$i]['track_code'] ?></span></th>
                     <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal" data-whatever="@mdo">แก้ไข</button></th>
@@ -154,61 +168,6 @@ foreach ($rs as $row) {
         </div>
     </section>
     <!--================ track post part end =================-->
-
-<!--=============== modal add =============-->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">เพิ่มรายการใหม่</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-        <div class="form-group">
-            <label for="recipient-name" class="col-form-label">เลขที่คำสั่งซื้อ:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">วันที่ทำรายการ:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">สินค้า:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">จำนวน:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">ยอดชำระ:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">สถานะการชำระเงิน:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">สถานะการจัดส่งสินค้า:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">เลขพัสดุ:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-        <button type="button" class="btn btn-primary">เพิ่ม</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!--=============== modal update =============-->
 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -220,38 +179,18 @@ foreach ($rs as $row) {
         </button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">เลขที่คำสั่งซื้อ:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">วันที่ทำรายการ:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">สินค้า:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">จำนวน:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">ยอดชำระ:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
+        <form></form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">สถานะการชำระเงิน:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" value="<?php echo $row['status'] ; ?>" class="form-control" id="recipient-name">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">สถานะการจัดส่งสินค้า:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" value="<?php echo $row['t_status'] ; ?>" class="form-control" id="recipient-name">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">เลขพัสดุ:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" value="<?php echo $row['track_code'] ; ?>" class="form-control" id="recipient-name">
           </div>
           
         </form>
@@ -284,8 +223,6 @@ foreach ($rs as $row) {
     </div>
   </div>
 </div>
-    
-
 
     <!--::footer_part start::-->
     <footer class="footer_part">

@@ -4015,8 +4015,7 @@ input:focus {
 .confirmation_part .order_details_iner {
   margin-top: 50px;
   background-color: #f4f4f4;
-  padding: 30px 30px 15px;
-  text-transform: capitalize; }
+  padding: 30px 30px 15px; }
   .confirmation_part .order_details_iner h3 {
     font-size: 18px; }
   .confirmation_part .order_details_iner .table thead th {
