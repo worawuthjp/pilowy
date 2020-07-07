@@ -148,7 +148,7 @@ require('connectDB.php');
                             <h3>Upload หลักฐานการชำระเงิน</h3>
                             <form class="imgForm" action="leanfrom.php" method="post" enctype="multipart/form-data">
                                 <input type="file" name="upload" />
-                                <button type="submit" name="save" value="upload">Upload</button>
+                                <button class="btn_1 ml-auto mr-auto" type="submit" name="save" value="upload">Upload</button>
                             </form>
 
                             <?php
