@@ -15,21 +15,21 @@ require("head.html");
   require('connectDB.php');
   //
   if (isset($_SESSION['id'])) {
-  $sql = 'SELECT cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.t_status , tracking.track_code FROM 
+    $sql = 'SELECT cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.t_status , tracking.track_code FROM 
     cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
     INNER JOIN product ON cart_product.product_id = product.id
     INNER JOIN payment ON payment.cart_id = cart.id
     INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = cart.id)
     WHERE cart.cus_id = \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
 
-  $rs = selectAll($db, $sql);
-  $record = array();
-  foreach ($rs as $row) {
-    $record[] = $row;
+    $rs = selectAll($db, $sql);
+    $record = array();
+    foreach ($rs as $row) {
+      $record[] = $row;
+    }
   }
-}
   ?>
-  
+
   <!-- Header part end-->
 
   <!-- breadcrumb part start-->
@@ -112,22 +112,26 @@ require("head.html");
                     <th><?php echo $record[$i]['name'] ?></th>
                     <th>x <?php echo $record[$i]['quantity'] ?></th>
                     <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
-                    <th> <span><?php
-                                if ($record[$i]['status'] == 1) {
+                    <th> <span><?php 
+                    console_log("pay ".$record[$i]['status']);
+                    
+                                if ($record[$i]['status'] == "t" ){
                                   $text = "ชำระเงินแล้ว";
-                                } else {
+                                } else if($record[$i]['status'] == "f" ) 
                                   $text = "ยังไม่ชำระเงิน";
-                                }
-                                echo $text; ?></span></th>
+                                
+                                echo $text; ?>
+                      </span></th>
 
                     <th> <span><?php
-                                if ($record[$i]['t_status'] == 1) {
-                                  $text = "จัดส่งแล้ว";
-                                } else {
-                                  $text = "ยังไม่จัดส่ง";
-                                }
-                                echo $text;
-                                ?></span></th>
+                                if ($record[$i]['t_status'] == "t") {
+                                  $text2 = "จัดส่งแล้ว";
+                                } else if($record[$i]['t_status'] == "f" ) 
+                                  $text2 = "ยังไม่จัดส่ง";
+                                
+                                echo $text2;
+                                ?>
+                      </span></th>
                     <th> <span><?php echo $record[$i]['track_code'] ?></span></th>
                   </tr>
 
