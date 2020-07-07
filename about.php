@@ -13,7 +13,7 @@ require("head.html");
         <!-- Header part end-->
 
     <!-- breadcrumb part start-->
-    <section class="breadcrumb_part bg-info">
+    <section class="breadcrumb_part">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
