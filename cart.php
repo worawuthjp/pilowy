@@ -21,10 +21,11 @@ WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id DESC';
     $rs = selectAll($db, $sql);
     $price = $rs[0]['price'];
     $cart_id = $rs[0]['cart_id'];
-    $cartproductid = $rs[0]['id'];
-    echo "is \'".$cartproductid."\'<br>";
-    if($cartproductid == ''){
+    if($rs[0]['id'] == ''){
         $cartproductid = 0;
+        echo "is \'".$cartproductid."\'<br>";
+    }else{
+        $cartproductid = $rs[0]['id'];
     }
 } else {
     echo "<meta http-equiv=\"refresh\" content=\"0;url=./login.php\">";
