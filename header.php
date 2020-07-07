@@ -81,7 +81,7 @@ function console_log($output, $with_script_tags = true)
                     </button>
 
                     <div class="collapse navbar-collapse main-menu-item text-right" id="navbarSupportedContent">
-                        <div class="col-md-7"></div>
+                        <div class="col-md-6"></div>
                         <ul class="navbar-nav mr-2">
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php">Home</a>

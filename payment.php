@@ -29,6 +29,18 @@ require('connectDB.php');
         foreach ($rs as $row) {
             $record[] = $row;
         }
+
+        $sql = 'SELECT payment.id,payment.slip FROM customer INNER JOIN cart ON customer.id = cart.cus_id
+        INNER JOIN payment ON cart.id = payment.cart_id WHERE (customer.id = \'' . $_SESSION['id'] . '\')'; // AND (payment.status = false);';
+        $rs = selectAll($db, $sql);
+        // console_log($rs);
+        echo "<br>";
+
+        $record2 = array();
+        foreach ($rs as $row) {
+            $record2[] = $row;
+        }
+        
     }
 
 
@@ -130,14 +142,32 @@ require('connectDB.php');
                         </table>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="order_details_iner">
+                            <h3>Upload หลักฐานการชำระเงิน</h3>
+                            <form class="imgForm" action="leanfrom.php" method="post" enctype="multipart/form-data">
+                                <input type="file" name="upload" />
+                                <button type="submit" name="save" value="upload">Upload</button>
+                            </form>
+
+                            <?php
+                            // console_log($_SESSION['slip']);
+                            if (isset($record2[0]['slip'])) {
+                            ?>
+                                <div>
+                                    <img src="img/slip/<?php print_r($record2[0]['slip']) ?>">
+                                </div>
+                            <?php
+                            }
+                            // unset($_SESSION['name_pic']);
+                            ?>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-    <form class="imgForm" action="leanfrom.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="upload" />
-        <input type="submit" name="save" value="upload" />
-    </form>
 
     <!--================ track post part end =================-->
 
@@ -176,6 +206,7 @@ require('connectDB.php');
     <script src="js/mail-script.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
+
 
 </body>
 
