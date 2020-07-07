@@ -3180,11 +3180,9 @@ input:focus {
     font-size: 18px;
     font-weight: 500;
     color: #222222;
-    text-transform: capitalize;
     margin-bottom: 16px; }
   .confirmation_part .single_confirmation_details ul li {
     position: relative;
-    text-transform: capitalize;
     padding-left: 55%;
     margin-bottom: 3px; }
     .confirmation_part .single_confirmation_details ul li p {
