@@ -144,7 +144,7 @@ VALUES ($cartproductid+1,'{$cart_id}','$add_product','1','{$price}')";
 <!--================End Cart Area =================-->
 <!--::footer_part start::-->
 <?php
-require("footer.html");
+require("footer.php");
 ?>
 <!--::footer_part end::-->
 

@@ -49,19 +49,30 @@ if (isset($_POST['phone'])) {
     $_SESSION['phone'] = $record[0]['phone'];
 
     console_log($_SESSION['id']);
-    if (isset($_SESSION['from'])) {
 
-        unset($_SESSION['from']);
-        header("location:product_list.php");
-        exit(0);
-    } else if (isset($_SESSION['check'])) {
-        print_r($_SESSION['check']);
-        unset($_SESSION['check']);
-        header("location:statusgoods.php");
-        exit(0);
-    } else {
-        header("location:cart.php");
-        exit(0);
+    if (isset($_SESSION['from'])) {
+        // console_log($_SESSION['from']);
+        if ($_SESSION['from'] == "cart") {
+
+            unset($_SESSION['from']);
+            header("location:cart.php");
+            exit(0);
+        } else if ($_SESSION['from'] == "index") {
+
+            unset($_SESSION['from']);
+            header("location:product_list.php");
+            exit(0);
+        } else if ($_SESSION['from'] == "track") {
+
+            unset($_SESSION['from']);
+            header("location:statusgoods.php");
+            exit(0);
+        } else if ($_SESSION['from'] == "payment") {
+
+            unset($_SESSION['from']);
+            header("location:payment.php");
+            exit(0);
+        }
     }
 }
 ?>

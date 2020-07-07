@@ -105,8 +105,29 @@
                             <a href="index.php">Home</a>
                             <a href="about.php">About</a>
                             <a href="product_list.php">Products</a>
-                            <a href="statusgoods.php">Tracking</a>
-                            <a href="payment.php">Payment</a>
+
+                            <?php
+                            if (isset($_SESSION['id']))
+                                $page = 'statusgoods.php';
+                            else {
+                                $page = 'login.php?from=track';
+                                
+                            }
+                            ?>
+
+                            <a href="<?php echo $page; ?>">Tracking</a>
+
+                            <?php
+                            if (isset($_SESSION['id']))
+                                $page = 'payment.php';
+                            else {
+                                $page = 'login.php?from=payment';
+                                
+                            }
+                            ?>
+
+                            <a href="<?php echo $page; ?>">Payment</a>
+
                             <!-- <a href="#">Pages</a>
                             <a href="blog.html">Blog</a>
                             <a href="contact.html">Contact</a> -->

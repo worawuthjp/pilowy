@@ -13,7 +13,7 @@ require("head.html");
         <!-- Header part end-->
 
     <!-- breadcrumb part start-->
-    <section class="breadcrumb_part bg-info">
+    <section class="breadcrumb_part">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -62,7 +62,7 @@ require("head.html");
     <!--::footer_part start::-->
     <?php
     echo "<br/><br/><br/>";
-    require("footer.html");
+    require("footer.php");
   ?>
     <!--::footer_part end::-->
 

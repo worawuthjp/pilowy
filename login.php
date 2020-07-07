@@ -20,6 +20,7 @@ require("head.html");
 
     }
     if (isset($_GET['from'])) {
+        console_log($_GET['from']);
         $from = $_GET['from'];
         $_SESSION['from'] = $from;
 
@@ -107,7 +108,7 @@ require("head.html");
 
     <!--::footer_part start::-->
     <?php
-    require("footer.html");
+    require("footer.php");
     ?>
     <!--::footer_part end::-->
 

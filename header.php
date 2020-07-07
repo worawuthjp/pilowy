@@ -32,6 +32,7 @@ function console_log($output, $with_script_tags = true)
 // console_log($_SESSION['f_name']);
 //
 ?>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171494050-1"></script>
 <script>
@@ -80,7 +81,7 @@ function console_log($output, $with_script_tags = true)
                     </button>
 
                     <div class="collapse navbar-collapse main-menu-item text-right" id="navbarSupportedContent">
-                        <div class="col-md-7"></div>
+                        <div class="col-md-6"></div>
                         <ul class="navbar-nav mr-2">
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php">Home</a>
@@ -99,8 +100,8 @@ function console_log($output, $with_script_tags = true)
                             if (isset($_SESSION['id']))
                                 $page = 'statusgoods.php';
                             else {
-                                $page = 'login.php';
-                                $_SESSION['check'] = true;
+                                $page = 'login.php?from=track';
+                               
                             }
                             ?>
                             <li class="nav-item">
@@ -110,8 +111,17 @@ function console_log($output, $with_script_tags = true)
                                 </a>
 
                             </li>
+                            <?php
+                            if (isset($_SESSION['id']))
+                                $page = 'payment.php';
+                            else {
+                                $page = 'login.php?from=payment';
+                                
+                            }
+                            ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="payment.php">
+
+                                <a class="nav-link" href="<?php echo $page; ?>">
                                     payment
                                 </a>
 
@@ -135,9 +145,16 @@ function console_log($output, $with_script_tags = true)
                     </div>
                     <div class="header_icon d-flex align-items-center mr-md-5 mr-sm-5 mr-4">
                         <!-- <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a> -->
-                        <a href="cart.php">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
+                        <?php
+                            if (isset($_SESSION['id'])) {
+                                $from2 = "cart.php";
+                            } else {
+                                $from2 = "login.php?from=cart";
+                            }
+                            ?>
+                            <a href="<?php echo $from2; ?>">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
                     </div>
                 </nav>
             </div>
