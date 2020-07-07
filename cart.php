@@ -22,6 +22,7 @@ WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id DESC';
     $price = $rs[0]['price'];
     $cart_id = $rs[0]['cart_id'];
     $cartproductid = $rs[0]['id'];
+    echo $cartproductid;
     if($cartproductid == ''){
         $cartproductid = 1;
     }
