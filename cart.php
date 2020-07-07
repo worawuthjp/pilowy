@@ -16,12 +16,18 @@ cart_product.price,product.name,product.img,product.price,product.detail
 From cart 
 INNER JOIN cart_product on cart_product.cart_id = cart.id
 INNER JOIN product on product.id = cart_product.product_id
-WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
+WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id DESC';
     //echo $sql;
+
     $rs = selectAll($db, $sql);
-    $price = $rs[0]['price'];
-    $cart_id = $rs[0]['cart_id'];
-    $count = count($rs);
+    if ($rs != null) {
+        $price = $rs[0]['price'];
+        $cart_id = $rs[0]['cart_id'];
+        $cartproductid = $rs[0]['id'];
+
+    } else {
+        $cartproductid = 0;
+    }
 } else {
     echo "<meta http-equiv=\"refresh\" content=\"0;url=./login.php\">";
 }
@@ -38,12 +44,11 @@ if (isset($_GET['del'])) {
 if (isset($_GET['add'])) {
     $add_product = $_GET['add'];
     $addSql = "INSERT INTO cart_product (id,cart_id,product_id,quantity,price)
-VALUES ($count+1,'{$cart_id}','$add_product','1','{$price}')";
+VALUES ($cartproductid+1,'{$cart_id}','$add_product','1','{$price}')";
     $save = $db->execute($addSql);
     if ($save) {
         echo("<meta http-equiv='refresh' content='0;url=./cart.php'>");
-    }
-    else{
+    } else {
         echo 'Failed to store';
     }
 }
@@ -117,86 +122,74 @@ VALUES ($count+1,'{$cart_id}','$add_product','1','{$price}')";
                             <?php
                         }
                     ?>
-                    <tr class="bottom_button">
-                        <td>
-                            <a class="btn_1" href="#">Update Cart</a>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="cupon_text float-right">
-                                <a class="btn_1" href="#">Close Coupon</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <h5>Subtotal</h5>
-                        </td>
-                        <td>
-                            <h5>$2160.00</h5>
-                        </td>
-                    </tr>
-                    <tr class="shipping_area">
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <h5>Shipping</h5>
-                        </td>
-                        <td>
-                            <div class="shipping_box">
-                                <ul class="list">
-                                    <li>
-                                        Flat Rate: $5.00
-                                        <input type="radio" aria-label="Radio button for following text input">
-                                    </li>
-                                    <li>
-                                        Free Shipping
-                                        <input type="radio" aria-label="Radio button for following text input">
-                                    </li>
-                                    <li>
-                                        Flat Rate: $10.00
-                                        <input type="radio" aria-label="Radio button for following text input">
-                                    </li>
-                                    <li class="active">
-                                        Local Delivery: $2.00
-                                        <input type="radio" aria-label="Radio button for following text input">
-                                    </li>
-                                </ul>
-                                <h6>
-                                    Calculate Shipping
-                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                </h6>
-                                <select class="shipping_select">
-                                    <option value="1">Bangladesh</option>
-                                    <option value="2">India</option>
-                                    <option value="4">Pakistan</option>
-                                </select>
-                                <select class="shipping_select section_bg">
-                                    <option value="1">Select a State</option>
-                                    <option value="2">Select a State</option>
-                                    <option value="4">Select a State</option>
-                                </select>
-                                <input class="post_code" type="text" placeholder="Postcode/Zipcode"/>
-                                <a class="btn_1" href="#">Update Details</a>
-                            </div>
-                        </td>
-                    </tr>
                     </tbody>
+                    <tfoot>
+
+                    </tfoot>
                 </table>
-                <div class="checkout_btn_inner float-right">
-                    <a class="btn_1" href="#">Continue Shopping</a>
-                    <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
+                <div class="checkout_btn_inner">
+                    <h4>ชื่อและที่อยู่ผู้รับ</h4>
+
+                    <div class="row col-md-12 mt-2 pl-md-0">
+                        <div class="col-md-9 row">
+                            <label class="font-weight-bold col-form-label col-md-2" for="f_name"
+                                   style="font-size: 15px;color: #646464">ชื่อ : </label>
+                            <input type="text" class="form-control form-inline col-md-4" placeholder="ชื่อจริง"
+                                   name="f_name" id="f_name">
+                            <label class="font-weight-bold col-form-label ml-2" for="l_name"
+                                   style="font-size: 15px;color: #646464">นามสกุล : </label>
+                            <input type="text" class="form-control form-inline col-md-4 ml-2" placeholder="นามสกุล"
+                                   name="l_name" id="l_name">
+                        </div>
+                    </div>
+                    <div class="row col-md-12 mt-2 pl-md-0">
+                        <div class="col-md-9 row">
+                            <label for="phone" class="font-weight-bold col-form-label col-md-2"
+                                   style="font-size: 15px;color: #646464">เบอร์โทรศัพท์ : </label>
+                            <input type="text" class="form-inline form-control col-md-4" id="phone" name="phone"
+                                   value="" placeholder="เบอร์โทรศัพท์" maxlength="10">
+                        </div>
+                    </div>
+
+                    <div class="row col-md-12 mt-2 pl-md-0">
+                        <div class="col-md-9 row">
+                            <label for="province" class="font-weight-bold col-form-label col-md-2"
+                                   style="font-size: 15px;color: #646464">จังหวัด : </label>
+                            <select class="form-control col-md-4">
+                                <option class="select_option">Default select</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-12 mt-2 pl-md-0">
+                        <div class="col-md-9 row">
+                            <label class="font-weight-bold col-form-label col-md-2" for="address"
+                                   style="font-size: 15px;color: #646464">ที่อยู่ : </label>
+                            <textarea rows="3" class="form-inline form-control col-md-6" id="address"
+                                      name="address" placeholder="ที่อยู่" style="resize: none"></textarea></div>
+                    </div>
+
+                    <div class="row col-md-12 mt-2 pl-md-0">
+                        <div class="col-md-9 row">
+                            <label class="font-weight-bold col-form-label col-md-2" for="postal_code"
+                                   style="font-size: 15px;color: #646464">รหัสไปรษณีย์ : </label>
+                            <input class="form-control form-inline col-md-3" id="postal_code" name="postal_code"
+                                   placeholder="รหัสไปรษณีย์">
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout_btn_inner mt-2">
+                    <a class="btn_1" href="#">ซื้อของต่อ</a>
+                    <a class="btn_1 checkout_btn_1 float-right mr-0" href="#">ยืนยันคำสั่งซื้อ</a>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 <!--================End Cart Area =================-->
 <!--::footer_part start::-->
 <?php
-require("footer.html");
+require("footer.php");
 ?>
 <!--::footer_part end::-->
 
@@ -244,7 +237,6 @@ require("footer.html");
         }).done(function (data) {
             $('#total' + _id).text(data);
         });
-        console.log('add');
     }
 </script>
 

@@ -47,7 +47,7 @@ function insertData($db,$sql){
 
 function updatetData($db,$sql){
     $db->execute($sql);
-    $result = $db->insert_Id();
+    $result = $db->execute($sql);
 
     return $result;
 }

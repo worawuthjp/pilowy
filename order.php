@@ -9,17 +9,17 @@ if (!(isset($_SESSION['admin']))) {
   header("location:index.php?allow=0");
 }
 require('connectDB.php');
-$sql = 'SELECT cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.t_status , tracking.track_code FROM 
+$sql = 'SELECT cart.id , payment.date ,payment.id AS p_id , product.name , cart_product.quantity , payment.money_received , payment.status ,tracking.id AS t_id , tracking.t_status , tracking.track_code FROM 
 cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
 INNER JOIN product ON cart_product.product_id = product.id
 INNER JOIN payment ON payment.cart_id = cart.id
-INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = cart.id)';
+INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = cart.id)' ;
 $rs = selectAll($db, $sql);
 $record = array();
 foreach ($rs as $row) {
   $record[] = $row;
 }
-?>
+// $sqlupdate = 'UPDATE payment.id FROM payment INNER JOIN cart ON payment.cart_id = cart.id';
 ?>
 
 <body class="test">
@@ -101,6 +101,7 @@ foreach ($rs as $row) {
   <!-- breadcrumb part end-->
 
 
+<<<<<<< HEAD
   <!--================ track post part start =================-->
   <section class="confirmation_part section_padding">
     <div class="container">
@@ -126,6 +127,32 @@ foreach ($rs as $row) {
               </thead>
               <tbody>
               <tbody>
+=======
+    <!--================ track post part start =================-->
+    <section class="confirmation_part section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="order_details_iner">
+                        <h3>รายละเอียดการสั่งซื้อสินค้า</h3>
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th scope="col" colspan="2">เลขที่คำสั่งซื้อ</th>
+                                    <th scope="col">วันที่ทำรายการ</th>
+                                    <th scope="col">สินค้า</th>
+                                    <th scope="col">จำนวน</th>
+                                    <th scope="col">ยอดชำระ</th>
+                                    <th scope="col">สถานะการชำระเงิน</th>
+                                    <th scope="col">สถานะการจัดส่งสินค้า</th>
+                                    <th scope="col">เลขพัสดุ</th>
+                                    <th scope="col">แก้ไข</th>
+                                    <th scope="col">ลบ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tbody>
+>>>>>>> origin/master
                 <?php
                 for ($i = 0; $i < count($record); $i++) {
                 ?>
@@ -136,6 +163,7 @@ foreach ($rs as $row) {
                     <th>x <?php echo $record[$i]['quantity'] ?></th>
                     <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
                     <th> <span><?php echo $record[$i]['status'] ?></span></th>
+                    <input type="hidden" id="p_id" name="p_id" value="<?php echo $record[$i]['p_id']; ?>"/>
                     <th> <span><?php echo $record[$i]['t_status'] ?></span></th>
                     <th> <span><?php echo $record[$i]['track_code'] ?></span></th>
                     <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal" data-whatever="@mdo">แก้ไข</button></th>
@@ -146,6 +174,7 @@ foreach ($rs as $row) {
                 }
                 ?>
 
+<<<<<<< HEAD
               </tbody>
             </table>
           </div>
@@ -260,7 +289,48 @@ foreach ($rs as $row) {
           <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
           <button type="button" id="order_edit" class="btn btn-primary">แก้ไข</button>
         </div>
+=======
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ track post part end =================-->
+<!--=============== modal update =============-->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แก้ไขรายการ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        <form action="updateorder.php" method="post">
+          <div class="form-group">
+            <label for="statuspayment" class="col-form-label">สถานะการชำระเงิน:</label>
+            <input type="text" name="statuspayment" value="<?php echo $row['status'] ; ?>" class="form-control" id="statuspayment">
+          </div>
+          <div class="form-group">
+            <label for="statuspost" class="col-form-label">สถานะการจัดส่งสินค้า:</label>
+            <input type="text" name="statuspost" value="<?php echo $row['t_status'] ; ?>" class="form-control" id="statuspost">
+          </div>
+          <div class="form-group">
+            <label for="trackcode" class="col-form-label">เลขพัสดุ:</label>
+            <input type="text" name="trackcode" value="<?php echo $row['track_code'] ; ?>" class="form-control" id="trackcode">
+          </div>
+          <!--recipient-name-->
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button name="submit" type="submit" class="btn btn-primary">แก้ไข</button>
+>>>>>>> origin/master
+      </div>
+      </form>
     </div>
   </div>
 
@@ -284,7 +354,11 @@ foreach ($rs as $row) {
       </div>
     </div>
   </div>
+<<<<<<< HEAD
 
+=======
+</div>
+>>>>>>> origin/master
 
 
   <!--::footer_part start::-->
