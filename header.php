@@ -29,6 +29,7 @@ function console_log($output, $with_script_tags = true)
     }
     echo $js_code;
 }
+
 // console_log($_SESSION['f_name']);
 //
 ?>
@@ -41,6 +42,7 @@ function console_log($output, $with_script_tags = true)
     function gtag() {
         dataLayer.push(arguments);
     }
+
     gtag('js', new Date());
 
     gtag('config', 'UA-171494050-1');
@@ -48,7 +50,7 @@ function console_log($output, $with_script_tags = true)
 
 <!-- Google Tag Manager -->
 <script>
-    (function(w, d, s, l, i) {
+    (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({
             'gtm.start': new Date().getTime(),
@@ -66,7 +68,10 @@ function console_log($output, $with_script_tags = true)
 <!-- End Google Tag Manager -->
 
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TVQP89G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TVQP89G" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+</noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <!--::header part start::-->
@@ -75,8 +80,11 @@ function console_log($output, $with_script_tags = true)
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="index.php"><img class="img-fluid ml-5" src="img/favicon.gif" alt="logo"></img> </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <a class="navbar-brand" href="index.php"><img class="img-fluid ml-5" src="img/favicon.gif"
+                                                                  alt="logo"></img> </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
                         <span class="menu_icon"><i class="fas fa-bars"></i></span>
                     </button>
 
@@ -101,7 +109,7 @@ function console_log($output, $with_script_tags = true)
                                 $page = 'statusgoods.php';
                             else {
                                 $page = 'login.php?from=track';
-                               
+
                             }
                             ?>
                             <li class="nav-item">
@@ -116,7 +124,7 @@ function console_log($output, $with_script_tags = true)
                                 $page = 'payment.php';
                             else {
                                 $page = 'login.php?from=payment';
-                                
+
                             }
                             ?>
                             <li class="nav-item">
@@ -126,6 +134,18 @@ function console_log($output, $with_script_tags = true)
                                 </a>
 
                             </li>
+
+                            <?php
+                            if (isset($_SESSION['id'])) {
+                                ?>
+                                <li class="nav-item">
+                                    <a href="logout.php" class="nav-link">
+                                        logout
+                                    </a>
+                                </li>
+                                <?php
+                            }
+                            ?>
                             <!-- <li class="nav-item">
                                     <a class="nav-link" href="blog.php">
                                         pages
@@ -146,15 +166,15 @@ function console_log($output, $with_script_tags = true)
                     <div class="header_icon d-flex align-items-center mr-md-5 mr-sm-5 mr-4">
                         <!-- <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a> -->
                         <?php
-                            if (isset($_SESSION['id'])) {
-                                $from2 = "cart.php";
-                            } else {
-                                $from2 = "login.php?from=cart";
-                            }
-                            ?>
-                            <a href="<?php echo $from2; ?>">
-                                <i class="fas fa-shopping-cart"></i>
-                            </a>
+                        if (isset($_SESSION['id'])) {
+                            $from2 = "cart.php";
+                        } else {
+                            $from2 = "login.php?from=cart";
+                        }
+                        ?>
+                        <a href="<?php echo $from2; ?>">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
                     </div>
                 </nav>
             </div>
