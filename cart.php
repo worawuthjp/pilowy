@@ -16,17 +16,18 @@ cart_product.price,product.name,product.img,product.price,product.detail
 From cart 
 INNER JOIN cart_product on cart_product.cart_id = cart.id
 INNER JOIN product on product.id = cart_product.product_id
-WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id DESC';
+WHERE cart.cus_id =  \'' . $_SESSION['id'] . '\' and cart.is_close = false ORDER BY cart_product.id DESC';
     //echo $sql;
 
     $rs = selectAll($db, $sql);
     if ($rs != null) {
-        $price = $rs[0]['price'];
         $cart_id = $rs[0]['cart_id'];
-        $cartproductid = $rs[0]['id'];
+        $top_cart_product = $rs[0]['id'];
 
     } else {
-        $cartproductid = 0;
+        $cart_productSql = "SELECT id from cart WHERE cus_id = '{$_SESSION['id']}' and is_close = false";
+        $cart_id = selectOne($db, $cart_productSql);
+        $top_cart_product = 0;
     }
 } else {
     echo "<meta http-equiv=\"refresh\" content=\"0;url=./login.php\">";
@@ -42,9 +43,36 @@ if (isset($_GET['del'])) {
 }
 
 if (isset($_GET['add'])) {
-    $add_product = $_GET['add'];
-    $addSql = "INSERT INTO cart_product (id,cart_id,product_id,quantity,price)
-VALUES ($cartproductid+1,'{$cart_id}','$add_product','1','{$price}')";
+    $sql = "SELECT *,count(*) as num FROM cart WHERE is_close = true and cus_id = '{$_SESSION['id']}' GROUP BY id ORDER BY id DESC";
+    $cart = selectOne($db, $sql);
+    if ($cart['is_close'] == true) {
+        $id = $cart['id'] + 1;
+        $addCartSql = "INSERT INTO cart (id,cus_id,total_price,is_close) VALUES ('$id','{$_SESSION['id']}',0,false)";
+        $save = $db->execute($addCartSql);
+        if ($save)
+            /*echo "ADD CART";*/
+            console_log("add cart '{$save}'");
+    }
+    $sql = "SELECT *,count(*) as num FROM cart WHERE is_close = false and cus_id = '{$_SESSION['id']}' GROUP BY id ORDER BY id DESC";
+    $cart = selectOne($db, $sql);
+    $cart_id = $cart[0];
+
+    $sql = "SELECT cart.id as cart_id,cart.cus_id,cart.total_price,cart.is_close,cart_product.id as cart_product_id,cart_product.product_id,cart_product.quantity,cart_product.price,count(*) FROM cart
+INNER JOIN cart_product on cart_product.cart_id = cart.id
+WHERE cus_id = 1
+GROUP BY cart.id,cart_product.id
+ORDER BY cart.id DESC";
+    $record = selectOne($db,$sql);
+    $top_cart_product = $record['cart_product_id'];
+    /*echo $top_cart_product;*/
+
+    if (isset($_POST['submit'])) {
+        $product_id = $_POST['product_id'];
+        $price = $_POST['price'];
+        $num = $_POST['num'];
+    }
+
+    $addSql = "INSERT INTO cart_product (id,cart_id,product_id,quantity,price) VALUES ($top_cart_product+1,'{$cart_id}','{$product_id}','{$num}','{$price}')";
     $save = $db->execute($addSql);
     if ($save) {
         echo("<meta http-equiv='refresh' content='0;url=./cart.php'>");
@@ -139,7 +167,8 @@ VALUES ($cartproductid+1,'{$cart_id}','$add_product','1','{$price}')";
                                            name="f_name" id="f_name">
                                     <label class="font-weight-bold col-form-label ml-2" for="l_name"
                                            style="font-size: 15px;color: #646464">นามสกุล : </label>
-                                    <input type="text" class="form-control form-inline col-md-4 ml-2" placeholder="นามสกุล"
+                                    <input type="text" class="form-control form-inline col-md-4 ml-2"
+                                           placeholder="นามสกุล"
                                            name="l_name" id="l_name">
                                 </div>
                             </div>
@@ -182,7 +211,8 @@ VALUES ($cartproductid+1,'{$cart_id}','$add_product','1','{$price}')";
                                     <label class="font-weight-bold col-form-label col-md-2" for="address"
                                            style="font-size: 15px;color: #646464">ที่อยู่ : </label>
                                     <textarea rows="3" class="form-inline form-control col-md-6" id="address"
-                                              name="address" placeholder="ที่อยู่" style="resize: none"></textarea></div>
+                                              name="address" placeholder="ที่อยู่" style="resize: none"></textarea>
+                                </div>
                             </div>
 
                             <div class="row col-md-12 mt-2 pl-md-0">
@@ -195,7 +225,8 @@ VALUES ($cartproductid+1,'{$cart_id}','$add_product','1','{$price}')";
                             </div>
                         </div>
                     </div>
-                </div><br>
+                </div>
+                <br>
                 <div class="checkout_btn_inner mt-2 float-right">
                     <a class="btn_1" href="#">ซื้อของต่อ</a>
                     <a class="btn_1 checkout_btn_1 mr-0" href="#">ยืนยันคำสั่งซื้อ</a>
@@ -258,206 +289,7 @@ require("footer.php");
     }
 </script>
 
-<script>
-    (function ($) {
-        "use strict";
-
-
-
-        $('.popup-youtube, .popup-vimeo').magnificPopup({
-            // disableOn: 700,
-            type: 'iframe',
-            mainClass: 'mfp-fade',
-            removalDelay: 160,
-            preloader: false,
-            fixedContentPos: false
-        });
-
-        var review = $('.client_review_slider');
-        if (review.length) {
-            review.owlCarousel({
-                items: 1,
-                loop: true,
-                dots: true,
-                autoplay: true,
-                autoplayHoverPause: true,
-                autoplayTimeout: 5000,
-                nav: true,
-                dots: false,
-                navText: [" <i class='ti-angle-left'></i> ", "<i class='ti-angle-right'></i> "],
-                responsive: {
-                    0: {
-                        nav: false
-                    },
-                    768: {
-                        nav: false
-                    },
-                    991: {
-                        nav: true
-                    }
-                }
-            });
-        }
-
-        // niceSelect js code
-        $(document).ready(function () {
-
-        });
-
-        // menu fixed js code
-        $(window).scroll(function () {
-            var window_top = $(window).scrollTop() + 1;
-            if (window_top > 50) {
-                $('.main_menu').addClass('menu_fixed animated fadeInDown');
-            } else {
-                $('.main_menu').removeClass('menu_fixed animated fadeInDown');
-            }
-        });
-
-        $('.counter').counterUp({
-            time: 2000
-        });
-
-        $('.slider').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            speed: 300,
-            infinite: true,
-            asNavFor: '.slider-nav-thumbnails',
-            autoplay: true,
-            pauseOnFocus: true,
-            dots: true,
-        });
-
-        $('.slider-nav-thumbnails').slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            asNavFor: '.slider',
-            focusOnSelect: true,
-            infinite: true,
-            prevArrow: false,
-            nextArrow: false,
-            centerMode: true,
-            responsive: [{
-                breakpoint: 480,
-                settings: {
-                    centerMode: false,
-                }
-            }]
-        });
-
-        //------- Mailchimp js --------//
-        function mailChimp() {
-            $('#mc_embed_signup').find('form').ajaxChimp();
-        }
-        mailChimp();
-
-        //------- makeTimer js --------//
-        function makeTimer() {
-
-            //		var endTime = new Date("29 April 2018 9:56:00 GMT+01:00");
-            var endTime = new Date("27 Sep 2019 12:56:00 GMT+01:00");
-            endTime = (Date.parse(endTime) / 1000);
-
-            var now = new Date();
-            now = (Date.parse(now) / 1000);
-
-            var timeLeft = endTime - now;
-
-            var days = Math.floor(timeLeft / 86400);
-            var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
-            var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600)) / 60);
-            var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
-
-            if (hours < "10") {
-                hours = "0" + hours;
-            }
-            if (minutes < "10") {
-                minutes = "0" + minutes;
-            }
-            if (seconds < "10") {
-                seconds = "0" + seconds;
-            }
-
-            $("#days").html("<span>Days</span>" + days);
-            $("#hours").html("<span>Hours</span>" + hours);
-            $("#minutes").html("<span>Minutes</span>" + minutes);
-            $("#seconds").html("<span>Seconds</span>" + seconds);
-
-        }
-// click counter js
-        (function() {
-
-            window.inputNumber = function(el) {
-
-                var min = el.attr('min') || false;
-                var max = el.attr('max') || false;
-
-                var els = {};
-
-                els.dec = el.prev();
-                els.inc = el.next();
-
-                el.each(function() {
-                    init($(this));
-                });
-
-                function init(el) {
-
-                    els.dec.on('click', decrement);
-                    els.inc.on('click', increment);
-
-                    function decrement() {
-                        var value = el[0].value;
-                        value--;
-                        if(!min || value >= min) {
-                            el[0].value = value;
-                        }
-                    }
-
-                    function increment() {
-                        var value = el[0].value;
-                        value++;
-                        if(!max || value <= max) {
-                            el[0].value = value++;
-                        }
-                    }
-                }
-            }
-        })();
-
-        inputNumber($('.input-number'));
-
-
-
-        setInterval(function () {
-            makeTimer();
-        }, 1000);
-
-
-        $('.select_option_dropdown').hide();
-        $(".select_option_list").click(function () {
-            $(this).parent(".select_option").children(".select_option_dropdown").slideToggle('100');
-            $(this).find(".right").toggleClass("fas fa-caret-down, fas fa-caret-up");
-        });
-
-        if ($('.new_arrival_iner').length > 0) {
-            var containerEl = document.querySelector('.new_arrival_iner');
-            var mixer = mixitup(containerEl);
-        }
-//  $('.controls').on('click', function(){
-//   $('.controls').removeClass('add');
-//   $('.controls').addClass('add');
-//  });
-
-        $('.controls').on('click', function(){
-            $(this).addClass('active').siblings().removeClass('active');
-        });
-
-
-    }(jQuery));
-</script>
+<script src="js/myapp.js"></script>
 
 </body>
 
