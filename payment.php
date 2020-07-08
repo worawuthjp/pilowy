@@ -17,7 +17,7 @@ require('connectDB.php');
     require("header.php");
     // console_log($_SESSION['id']);
     if (isset($_SESSION['id'])) {
-        $sql = 'SELECT cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.t_status , tracking.track_code FROM 
+        $sql = 'SELECT cart.id , payment.date ,payment.slip, product.name , cart_product.quantity , payment.money_received , payment.status , tracking.t_status , tracking.track_code FROM 
     cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
     INNER JOIN product ON cart_product.product_id = product.id
     INNER JOIN payment ON payment.cart_id = cart.id
@@ -31,7 +31,7 @@ require('connectDB.php');
         }
 
 
-        $sql = 'SELECT payment.id,payment.slip FROM customer INNER JOIN cart ON customer.id = cart.cus_id
+        $sql = 'SELECT payment.id,payment.slip,cart.id AS c_id FROM customer INNER JOIN cart ON customer.id = cart.cus_id
         INNER JOIN payment ON cart.id = payment.cart_id WHERE (customer.id = \'' . $_SESSION['id'] . '\')'; // AND (payment.status = false);';
         $rs = selectAll($db, $sql);
         // console_log($rs);
@@ -158,21 +158,25 @@ require('connectDB.php');
                                                                     echo $record[$i]['id'] ?></span></th>
                                         <th> <span><?php echo $record[$i]['date'];
                                                                 } else echo "<th></th>" ?></span></th>
-                                        <th><?php
+                                        <!-- <th><?php
                                             foreach ($record[$i] as $rec) {
                                                 //echo $rec + $id;
                                             }
 
 
-                                            ?></th>
+                                            ?></th> -->
                                         <th><?php echo $record[$i]['name']; ?></th>
                                         <th>x <?php echo $record[$i]['quantity'] ?></th>
-                                        <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
+                                        <th> <span><?php if(isset($record[$i]['money_received'])) {echo $record[$i]['money_received'] ?> บาท<?php }  ?></span></th>
                                         <th> <span><?php
                                                     if ($record[$i]['status'] == "t") {
                                                         $text = "ชำระเงินแล้ว";
-                                                    } else {
+                                                    }
+                                                     else if($record[$i]['status'] == "f" && $record[$i]['status'] == NULL){
                                                         $text = "ยังไม่ชำระเงิน";
+                                                    }
+                                                    else if($record[$i]['status'] == "f" && $record[$i]['slip'] != NULL){
+                                                        $text = "รอการตรวจสอบ";
                                                     }
                                                     echo $text; ?></span></th>
 
@@ -189,22 +193,28 @@ require('connectDB.php');
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="order_details_iner">
-                            <h3>Upload หลักฐานการชำระเงิน</h3>
-                            <form class="imgForm" action="leanfrom.php" method="post" enctype="multipart/form-data">
-                                <input type="file" name="upload" />
-                                <button class="btn_1 ml-auto mr-auto" type="submit" name="save" value="upload">Upload</button>
-                            </form>
+                            <?php for ($i = 0; $i < count($record2); $i++) {
+                                console_log($record2[$i]['id']);
+                                if (isset($record2[$i]['id'])) { ?>
 
-                            <?php
+                                    <h3>Upload หลักฐานการชำระเงิน ของคำสั่งซื้อที่ <?php echo $record2[$i]['c_id']; ?></h3>
+                                    <form class="imgForm" action="leanfrom.php" method="post" enctype="multipart/form-data">
+                                        <input type="file" name="upload" />
+                                        <input type="hidden" id="id" name="id" value="<?php echo $record2[$i]['id']; ?>" />
+                                        <button class="btn_1 ml-auto mr-auto" type="submit" name="save" value="upload">Upload</button>
+                                    </form>
 
-                            if (isset($record2[0]['slip'])) {
-                            ?>
-                                <div>
-                                    <br /><br /><img src="img/slip/<?php print_r($record2[0]['slip']) ?>">
-                                </div>
+                                    <?php
+
+                                    if (isset($record2[$i]['slip'])) {
+                                    ?>
+                                        <div>
+                                            <br /><br /><img src="img/slip/<?php print_r($record2[$i]['slip']) ?>"><br /><br />
+                                        </div>
                             <?php
+                                    }
+                                }
                             }
-
                             ?>
                         </div>
                     </div>
