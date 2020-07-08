@@ -199,7 +199,7 @@ WHERE cus_id = '{$_SESSION['id']}' and is_close = false GROUP BY cart.id";
                                 <td width="180">
                                     <div class="col-md-12 ml-auto mr-auto ">
                                         <input class="col-md-12 "
-                                               onchange="clickaddnum(this,<?php echo $row['product_price'] ?>,<?php echo $row['id']; ?>,<?php echo $row['cart_id'];?>,<?php echo $row['product_id']; ?>)"
+                                               onchange="clickaddnum(this,<?php echo $row['product_price'] ?>,<?php echo $row['id']; ?>,<?php echo $row['cart_id']; ?>,<?php echo $row['product_id']; ?>)"
                                                name="<?php echo "num" . $row['id'] ?>"
                                                id="<?php echo "num" . $row['id'] ?>" type="number"
                                                value="<?php echo $row['quantity']; ?>" min="1"
@@ -223,82 +223,182 @@ WHERE cus_id = '{$_SESSION['id']}' and is_close = false GROUP BY cart.id";
 
                     </tfoot>
                 </table>
-                <div class="checkout_btn_inner">
-                    <h4>ชื่อและที่อยู่ผู้รับ</h4><br>
-                    <div class="container">
-                        <div class="col-md-10">
-                            <div class="row col-md-12 mt-2 pl-md-0 ">
-                                <div class="col-md-12 row">
-                                    <label class="font-weight-bold col-form-label col-md-2" for="f_name"
-                                           style="font-size: 15px;color: #646464">ชื่อ : </label>
-                                    <input type="text" class="form-control form-inline col-md-4" placeholder="ชื่อจริง"
-                                           name="f_name" id="f_name">
-                                    <label class="font-weight-bold col-form-label ml-2" for="l_name"
-                                           style="font-size: 15px;color: #646464">นามสกุล : </label>
-                                    <input type="text" class="form-control form-inline col-md-4 ml-2"
-                                           placeholder="นามสกุล"
-                                           name="l_name" id="l_name">
-                                </div>
-                            </div>
-                            <div class="row col-md-12 mt-2 pl-md-0">
-                                <div class="col-md-12 row">
-                                    <label for="phone" class="font-weight-bold col-form-label col-md-2"
-                                           style="font-size: 15px;color: #646464">เบอร์โทรศัพท์ : </label>
-                                    <input type="text" class="form-inline form-control col-md-4" id="phone" name="phone"
-                                           value="" placeholder="เบอร์โทรศัพท์" maxlength="10">
-                                </div>
-                            </div>
 
-                            <div class="row col-md-12 mt-2 pl-md-0">
-                                <div class="col-md-12 row">
-                                    <label for="province" class="font-weight-bold col-form-label col-md-2"
-                                           style="font-size: 15px;color: #646464">จังหวัด : </label>
-                                    <select class="form-control col-md-4" id="province" name="province">
-                                        <option class="select_option">เลือกจังหวัด</option>
-                                    </select>
-                                    <label for="amphures" class="font-weight-bold col-form-label col-md-auto"
-                                           style="font-size: 15px;color: #646464">อำเภอ : </label>
-                                    <select class="form-control col-md-4" id="amphures" name="amphures">
-                                        <option class="select_option">เลือกอำเภอ</option>
-                                    </select>
-                                </div>
-                            </div>
+                <form action="confirm_order_check.php" method="post">
+                    <div class="checkout_btn_inner">
+                        <?php
+                        $nameErr = $surErr = $phoneErr = $provinceErr = $amphureErr = $districtErr = $addressErr = $postal_codeERR = "";
+                        $name = $sur = $phone = $province = $amphure = $district = $address = $postal_code = "";
+                        ?>
+                        <h4>ชื่อและที่อยู่ผู้รับ</h4><br>
+                        <div class="container">
+                            <div class="col-md-10">
+                                <div class="row col-md-12 mt-2 pl-md-0 ">
+                                    <?php
+                                    if (isset($_POST['validateError']) or isset($_GET['validateError'])) {
+                                        ?>
 
-                            <div class="row col-md-12 mt-2 pl-md-0">
-                                <div class="col-md-12 row">
-                                    <label for="district" class="font-weight-bold col-form-label col-md-2"
-                                           style="font-size: 15px;color: #646464">ตำบล : </label>
-                                    <select class="form-control col-md-4" id="district" name="district">
-                                        <option class="select_option">เลือกตำบล</option>
-                                    </select>
-                                </div>
-                            </div>
+                                        <div class="alert alert-danger col-md-12">
+                                            <?php
+                                            if (empty($_POST["name"])) {
+                                                ?>
+                                                <ul>
+                                                    <li><?php echo "กรุณากรอกชื่อ"; ?></li>
+                                                </ul>
+                                                <?php
+                                            }
+                                            ?>
 
-                            <div class="row col-md-12 mt-2 pl-md-0">
-                                <div class="col-md-12 row">
-                                    <label class="font-weight-bold col-form-label col-md-2" for="address"
-                                           style="font-size: 15px;color: #646464">ที่อยู่ : </label>
-                                    <textarea rows="3" class="form-inline form-control col-md-6" id="address"
-                                              name="address" placeholder="ที่อยู่" style="resize: none"></textarea>
-                                </div>
-                            </div>
+                                            <?php
+                                            if (empty($_POST["surname"])) {
+                                                ?>
+                                                <ul>
+                                                    <li><?php echo "กรุณากรอกนามสกุล"; ?></li>
+                                                </ul>
+                                                <?php
+                                            }
+                                            ?>
 
-                            <div class="row col-md-12 mt-2 pl-md-0">
-                                <div class="col-md-12 row">
-                                    <label class="font-weight-bold col-form-label col-md-2" for="postal_code"
-                                           style="font-size: 15px;color: #646464">รหัสไปรษณีย์ : </label>
-                                    <input class="form-control form-inline col-md-3" id="postal_code" name="postal_code"
-                                           placeholder="รหัสไปรษณีย์">
+                                            <?php
+                                            if (empty($_POST["phone"])) {
+                                                ?>
+                                                <ul>
+                                                    <li><?php echo "กรุณากรอกเบอร์โทรศัพท์"; ?></li>
+                                                </ul>
+                                                <?php
+                                            }
+                                            ?>
+
+                                            <?php
+                                            if ($_POST["province"] == '0') {
+                                                ?>
+                                                <ul>
+                                                    <li><?php echo "กรุณาเลือกจังหวัด"; ?></li>
+                                                </ul>
+                                                <?php
+                                            }
+                                            ?>
+
+                                            <?php
+                                            if ($_POST["amphure"] == '0') {
+                                                ?>
+                                                <ul>
+                                                    <li><?php echo "กรุณาเลือกอำเภอ"; ?></li>
+                                                </ul>
+                                                <?php
+                                            }
+                                            ?>
+
+                                            <?php
+                                            if ($_POST["district"] == '0') {
+                                                ?>
+                                                <ul>
+                                                    <li><?php echo "กรุณาเลือกตำบล"; ?></li>
+                                                </ul>
+                                                <?php
+                                            }
+                                            ?>
+
+                                            <?php
+                                            if (empty($_POST["address"])) {
+                                                ?>
+                                                <ul>
+                                                    <li><?php echo "กรุณาใส่ที่อยู่"; ?></li>
+                                                </ul>
+                                                <?php
+                                            }
+                                            ?>
+
+                                            <?php
+                                            if (empty($_POST["postal_code"])) {
+                                                ?>
+                                                <ul>
+                                                    <li><?php echo "กรุณาใส่รหัสไปรษณีย์"; ?></li>
+                                                </ul>
+                                                <?php
+                                            }
+                                            ?>
+
+                                        </div>
+
+                                        <?php
+                                    }
+                                    ?>
+                                    <div class="col-md-12 row">
+                                        <label class="font-weight-bold col-form-label col-md-2" for="f_name"
+                                               style="font-size: 15px;color: #646464">ชื่อ : </label>
+                                        <input type="text" class="form-control form-inline col-md-4"
+                                               placeholder="ชื่อจริง"
+                                               name="f_name" id="f_name">
+                                        <label class="font-weight-bold col-form-label ml-2" for="l_name"
+                                               style="font-size: 15px;color: #646464">นามสกุล : </label>
+                                        <input type="text" class="form-control form-inline col-md-4 ml-2"
+                                               placeholder="นามสกุล"
+                                               name="l_name" id="l_name">
+                                    </div>
+                                </div>
+                                <div class="row col-md-12 mt-2 pl-md-0">
+                                    <div class="col-md-12 row">
+                                        <label for="phone" class="font-weight-bold col-form-label col-md-2"
+                                               style="font-size: 15px;color: #646464">เบอร์โทรศัพท์ : </label>
+                                        <input type="text" class="form-inline form-control col-md-4" id="phone"
+                                               name="phone"
+                                               value="" placeholder="เบอร์โทรศัพท์" maxlength="10">
+                                    </div>
+                                </div>
+
+                                <div class="row col-md-12 mt-2 pl-md-0">
+                                    <div class="col-md-12 row">
+                                        <label class="font-weight-bold col-form-label col-md-2" for="postal_code"
+                                               style="font-size: 15px;color: #646464">รหัสไปรษณีย์ : </label>
+                                        <input class="form-control form-inline col-md-3" id="postal_code"
+                                               name="postal_code"
+                                               placeholder="รหัสไปรษณีย์">
+                                    </div>
+                                </div>
+
+                                <div class="row col-md-12 mt-2 pl-md-0">
+                                    <div class="col-md-12 row">
+                                        <label for="province" class="font-weight-bold col-form-label col-md-2"
+                                               style="font-size: 15px;color: #646464">จังหวัด : </label>
+                                        <select class="form-control col-md-4" id="provinces" name="provinces">
+                                            <option value="0" id="p_start">เลือกจังหวัด</option>
+                                        </select>
+                                        <label for="amphures" class="font-weight-bold col-form-label col-md-auto"
+                                               style="font-size: 15px;color: #646464">อำเภอ : </label>
+                                        <select class="form-control col-md-4" id="amphures" name="amphures">
+                                            <option value="0" id="a_start">เลือกอำเภอ</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row col-md-12 mt-2 pl-md-0">
+                                    <div class="col-md-12 row">
+                                        <label for="district" class="font-weight-bold col-form-label col-md-2"
+                                               style="font-size: 15px;color: #646464">ตำบล : </label>
+                                        <select class="form-control col-md-4" id="district" name="district">
+                                            <option id="d_start" value="0">เลือกตำบล</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row col-md-12 mt-2 pl-md-0">
+                                    <div class="col-md-12 row">
+                                        <label class="font-weight-bold col-form-label col-md-2" for="address"
+                                               style="font-size: 15px;color: #646464">ที่อยู่ : </label>
+                                        <textarea rows="3" class="form-inline form-control col-md-6" id="address"
+                                                  name="address" placeholder="ที่อยู่" style="resize: none"></textarea>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <br>
-                <div class="checkout_btn_inner mt-2 float-right">
-                    <a class="btn_1" href="./product_list.php">ซื้อของต่อ</a>
-                    <a class="btn_1 checkout_btn_1 mr-0" href="#">ยืนยันคำสั่งซื้อ</a>
-                </div>
+                    <br>
+                    <div class="checkout_btn_inner mt-2 float-right">
+                        <a class="btn_1" href="./product_list.php">ซื้อของต่อ</a>
+                        <button class="btn_1 checkout_btn_1 mr-0">ยืนยันคำสั่งซื้อ</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -342,9 +442,9 @@ require("footer.php");
 </script>
 
 <script type="text/javascript">
-    function clickaddnum(elem, price, _id,cart_id,product_id) {
-        console.log("cart_id = "+cart_id);
-        console.log("product_id = "+product_id);
+    function clickaddnum(elem, price, _id, cart_id, product_id) {
+        console.log("cart_id = " + cart_id);
+        console.log("product_id = " + product_id);
         $.ajax({
             url: 'sumtotalproduct.php',
             datatype: 'html',
@@ -352,13 +452,77 @@ require("footer.php");
             data: {
                 'num': $(elem).val(),
                 'price': price,
-                'cart_id' : cart_id,
-                'product_id' : product_id,
+                'cart_id': cart_id,
+                'product_id': product_id,
             }
         }).done(function (data) {
             $('#total' + _id).text(data);
         });
     }
+</script>
+
+<script type="text/javascript">
+    $('#postal_code').on('keyup', function () {
+        $.ajax({
+            datatype: 'json',
+            url: 'search_byPostal.php',
+            method: 'post',
+            data: {
+                'postal_code': $('#postal_code').val(),
+                'search': 'province'
+            }
+        }).done(function (data) {
+            var result = JSON.parse(data);
+            $('#p_start').remove();
+            $.each(result, function (index, row) {
+                let province = '<option value=\'' + row.province_id + '\'>' + row.th_province_name + '</option>';
+                $('#provinces').append(province).attr('selected', true);
+            });
+
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $('#postal_code').on('keyup', function () {
+        $.ajax({
+            datatype: 'json',
+            url: 'search_byPostal2.php',
+            method: 'post',
+            data: {
+                'postal_code': $('#postal_code').val(),
+                'search': 'amphure'
+            }
+        }).done(function (data) {
+            var result = JSON.parse(data);
+            $('#a_start').remove();
+            $.each(result, function (index, row) {
+                let amphure = '<option value=\'' + row.amphure_id + '\'>' + row.th_amphure_name + '</option>';
+                $('#amphures').append(amphure).attr('selected', true);
+            });
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $('#postal_code').on('keyup', function () {
+        $.ajax({
+            datatype: 'json',
+            url: 'search_byPostal3.php',
+            method: 'post',
+            data: {
+                'postal_code': $('#postal_code').val(),
+                'search': 'district'
+            }
+        }).done(function (data) {
+            var result = JSON.parse(data);
+            $('#d_start').remove();
+            $.each(result, function (index, row) {
+                let district = '<option value=\'' + row.district_id + '\'>' + row.th_district_name + '</option>';
+                $('#district').append(district).attr('selected', true);
+            });
+        });
+    });
 </script>
 
 <script src="js/myapp.js"></script>
