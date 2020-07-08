@@ -11,35 +11,47 @@ function console_log($output, $with_script_tags = true)
     echo $js_code;
 }
 if ($_POST) {
-   
-            console_log($_POST['statuspayment']);
-            console_log($_POST['statuspost']);
-            console_log($_POST['trackcode']);
-            console_log($_POST['p_id']);
-        // $sql = 'SELECT payment.id FROM customer INNER JOIN cart ON customer.id = cart.cus_id
-        // INNER JOIN payment ON cart.id = payment.cart_id WHERE (customer.id = \'' . $_SESSION['id'] . '\')'; // AND (payment.status = false);';
-        // $rs = selectAll($db, $sql);
-        // // console_log($rs);
-        // echo "<br>";
 
-        // $record = array();
-        // foreach ($rs as $row) {
-        //     $record[] = $row;
-        // }
+    if (isset($_POST['cp_id'])) {
+        console_log($_POST['cp_id']);
+        $cp_id = $_POST['cp_id'];
+        $sql = "DELETE FROM cart_product WHERE id=  '$cp_id'   ";
+        $rs = delete($db, $sql);
+        console_log($sql);
+        console_log($rs);
+        header("location:order.php");
+        exit(0);
+    } else {
+        console_log($_POST['statuspayment']);
+        console_log($_POST['statuspost']);
+        console_log($_POST['trackcode']);
+        console_log($_POST['p_id']);
 
+        console_log($_POST['t_id']);
 
-        // $pay_id = $record[0]['id'];
-       
-        // $name_file =  "cus_" . $_SESSION['id'] . "_pay_" . $pay_id . "_" . date("Y-m-d"). ".webp" ;//. $_FILES['upload']['name'];
-        // $tmp_name =  $_FILES['upload']['tmp_name'];
-        // $locate_img = "img/slip/";
-        // $_SESSION['slip'] = $name_file;
-        // move_uploaded_file($tmp_name, $locate_img . $name_file);
+        $statuspayment = $_POST['statuspayment'];
+        $statuspost = $_POST['statuspost'];
+        $trackcode = $_POST['trackcode'];
+        $p_id = $_POST['p_id'];
+        $cp_id = $_POST['cp_id'];
+        $t_id = $_POST['t_id'];
 
-        // $sql = "UPDATE payment SET slip = '$name_file'  WHERE id=  '$pay_id'   ";
-        // $rs = updatetData($db, $sql);
-        // console_log($sql);
-        // console_log($rs);
-        // header("location:payment.php");
-    
+        $sql = "UPDATE payment SET status = '$statuspayment'  WHERE id=  '$p_id'   ";
+        $rs = updatetData($db, $sql);
+        console_log($sql);
+        console_log($rs);
+
+        $sql = "UPDATE tracking SET track_code = '$trackcode'  WHERE id=  '$t_id'   ";
+        $rs = updatetData($db, $sql);
+        console_log($sql);
+        console_log($rs);
+
+        $sql = "UPDATE tracking SET t_status = '$statuspost'  WHERE id=  '$t_id'   ";
+        $rs = updatetData($db, $sql);
+        console_log($sql);
+        console_log($rs);
+
+        header("location:order.php");
+        exit(0);
+    }
 }

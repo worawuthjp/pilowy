@@ -26,14 +26,16 @@ if ($_POST) {
 
 
         $pay_id = $record[0]['id'];
-       
-        $name_file =  "cus_" . $_SESSION['id'] . "_pay_" . $pay_id . "_" . date("Y-m-d"). ".webp" ;//. $_FILES['upload']['name'];
+        $date = date("Y-m-d");
+        $name_file =  "cus_" . $_SESSION['id'] . "_pay_" . $pay_id . "_" . date("Y-m-d") . ".webp"; //. $_FILES['upload']['name'];
         $tmp_name =  $_FILES['upload']['tmp_name'];
         $locate_img = "img/slip/";
         $_SESSION['slip'] = $name_file;
         move_uploaded_file($tmp_name, $locate_img . $name_file);
 
         $sql = "UPDATE payment SET slip = '$name_file'  WHERE id=  '$pay_id'   ";
+        $rs = updatetData($db, $sql);
+        $sql = "UPDATE payment SET date = '$date '  WHERE id=  '$pay_id'   ";
         $rs = updatetData($db, $sql);
         console_log($sql);
         console_log($rs);

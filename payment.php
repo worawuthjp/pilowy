@@ -15,7 +15,7 @@ require('connectDB.php');
     <!--::header part start::-->
     <?php
     require("header.php");
-    console_log($_SESSION['id']);
+    // console_log($_SESSION['id']);
     if (isset($_SESSION['id'])) {
         $sql = 'SELECT cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.t_status , tracking.track_code FROM 
     cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
@@ -29,6 +29,7 @@ require('connectDB.php');
         foreach ($rs as $row) {
             $record[] = $row;
         }
+
 
         $sql = 'SELECT payment.id,payment.slip FROM customer INNER JOIN cart ON customer.id = cart.cus_id
         INNER JOIN payment ON cart.id = payment.cart_id WHERE (customer.id = \'' . $_SESSION['id'] . '\')'; // AND (payment.status = false);';
@@ -166,7 +167,7 @@ require('connectDB.php');
                             </form>
 
                             <?php
-                            // console_log($_SESSION['slip']);
+                            
                             if (isset($record2[0]['slip'])) {
                             ?>
                                 <div>
@@ -174,7 +175,7 @@ require('connectDB.php');
                                 </div>
                             <?php
                             }
-                            // unset($_SESSION['name_pic']);
+                            
                             ?>
                         </div>
                     </div>
