@@ -11,8 +11,9 @@ require("connectDB.php");
 <?php
 require("header.php");
 if (isset($_SESSION['id'])) {
-    $sql = 'Select cart.total_price,cart.id,cart_product.id,cart_product.cart_id,cart_product.product_id,cart_product.quantity,
-cart_product.price,product.name,product.img,product.price,product.detail
+    $sql = 'Select cart.total_price,cart.id,cart_product.id,cart_product.cart_id,
+cart_product.product_id,cart_product.quantity,
+cart_product.price as sum_price,product.name,product.img,product.price as product_price,product.detail
 From cart 
 INNER JOIN cart_product on cart_product.cart_id = cart.id
 INNER JOIN product on product.id = cart_product.product_id
@@ -43,7 +44,9 @@ if (isset($_GET['del'])) {
 }
 
 if (isset($_GET['add'])) {
-    $sql = "SELECT *,count(*) as num FROM cart WHERE is_close = true and cus_id = '{$_SESSION['id']}' GROUP BY id ORDER BY id DESC";
+
+    $sql = "SELECT *,count(*) as num FROM cart WHERE is_close = true and cus_id = '{$_SESSION['id']}' 
+GROUP BY id ORDER BY id DESC";
     $cart = selectOne($db, $sql);
     if ($cart['is_close'] == true) {
         $id = $cart['id'] + 1;
@@ -53,31 +56,66 @@ if (isset($_GET['add'])) {
             /*echo "ADD CART";*/
             console_log("add cart '{$save}'");
     }
-    $sql = "SELECT *,count(*) as num FROM cart WHERE is_close = false and cus_id = '{$_SESSION['id']}' GROUP BY id ORDER BY id DESC";
+    // sql Query
+    $sql = "SELECT *,count(*) as num FROM cart 
+WHERE is_close = false and cus_id = '{$_SESSION['id']}' 
+GROUP BY id ORDER BY id DESC";
     $cart = selectOne($db, $sql);
     $cart_id = $cart[0];
 
-    $sql = "SELECT cart.id as cart_id,cart.cus_id,cart.total_price,cart.is_close,cart_product.id as cart_product_id,cart_product.product_id,cart_product.quantity,cart_product.price,count(*) FROM cart
+    $sql = "SELECT cart.id as cart_id,cart.cus_id,cart.total_price,cart.is_close,
+cart_product.id as cart_product_id,cart_product.product_id,cart_product.quantity,
+cart_product.price as sum_price,count(*) FROM cart
 INNER JOIN cart_product on cart_product.cart_id = cart.id
-WHERE cus_id = 1
+WHERE cus_id = {$_SESSION['id']}
 GROUP BY cart.id,cart_product.id
-ORDER BY cart.id DESC";
-    $record = selectOne($db,$sql);
+ORDER BY cart_product.id DESC";
+    $record = selectOne($db, $sql);
     $top_cart_product = $record['cart_product_id'];
-    /*echo $top_cart_product;*/
+
+    // End SQL QUERY
 
     if (isset($_POST['submit'])) {
-        $product_id = $_POST['product_id'];
+        //define variable
+        $product_id = (int)($_POST['product_id']);
         $price = $_POST['price'];
         $num = $_POST['num'];
-    }
+        $cart_product_id = $top_cart_product + 1;
+        //end define variable
 
-    $addSql = "INSERT INTO cart_product (id,cart_id,product_id,quantity,price) VALUES ($top_cart_product+1,'{$cart_id}','{$product_id}','{$num}','{$price}')";
-    $save = $db->execute($addSql);
-    if ($save) {
-        echo("<meta http-equiv='refresh' content='0;url=./cart.php'>");
-    } else {
-        echo 'Failed to store';
+        //Query Check
+        $sql = "SELECT count(*) as count,cart_product.id,cart_product.quantity,cart_product.price as sum_price FROM cart
+INNER JOIN cart_product on cart_product.cart_id = cart.id
+WHERE cus_id = {$_SESSION['id']} and is_close = false and product_id = {$product_id}
+GROUP BY cart.id,cart_product.id
+ORDER BY cart_product.id DESC";
+        $record = selectOne($db, $sql);
+        echo "record is \'".$record['count']."\'";
+        if ($record['count'] == 0) {
+            $addSql = "INSERT INTO cart_product (id,cart_id,product_id,quantity,price) VALUES ('{$cart_product_id}','{$cart_id}','{$product_id}','{$num}','{$price}')";
+            /* echo $addSql;*/
+            $save = $db->execute($addSql);
+            if ($save) {
+                echo("<meta http-equiv='refresh' content='0;url=./cart.php'>");
+            } else {
+                console_log('failed to store');
+            }
+
+        } else {
+            $newPrice = $record['sum_price'] + $price;
+            $newQuantity = $record['quantity'] + $num;
+            $updateSql = "UPDATE cart_product SET quantity = '{$newQuantity}', price = '{$newPrice}'
+where product_id = '{$product_id}' and id = '{$record['id']}'";
+            $update = $db->execute($updateSql);
+            if($update){
+                console_log('update success');
+                echo("<meta http-equiv='refresh' content='0;url=./cart.php'>");
+            }else{
+                console_log('update failed');
+            }
+
+        }
+        // End Query Check
     }
 }
 ?>
@@ -129,23 +167,26 @@ ORDER BY cart.id DESC";
                                     </div>
                                 </td>
                                 <td>
-                                    <h5 name="price<?php echo $row['id']; ?>"><?php echo number_format($row['price'], 2) ?></h5>
+                                    <h5 name="price<?php echo $row['id']; ?>"><?php echo number_format($row['product_price'], 2) ?></h5>
                                 </td>
                                 <td width="180">
                                     <div class="col-md-12 ml-auto mr-auto ">
                                         <input class="col-md-12 "
-                                               onchange="clickaddnum(this,<?php echo $row['price'] ?>,<?php echo $row['id'] ?>)"
+                                               onchange="clickaddnum(this,<?php echo $row['product_price'] ?>,<?php echo $row['id']; ?>)"
                                                name="<?php echo "num" . $row['id'] ?>"
-                                               id="<?php echo "num" . $row['id'] ?>" type="number" value="1" min="1"
-                                               max="99"/>
+                                               id="<?php echo "num" . $row['id'] ?>" type="number"
+                                               value="<?php echo $row['quantity']; ?>" min="1"
+                                               max="999"/>
                                     </div>
                                 </td>
                                 <td>
                                     <h5 name="total<?php echo $row['id']; ?>"
-                                        id="<?php echo "total" . $row['id']; ?>"><?php echo number_format($row['price'], 2) ?></h5>
+                                        id="<?php echo "total" . $row['id']; ?>"><?php echo number_format($row['sum_price'], 2) ?></h5>
                                 </td>
                                 <td><a href="./cart.php?del=<?php echo $row['product_id'] ?>"
-                                       style="text-decoration: underline">ลบ</a></td>
+                                       style="text-decoration: underline">ลบ
+                                    </a>
+                                </td>
                             </tr>
                             <?php
                         }
@@ -228,7 +269,7 @@ ORDER BY cart.id DESC";
                 </div>
                 <br>
                 <div class="checkout_btn_inner mt-2 float-right">
-                    <a class="btn_1" href="#">ซื้อของต่อ</a>
+                    <a class="btn_1" href="./product_list.php">ซื้อของต่อ</a>
                     <a class="btn_1 checkout_btn_1 mr-0" href="#">ยืนยันคำสั่งซื้อ</a>
                 </div>
             </div>

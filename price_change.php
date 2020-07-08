@@ -1,6 +1,13 @@
 <?php
 $num = $_POST['num'];
 $price = $_POST['price'];
+if($num == ''){
+    $num = 0;
+}
 $result = $num * $price;
-// echo '<label style="font-size: 18px;color: #0f6674"">'.number_format($result,2).' บาท</label>';
-echo number_format($result,2);
+$array = array(
+  'value' => $result,
+  'format' => number_format($result,2)
+);
+
+echo json_encode($array);
