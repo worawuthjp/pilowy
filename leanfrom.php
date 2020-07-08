@@ -13,19 +13,19 @@ function console_log($output, $with_script_tags = true)
 if ($_POST) {
     if (isset($_FILES['upload'])) {
 
-        $sql = 'SELECT payment.id FROM customer INNER JOIN cart ON customer.id = cart.cus_id
-        INNER JOIN payment ON cart.id = payment.cart_id WHERE (customer.id = \'' . $_SESSION['id'] . '\')'; // AND (payment.status = false);';
-        $rs = selectAll($db, $sql);
-        // console_log($rs);
-        echo "<br>";
+        // $sql = 'SELECT payment.id FROM customer INNER JOIN cart ON customer.id = cart.cus_id
+        // INNER JOIN payment ON cart.id = payment.cart_id WHERE (customer.id = \'' . $_SESSION['id'] . '\')'; // AND (payment.status = false);';
+        // $rs = selectAll($db, $sql);
+        // // console_log($rs);
+        // echo "<br>";
 
-        $record = array();
-        foreach ($rs as $row) {
-            $record[] = $row;
-        }
+        // $record = array();
+        // foreach ($rs as $row) {
+        //     $record[] = $row;
+        // }
 
 
-        $pay_id = $record[0]['id'];
+        $pay_id = $_POST['id'];
         $date = date("Y-m-d");
         $name_file =  "cus_" . $_SESSION['id'] . "_pay_" . $pay_id . "_" . date("Y-m-d") . ".webp"; //. $_FILES['upload']['name'];
         $tmp_name =  $_FILES['upload']['tmp_name'];
