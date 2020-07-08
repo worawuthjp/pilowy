@@ -22,7 +22,7 @@ require('connectDB.php');
     INNER JOIN product ON cart_product.product_id = product.id
     INNER JOIN payment ON payment.cart_id = cart.id
     INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = cart.id)
-    WHERE cart.cus_id = \'' . $_SESSION['id'] . '\' ORDER BY cart_product.id ASC';
+    WHERE cart.cus_id = \'' . $_SESSION['id'] . '\' ORDER BY cart.id ASC';
 
         $rs = selectAll($db, $sql);
         $record = array();
@@ -120,9 +120,38 @@ require('connectDB.php');
                                 <?php
                                 $befor_id = null;
                                 $befor_product = null;
+                                $record_old = null;
+                                $count = 0;
+                                $count_pro = 0;
                                 for ($i = 0; $i < count($record); $i++) {
-                                    print_r($record[$i]);
-                                    echo "<br>";
+                                    //print_r($record[$i]);
+                                    /*echo "<br>";
+                                    if ($i != 0) {
+                                        $record_old = $record[$i - 1];
+                                        echo "<br>start -> <br>";
+                                        print_r($record_old);
+                                        echo "<br><-stop<br>";
+                                    }
+                                    for ($j = $i; $j < count($record); $j++) {
+                                        echo "<br>---";
+                                        echo $record[$j]['name'];
+                                        echo "---<br>";
+                                        if($record[$i]['id']==$record[$j]['id']){
+                                            $count++;
+                                            if($record[$i]['name']==$record[$j]['name'] ){
+                                                $count_pro+1;
+                                                echo "---->";
+                                                echo $count_pro;
+                                            }
+                                            else{
+                                                $count_pro = 0;
+                                                //echo '<br>---'+$record[$j-1]['name']+'---<br>';
+                                            }
+                                        }
+                                        else{
+                                            //$j=$i;
+                                        }
+                                    }*/
                                 ?>
                                     <tr>
                                         <th colspan="2"><span><?php if ($record[$i]['id'] != $befor_id) {
@@ -136,7 +165,7 @@ require('connectDB.php');
 
 
                                             ?></th>
-                                        <th><?php if ($befor_id == null || ($record[$i]['id'] != $record[$i - 1]['id'] && $record[$i]['name'] != $record[$i - 1]['name'])) echo $record[$i]['name']; ?></th>
+                                        <th><?php echo $record[$i]['name']; ?></th>
                                         <th>x <?php echo $record[$i]['quantity'] ?></th>
                                         <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
                                         <th> <span><?php
@@ -167,7 +196,7 @@ require('connectDB.php');
                             </form>
 
                             <?php
-                            
+
                             if (isset($record2[0]['slip'])) {
                             ?>
                                 <div>
@@ -175,7 +204,7 @@ require('connectDB.php');
                                 </div>
                             <?php
                             }
-                            
+
                             ?>
                         </div>
                     </div>
