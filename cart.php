@@ -470,6 +470,9 @@ require("footer.php");
             data: {
                 'postal_code': $('#postal_code').val(),
                 'search': 'province'
+            },
+            beforeSend : function () {
+                $('#provinces').html('').attr('selected', true);
             }
         }).done(function (data) {
             var result = JSON.parse(data);
@@ -492,6 +495,9 @@ require("footer.php");
             data: {
                 'postal_code': $('#postal_code').val(),
                 'search': 'amphure'
+            },
+            beforeSend: function () {
+                $('#amphures').html('').attr('selected', true);
             }
         }).done(function (data) {
             var result = JSON.parse(data);
@@ -513,6 +519,9 @@ require("footer.php");
             data: {
                 'postal_code': $('#postal_code').val(),
                 'search': 'district'
+            },
+            beforeSend: function () {
+                $('#district').html('').attr('selected', true);
             }
         }).done(function (data) {
             var result = JSON.parse(data);
