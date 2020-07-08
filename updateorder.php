@@ -28,12 +28,13 @@ if ($_POST) {
         console_log($_POST['p_id']);
 
         console_log($_POST['t_id']);
+        console_log($_POST['id']);
 
         $statuspayment = $_POST['statuspayment'];
         $statuspost = $_POST['statuspost'];
         $trackcode = $_POST['trackcode'];
         $p_id = $_POST['p_id'];
-        $cp_id = $_POST['cp_id'];
+        // $cp_id = $_POST['cp_id'];
         $t_id = $_POST['t_id'];
 
         $sql = "UPDATE payment SET status = '$statuspayment'  WHERE id=  '$p_id'   ";

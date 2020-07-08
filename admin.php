@@ -85,7 +85,7 @@ if (!(isset($_SESSION['admin']))) {
                             <div class="footer_menu_item">
                                 <a href="admin.php">Home</a>
                                 <a href="order.php">Order</a>
-                                >
+                                
                                 <!-- <a href="#">Pages</a>
                             <a href="blog.html">Blog</a>
                             <a href="contact.html">Contact</a> -->

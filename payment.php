@@ -84,8 +84,22 @@ require('connectDB.php');
                     </div>
                 </div>
                 <div class="col-lg-6 col-lx-4">
-
+                    <div class="single_confirmation_details">
+                        <h4>ช่องทางการชำระเงิน</h4>
+                        <ul>
+                            <li>
+                                <p>ชื่อ-นามสกุล</p><span>: โอฬาร สุนทรภูษิต</span>
+                            </li>
+                            <li>
+                                <p>ธนาคาร</p><span>: Kbank</span>
+                            </li>
+                            <li>
+                                <p>เลขที่บัญชี</p><span>: 600-2-06857-3</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+                
                 <div class="col-lg-6 col-lx-4">
                     <div class="single_confirmation_details">
                         <h4>ที่อยู่รับสินค้า</h4>
