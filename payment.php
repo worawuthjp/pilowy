@@ -117,12 +117,25 @@ require('connectDB.php');
                             </thead>
                             <tbody>
                                 <?php
+                                $befor_id = null;
+                                $befor_product = null;
                                 for ($i = 0; $i < count($record); $i++) {
+                                    print_r($record[$i]);
+                                    echo "<br>";
                                 ?>
                                     <tr>
-                                        <th colspan="2"><span><?php echo $record[$i]['id'] ?></span></th>
-                                        <th> <span><?php echo $record[$i]['date'] ?></span></th>
-                                        <th><?php echo $record[$i]['name'] ?></th>
+                                        <th colspan="2"><span><?php if ($record[$i]['id'] != $befor_id) {
+                                                                    echo $record[$i]['id'] ?></span></th>
+                                        <th> <span><?php echo $record[$i]['date'];
+                                                                } else echo "<th></th>" ?></span></th>
+                                        <th><?php
+                                            foreach ($record[$i] as $rec) {
+                                                //echo $rec + $id;
+                                            }
+
+
+                                            ?></th>
+                                        <th><?php if ($befor_id == null || ($record[$i]['id'] != $record[$i - 1]['id'] && $record[$i]['name'] != $record[$i - 1]['name'])) echo $record[$i]['name']; ?></th>
                                         <th>x <?php echo $record[$i]['quantity'] ?></th>
                                         <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
                                         <th> <span><?php
@@ -136,6 +149,8 @@ require('connectDB.php');
                                     </tr>
 
                                 <?php
+                                    $befor_id = $record[$i]['id'];
+                                    $befor_product = $record[$i]['name'];
                                 }
                                 ?>
                         </table>
