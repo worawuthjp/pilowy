@@ -60,7 +60,7 @@ if (isset($_GET['id'])) {
                                 $page ="login.php";
                             }
                         ?>
-                        <form action="<?php echo $page; ?>" method="post" >
+                        <form action="<?php echo $page; ?>" method="POST" >
                             <div class="card_area border-circle-square mt-3 pb-5">
                                 <p>จำนวน</p>
                                 <div class="product_count_area">
@@ -77,11 +77,12 @@ if (isset($_GET['id'])) {
 
                                 <div class="container pt-3 pb-1 " id="total">
                                     <label id="total_price" style="font-size: 18px;color: #0f6674"><?php echo number_format(590, 2) ?> บาท</label>
+                                    <input type="hidden" name="total_price" id="total_price" value="<?php echo $record[0]['price']; ?>">
                             </div>
                         </div>
 
                         <div class=" add_to_cart mt-md-3 mt-sm-2 mt-3">
-                                        <button value="submit" type="submit" class="btn_3">add to cart</button>
+                                        <button value="<?php echo 'add'?>" name="submit" id="submit"  type="submit" class="btn_3">add to cart</button>
                                 </div>
                             </div>
                             </from>
@@ -124,6 +125,7 @@ if (isset($_GET['id'])) {
     <script src="js/mail-script.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"></script>
 
     <script type="text/javascript">
         $('#change-num1').add('#change-num2').click(function() {
@@ -137,9 +139,12 @@ if (isset($_GET['id'])) {
                     price: <?php echo number_format($record[0]['price'],2); ?>
                 }
             }).done(function(data) {
+                const formatter = new Intl.NumberFormat('th',{
+                });
                 $('#total_price').text(data + " บาท");
                 let price = $('#total_price').val();
-                $('#price').attr('value',data);
+                $('#price').val(data);
+
                 // alert(price);
             });
         });

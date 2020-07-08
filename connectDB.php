@@ -29,7 +29,7 @@ function selectAll($db,$sql){
 }
 
 function selectOne($db,$sql){
-    $result = $db->getOne($sql);
+    $result = $db->getRow($sql);
     return $result;
 }
 
