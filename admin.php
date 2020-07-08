@@ -37,28 +37,7 @@ if (!(isset($_SESSION['admin']))) {
                                 <li class="nav-item">
                                     <a class="nav-link" href="./order.php">Order</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        Products
-                                    </a>
-
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        customer
-                                    </a>
-
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        Payment
-                                    </a>
-
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        tracking
-                                    </a>
+                                
 
                                 </li>
                                 <li class="nav-item">
@@ -106,10 +85,7 @@ if (!(isset($_SESSION['admin']))) {
                             <div class="footer_menu_item">
                                 <a href="admin.php">Home</a>
                                 <a href="order.php">Order</a>
-                                <a href="#">Product</a>
-                                <a href="#">Customer</a>
-                                <a href="#">Payment</a>
-                                <a href="#">Tracking</a>
+                                >
                                 <!-- <a href="#">Pages</a>
                             <a href="blog.html">Blog</a>
                             <a href="contact.html">Contact</a> -->
