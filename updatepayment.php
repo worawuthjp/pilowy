@@ -9,7 +9,7 @@ if (!(isset($_SESSION['admin']))) {
     header("location:index.php?allow=0");
 }
 require('connectDB.php');
-$sql = 'SELECT cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.t_status , tracking.track_code FROM 
+$sql = 'SELECT payment.slip , cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.t_status , tracking.track_code FROM 
 cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
 INNER JOIN product ON cart_product.product_id = product.id
 INNER JOIN payment ON payment.cart_id = cart.id
@@ -121,7 +121,7 @@ foreach ($rs as $row) {
             <div class="row">
                 <div class="col-lg-12">
                     <div class="order_details_iner">
-                        <h3>รายละเอียดการสั่งซื้อสินค้า</h3>
+                        <h3>รายละเอียดการชำระเงิน</h3>
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
@@ -129,10 +129,9 @@ foreach ($rs as $row) {
                                     <th scope="col">วันที่ทำรายการ</th>
                                     <th scope="col">สินค้า</th>
                                     <th scope="col">จำนวน</th>
-                                    <th scope="col">ยอดชำระ</th>
+                                    <th scope="col">จำนวนยอดที่ต้องได้รับ</th>
                                     <th scope="col">สถานะการชำระเงิน</th>
-                                    <th scope="col">สถานะการจัดส่งสินค้า</th>
-                                    <th scope="col">เลขพัสดุ</th>
+                                    <th scope="col">หลักฐานการชำระเงิน</th>
                                     <th scope="col">แก้ไข</th>
                                     <th scope="col">ลบ</th>
                                 </tr>
@@ -149,9 +148,7 @@ foreach ($rs as $row) {
                     <th>x <?php echo $record[$i]['quantity'] ?></th>
                     <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
                     <th> <span><?php echo $record[$i]['status'] ?></span></th>
-                    
-                    <th> <span><?php echo $record[$i]['t_status'] ?></span></th>
-                    <th> <span><?php echo $record[$i]['track_code'] ?></span></th>
+                    <th> <span><?php echo $record[$i]['slip'] ?></span></th>
                     <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal" data-whatever="@mdo">แก้ไข</button></th>
                     <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModalCenter" data-whatever="@fat">ลบ</button></th>
                   </tr>
@@ -181,16 +178,12 @@ foreach ($rs as $row) {
       <div class="modal-body">
         <form></form>
           <div class="form-group">
+            <label for="recipient-name" class="col-form-label">จำนวนยอดที่ต้องได้รับ:</label>
+            <input type="text" value="<?php echo $row['money_received'] ; ?>" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
             <label for="recipient-name" class="col-form-label">สถานะการชำระเงิน:</label>
             <input type="text" value="<?php echo $row['status'] ; ?>" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">สถานะการจัดส่งสินค้า:</label>
-            <input type="text" value="<?php echo $row['t_status'] ; ?>" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">เลขพัสดุ:</label>
-            <input type="text" value="<?php echo $row['track_code'] ; ?>" class="form-control" id="recipient-name">
           </div>
           
         </form>
