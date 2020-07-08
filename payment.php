@@ -223,7 +223,7 @@ require('connectDB.php');
                                     if (isset($record2[$i]['slip'])) {
                                     ?>
                                         <div>
-                                            <br /><br /><img src="img/slip/<?php print_r($record2[$i]['slip']) ?>"><br /><br />
+                                            <br /><br /><img src="img/slip/<?php print_r($record2[$i]['slip']) ?>"  ><br /><br />
                                         </div>
                             <?php
                                     }
