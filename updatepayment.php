@@ -133,7 +133,7 @@ foreach ($rs as $row) {
                                     <th scope="col">สถานะการชำระเงิน</th>
                                     <th scope="col">หลักฐานการชำระเงิน</th>
                                     <th scope="col">แก้ไข</th>
-                                    <th scope="col">ลบ</th>
+                                    <th scope="col">ภาพสลิป</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -165,7 +165,12 @@ foreach ($rs as $row) {
         </div>
     </section>
     <!--================ track post part end =================-->
+    <?php
+    for ($j = 0; $j < count($record); $j++) {
+
+    ?>
 <!--=============== modal update =============-->
+
 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -179,11 +184,13 @@ foreach ($rs as $row) {
         <form></form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">จำนวนยอดที่ต้องได้รับ:</label>
-            <input type="text" value="<?php echo $row['money_received'] ; ?>" class="form-control" id="recipient-name">
+            <input type="text" name="money_received" value="<?php echo $record[$j]['money_received']; ?>" class="form-control" id="money_received">
+                 <input type="hidden" id="p_id" name="p_id" value="<?php echo $record[$j]['p_id']; ?>" />
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">สถานะการชำระเงิน:</label>
-            <input type="text" value="<?php echo $row['status'] ; ?>" class="form-control" id="recipient-name">
+            <input type="text" name="statuspayment" value="<?php echo $record[$j]['status']; ?>" class="form-control" id="statuspayment">
+                 <input type="hidden" id="p_id" name="p_id" value="<?php echo $record[$j]['p_id']; ?>" />
           </div>
           
         </form>
@@ -196,27 +203,39 @@ foreach ($rs as $row) {
   </div>
 </div>
 
-<!-- delete Modal -->
-<div class="modal fade" id="deleteModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Confirm Delete ?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        คุณแน่ใจว่าจะลบรายการนี้ ?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-        <button type="button" class="btn btn-primary">ลบ</button>
-      </div>
-    </div>
-  </div>
-</div>
+<?php }
+?>
 
+
+<!-- delete Modal -->
+<?php
+    for ($k = 0; $k < count($record); $k++) {
+
+    ?>
+<div class="modal fade" id="deleteModalCenter-<?php echo $record[$k]['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLongTitle">Confirm Delete ?</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <form action="updateorder.php" method="post">
+           <div class="modal-body">
+             คุณแน่ใจว่าจะลบรายการนี้ ?
+           </div>
+           <div class="modal-footer">
+             <input type="hidden" id="cd_id" name="_id" value="<?php echo $record[$k]['cp_id']; ?>" />
+             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+             <button name="submit" type="submit" class="btn btn-primary">ลบ</button>
+           </div>
+           </from>
+       </div>
+     </div>
+   </div>
+<?php }
+?>
     <!--::footer_part start::-->
     <footer class="footer_part">
         <div class="footer_iner">
