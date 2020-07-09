@@ -363,6 +363,10 @@ WHERE cus_id = '{$_SESSION['id']}' and is_close = false GROUP BY cart.id";
                                                style="font-size: 15px;color: #646464">จังหวัด : </label>
                                         <select class="form-control col-md-4" id="provinces" name="provinces">
                                             <option value="0" id="p_start">เลือกจังหวัด</option>
+
+                                            //province sql
+
+                                            //End province sql
                                         </select>
                                         <label for="amphures" class="font-weight-bold col-form-label col-md-auto"
                                                style="font-size: 15px;color: #646464">อำเภอ : </label>
@@ -472,7 +476,7 @@ require("footer.php");
                 'search': 'province'
             },
             beforeSend : function () {
-                $('#provinces').html('').attr('selected', true);
+                $('#provinces').html('<option value="0" id="p_start">เลือกจังหวัด</option>').attr('selected', true);
             }
         }).done(function (data) {
             var result = JSON.parse(data);
@@ -497,7 +501,7 @@ require("footer.php");
                 'search': 'amphure'
             },
             beforeSend: function () {
-                $('#amphures').html('').attr('selected', true);
+                $('#amphures').html('<option value="0" id="a_start">เลือกจังหวัด</option>').attr('selected', true);
             }
         }).done(function (data) {
             var result = JSON.parse(data);
@@ -521,7 +525,7 @@ require("footer.php");
                 'search': 'district'
             },
             beforeSend: function () {
-                $('#district').html('').attr('selected', true);
+                $('#district').html('<option value="0" id="d_start">เลือกจังหวัด</option>').attr('selected', true);
             }
         }).done(function (data) {
             var result = JSON.parse(data);
