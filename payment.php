@@ -41,6 +41,15 @@ require('connectDB.php');
         foreach ($rs as $row) {
             $record2[] = $row;
         }
+        $sql ='SELECT cart.id , SUM(cart_product.price) FROM cart 
+        INNER JOIN cart_product ON cart.id = cart_product.cart_id
+        WHERE cart.is_close = true
+        GROUP BY cart.id';
+        $rs = selectAll($db, $sql);
+        $record3 = array();
+        foreach ($rs as $row) {
+            $record3[] = $row;
+        }
     }
 
 
@@ -99,7 +108,7 @@ require('connectDB.php');
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-6 col-lx-4">
                     <div class="single_confirmation_details">
                         <h4>ที่อยู่รับสินค้า</h4>
@@ -133,39 +142,8 @@ require('connectDB.php');
                             <tbody>
                                 <?php
                                 $befor_id = null;
-                                $befor_product = null;
-                                $record_old = null;
                                 $count = 0;
-                                $count_pro = 0;
                                 for ($i = 0; $i < count($record); $i++) {
-                                    //print_r($record[$i]);
-                                    /*echo "<br>";
-                                    if ($i != 0) {
-                                        $record_old = $record[$i - 1];
-                                        echo "<br>start -> <br>";
-                                        print_r($record_old);
-                                        echo "<br><-stop<br>";
-                                    }
-                                    for ($j = $i; $j < count($record); $j++) {
-                                        echo "<br>---";
-                                        echo $record[$j]['name'];
-                                        echo "---<br>";
-                                        if($record[$i]['id']==$record[$j]['id']){
-                                            $count++;
-                                            if($record[$i]['name']==$record[$j]['name'] ){
-                                                $count_pro+1;
-                                                echo "---->";
-                                                echo $count_pro;
-                                            }
-                                            else{
-                                                $count_pro = 0;
-                                                //echo '<br>---'+$record[$j-1]['name']+'---<br>';
-                                            }
-                                        }
-                                        else{
-                                            //$j=$i;
-                                        }
-                                    }*/
                                 ?>
                                     <tr>
                                         <th colspan="2"><span><?php if ($record[$i]['id'] != $befor_id) {
@@ -173,42 +151,49 @@ require('connectDB.php');
                                         <th> <span><?php echo $record[$i]['date'];
                                                                 } else echo "<th></th>" ?></span></th>
                                         <!-- <th><?php
-                                            foreach ($record[$i] as $rec) {
-                                                //echo $rec + $id;
-                                            }
 
 
-                                            ?></th> -->
+
+                                                    ?></th> -->
                                         <th><?php echo $record[$i]['name']; ?></th>
                                         <th>x <?php echo $record[$i]['quantity'] ?></th>
-                                        <th> <span><?php if(isset($record[$i]['money_received'])) {echo $record[$i]['money_received'] ?> บาท<?php }  ?></span></th>
+                                        <th> <span><?php if (isset($record[$i]['money_received'])) {
+                                                        echo $record[$i]['money_received'] ?> บาท<?php }  ?></span></th>
                                         <th> <span><?php
                                                     if ($record[$i]['status'] == "t") {
                                                         $text = "ชำระเงินแล้ว";
-                                                    }
-                                                     else if($record[$i]['status'] == "f" && $record[$i]['status'] == NULL){
+                                                    } else if ($record[$i]['status'] == "f" && $record[$i]['status'] == NULL) {
                                                         $text = "ยังไม่ชำระเงิน";
-                                                    }
-                                                    else if($record[$i]['status'] == "f" && $record[$i]['slip'] != NULL){
+                                                    } else if ($record[$i]['status'] == "f" && $record[$i]['slip'] != NULL) {
                                                         $text = "รอการตรวจสอบ";
                                                     }
-                                                    echo $text; ?></span></th>
+                                                    ?></span></th>
 
                                     </tr>
 
                                 <?php
+                                if(isset($record[$i+1]['id'])){
+                                    if($record[$i]['id']!=$record[$i+1]['id']){
+                                        echo "<tr><th></th><th></th><th><th></th></th><th>รวม</th><th>".$record3[$count]['sum']."</th><th><span>$text</span></th></tr>";
+                                        $count++;
+                                    }
+
+                                }
+                                elseif($i+1>=count($record)){
+                                    echo "<tr><th></th><th></th><th><th></th></th><th>รวม</th><th>".$record3[$count]['sum']."</th><th><span>$text</span></th></tr>";
+                                    $count++;
+                                }   
                                     $befor_id = $record[$i]['id'];
-                                    $befor_product = $record[$i]['name'];
                                 }
                                 ?>
                         </table>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row ">
                     <div class="col-lg-12">
                         <div class="order_details_iner">
                             <?php for ($i = 0; $i < count($record2); $i++) {
-                                console_log($record2[$i]['id']);
+                                console_log($record2[$i]);
                                 if (isset($record2[$i]['id'])) { ?>
 
                                     <h3>Upload หลักฐานการชำระเงิน ของคำสั่งซื้อที่ <?php echo $record2[$i]['c_id']; ?></h3>
@@ -223,7 +208,7 @@ require('connectDB.php');
                                     if (isset($record2[$i]['slip'])) {
                                     ?>
                                         <div>
-                                            <br /><br /><img src="img/slip/<?php print_r($record2[$i]['slip']) ?>"  ><br /><br />
+                                            <br /><br /><img src="img/slip/<?php print_r($record2[$i]['slip']) ?>"><br /><br />
                                         </div>
                             <?php
                                     }
