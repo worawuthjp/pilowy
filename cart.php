@@ -196,7 +196,7 @@ WHERE cus_id = '{$_SESSION['id']}' and is_close = false GROUP BY cart.id";
                                 <td>
                                     <h5 name="price<?php echo $row['id']; ?>"><?php echo number_format($row['product_price'], 2) ?></h5>
                                 </td>
-                                <td width="180">
+                                <td width="200">
                                     <div class="col-md-12 ml-auto mr-auto ">
                                         <input class="col-md-12 "
                                                onchange="clickaddnum(this,<?php echo $row['product_price'] ?>,<?php echo $row['id']; ?>,<?php echo $row['cart_id']; ?>,<?php echo $row['product_id']; ?>)"
@@ -224,106 +224,12 @@ WHERE cus_id = '{$_SESSION['id']}' and is_close = false GROUP BY cart.id";
                     </tfoot>
                 </table>
 
-                <form action="confirm_order_check.php" method="post">
+                <form method="post" action="confirm_order_check.php">
                     <div class="checkout_btn_inner">
-                        <?php
-                        $nameErr = $surErr = $phoneErr = $provinceErr = $amphureErr = $districtErr = $addressErr = $postal_codeERR = "";
-                        $name = $sur = $phone = $province = $amphure = $district = $address = $postal_code = "";
-                        ?>
                         <h4>ชื่อและที่อยู่ผู้รับ</h4><br>
                         <div class="container">
                             <div class="col-md-10">
                                 <div class="row col-md-12 mt-2 pl-md-0 ">
-                                    <?php
-                                    if (isset($_POST['validateError']) or isset($_GET['validateError'])) {
-                                        ?>
-
-                                        <div class="alert alert-danger col-md-12">
-                                            <?php
-                                            if (empty($_POST["name"])) {
-                                                ?>
-                                                <ul>
-                                                    <li><?php echo "กรุณากรอกชื่อ"; ?></li>
-                                                </ul>
-                                                <?php
-                                            }
-                                            ?>
-
-                                            <?php
-                                            if (empty($_POST["surname"])) {
-                                                ?>
-                                                <ul>
-                                                    <li><?php echo "กรุณากรอกนามสกุล"; ?></li>
-                                                </ul>
-                                                <?php
-                                            }
-                                            ?>
-
-                                            <?php
-                                            if (empty($_POST["phone"])) {
-                                                ?>
-                                                <ul>
-                                                    <li><?php echo "กรุณากรอกเบอร์โทรศัพท์"; ?></li>
-                                                </ul>
-                                                <?php
-                                            }
-                                            ?>
-
-                                            <?php
-                                            if ($_POST["province"] == '0') {
-                                                ?>
-                                                <ul>
-                                                    <li><?php echo "กรุณาเลือกจังหวัด"; ?></li>
-                                                </ul>
-                                                <?php
-                                            }
-                                            ?>
-
-                                            <?php
-                                            if ($_POST["amphure"] == '0') {
-                                                ?>
-                                                <ul>
-                                                    <li><?php echo "กรุณาเลือกอำเภอ"; ?></li>
-                                                </ul>
-                                                <?php
-                                            }
-                                            ?>
-
-                                            <?php
-                                            if ($_POST["district"] == '0') {
-                                                ?>
-                                                <ul>
-                                                    <li><?php echo "กรุณาเลือกตำบล"; ?></li>
-                                                </ul>
-                                                <?php
-                                            }
-                                            ?>
-
-                                            <?php
-                                            if (empty($_POST["address"])) {
-                                                ?>
-                                                <ul>
-                                                    <li><?php echo "กรุณาใส่ที่อยู่"; ?></li>
-                                                </ul>
-                                                <?php
-                                            }
-                                            ?>
-
-                                            <?php
-                                            if (empty($_POST["postal_code"])) {
-                                                ?>
-                                                <ul>
-                                                    <li><?php echo "กรุณาใส่รหัสไปรษณีย์"; ?></li>
-                                                </ul>
-                                                <?php
-                                            }
-                                            ?>
-
-                                        </div>
-
-                                        <?php
-                                    }
-                                    ?>
                                     <div class="col-md-12 row">
                                         <label class="font-weight-bold col-form-label col-md-2" for="f_name"
                                                style="font-size: 15px;color: #646464">ชื่อ : </label>
@@ -352,7 +258,7 @@ WHERE cus_id = '{$_SESSION['id']}' and is_close = false GROUP BY cart.id";
                                         <label class="font-weight-bold col-form-label col-md-2" for="postal_code"
                                                style="font-size: 15px;color: #646464">รหัสไปรษณีย์ : </label>
                                         <input class="form-control form-inline col-md-3" id="postal_code"
-                                               name="postal_code"
+                                               name="postal_code" maxlength="5"
                                                placeholder="รหัสไปรษณีย์">
                                     </div>
                                 </div>
@@ -380,7 +286,7 @@ WHERE cus_id = '{$_SESSION['id']}' and is_close = false GROUP BY cart.id";
                                     <div class="col-md-12 row">
                                         <label for="district" class="font-weight-bold col-form-label col-md-2"
                                                style="font-size: 15px;color: #646464">ตำบล : </label>
-                                        <select class="form-control col-md-4" id="district" name="district">
+                                        <select class="form-control col-md-4" id="districts" name="districts">
                                             <option id="d_start" value="0">เลือกตำบล</option>
                                         </select>
                                     </div>
@@ -400,7 +306,8 @@ WHERE cus_id = '{$_SESSION['id']}' and is_close = false GROUP BY cart.id";
                     <br>
                     <div class="checkout_btn_inner mt-2 float-right">
                         <a class="btn_1" href="./product_list.php">ซื้อของต่อ</a>
-                        <button class="btn_1 checkout_btn_1 mr-0">ยืนยันคำสั่งซื้อ</button>
+                        <input type="button" class="btn_1 checkout_btn_1 mr-0" id="confirmBtn" value="ยืนยันคำสั่งซื้อ">
+                        <button id="submit" hidden></button>
                     </div>
                 </form>
             </div>
@@ -438,11 +345,37 @@ require("footer.php");
 <script src="js/jquery.form.js"></script>
 <script src="js/jquery.validate.min.js"></script>
 <script src="js/mail-script.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- custom js -->
 <!--<script src="js/custom.js"></script>-->
 <script src="./node_modules/bootstrap-input-spinner/src/bootstrap-input-spinner.js"></script>
 <script>
     $("input[type='number']").inputSpinner();
+</script>
+
+<script>
+    $('#confirmBtn').click(function () {
+        let f_name = $('#f_name').val();
+        let l_name = $('#l_name').val();
+        let phone = $('#phone').val();
+        let postal_code = $('#postal_code').val();
+        let provinces = $('#provinces').val();
+        let amphures = $('#amphures').val();
+        let districts = $('#districts').val();
+        let address = $('#address').val();
+
+        if(f_name== '' || l_name == '' || phone == '' || postal_code == '' || provinces == '0' || amphures == '0' || districts == '0' || address == ''){
+            let textalert = 'กรุณากรอกข้อมูลให้ครบถ้วน';
+            swal({
+                icon : 'warning',
+                text: textalert,
+            });
+        }
+        else{
+            $('#submit').click();
+        }
+
+    });
 </script>
 
 <script type="text/javascript">
@@ -475,7 +408,7 @@ require("footer.php");
                 'postal_code': $('#postal_code').val(),
                 'search': 'province'
             },
-            beforeSend : function () {
+            beforeSend: function () {
                 $('#provinces').html('<option value="0" id="p_start">เลือกจังหวัด</option>').attr('selected', true);
             }
         }).done(function (data) {
@@ -525,14 +458,14 @@ require("footer.php");
                 'search': 'district'
             },
             beforeSend: function () {
-                $('#district').html('<option value="0" id="d_start">เลือกจังหวัด</option>').attr('selected', true);
+                $('#districts').html('<option value="0" id="d_start">เลือกจังหวัด</option>').attr('selected', true);
             }
         }).done(function (data) {
             var result = JSON.parse(data);
             $('#d_start').remove();
             $.each(result, function (index, row) {
                 let district = '<option value=\'' + row.district_id + '\'>' + row.th_district_name + '</option>';
-                $('#district').append(district).attr('selected', true);
+                $('#districts').append(district).attr('selected', true);
             });
         });
     });
