@@ -8,12 +8,21 @@ if (!(isset($_SESSION['admin']))) {
     session_destroy();
     header("location:index.php?allow=0");
 }
+function console_log($output, $with_script_tags = true)
+{
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+        ');';
+    if ($with_script_tags) {
+        $js_code = '<script>' . $js_code . '</script>';
+    }
+    echo $js_code;
+}
 require('connectDB.php');
-$sql = 'SELECT payment.slip , cart.id , payment.date , product.name , cart_product.quantity , payment.money_received , payment.status , tracking.t_status , tracking.track_code FROM 
+$sql = 'SELECT payment.slip, payment.id AS p_id, cart.id ,cart.total_price, payment.date , product.name , cart_product.quantity , payment.money_received , payment.status ,payment.slip , tracking.t_status , tracking.track_code FROM 
 cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
 INNER JOIN product ON cart_product.product_id = product.id
 INNER JOIN payment ON payment.cart_id = cart.id
-INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = cart.id)' ;
+INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = cart.id)';
 $rs = selectAll($db, $sql);
 $record = array();
 foreach ($rs as $row) {
@@ -24,13 +33,12 @@ foreach ($rs as $row) {
 
 <!-- update -->
 <?php
-    if (isset($_GET['cart.id']) && $_GET['cart.id']!="") 
-              {
-                    $Update_cart_id = $RS['record[].id'];
-                    $update_payment_status = $RS['record[].status'];
-                    $update_track_status = $RS['record[].t_status'];
-                    $update_track_code = $RS['record[].track_code'];
-                      }
+if (isset($_GET['cart.id']) && $_GET['cart.id'] != "") {
+    $Update_cart_id = $RS['record[].id'];
+    $update_payment_status = $RS['record[].status'];
+    $update_track_status = $RS['record[].t_status'];
+    $update_track_code = $RS['record[].track_code'];
+}
 
 ?>
 
@@ -38,7 +46,7 @@ foreach ($rs as $row) {
 
 <body class="test">
     <?php
-    echo $record;
+    // echo $record;
     ?>
     <!--::header part start::-->
     <header class="main_menu home_menu">
@@ -60,32 +68,17 @@ foreach ($rs as $row) {
                                 <li class="nav-item">
                                     <a class="nav-link" href="./order.php">Order</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        Products
-                                    </a>
 
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        customer
-                                    </a>
 
-                                </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">
+                                    <a class="nav-link" href="updatepayment.php">
                                         Payment
                                     </a>
 
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        tracking
-                                    </a>
 
-                                </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">
+                                    <a class="nav-link" href="adminloguot.php">
                                         logout
                                     </a>
 
@@ -130,6 +123,7 @@ foreach ($rs as $row) {
                                     <th scope="col">สินค้า</th>
                                     <th scope="col">จำนวน</th>
                                     <th scope="col">จำนวนยอดที่ต้องได้รับ</th>
+                                    <th scope="col">จำนวนยอดที่ได้รับจริง</th>
                                     <th scope="col">สถานะการชำระเงิน</th>
                                     <th scope="col">หลักฐานการชำระเงิน</th>
                                     <th scope="col">แก้ไข</th>
@@ -138,24 +132,25 @@ foreach ($rs as $row) {
                             </thead>
                             <tbody>
                             <tbody>
-                <?php
-                for ($i = 0; $i < count($record); $i++) {
-                ?>
-                  <tr>
-                    <th colspan="2"><span><?php echo $record[$i]['id'] ?></span></th>
-                    <th> <span><?php echo $record[$i]['date'] ?></span></th>
-                    <th><?php echo $record[$i]['name'] ?></th>
-                    <th>x <?php echo $record[$i]['quantity'] ?></th>
-                    <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
-                    <th> <span><?php echo $record[$i]['status'] ?></span></th>
-                    <th> <span><?php echo $record[$i]['slip'] ?></span></th>
-                    <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal" data-whatever="@mdo">แก้ไข</button></th>
-                    <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModalCenter" data-whatever="@fat">ลบ</button></th>
-                  </tr>
+                                <?php
+                                for ($i = 0; $i < count($record); $i++) {
+                                ?>
+                                    <tr>
+                                        <th colspan="2"><span><?php echo $record[$i]['id'] ?></span></th>
+                                        <th> <span><?php echo $record[$i]['date'] ?></span></th>
+                                        <th><?php echo $record[$i]['name'] ?></th>
+                                        <th>x <?php echo $record[$i]['quantity'] ?></th>
+                                        <th> <span><?php echo $record[$i]['total_price'] ?> บาท</span></th>
+                                        <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
+                                        <th> <span><?php echo $record[$i]['status'] ?></span></th>
+                                        <th> <span><?php echo $record[$i]['slip'] ?></span></th>
+                                        <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal-<?php echo $record[$i]['id'] ?>" data-whatever="@mdo">แก้ไข</button></th>
+                                        <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailModalCenter-<?php echo $record[$i]['id'] ?>" data-whatever="@fat">รูป</button></th>
+                                    </tr>
 
-                <?php
-                }
-                ?>
+                                <?php
+                                }
+                                ?>
 
                             </tbody>
                         </table>
@@ -249,10 +244,9 @@ foreach ($rs as $row) {
                             <div class="footer_menu_item">
                                 <a href="admin.php">Home</a>
                                 <a href="order.php">Order</a>
-                                <a href="#">Product</a>
-                                <a href="#">Customer</a>
-                                <a href="#">Payment</a>
-                                <a href="#">Tracking</a>
+
+                                <a href="updatepayment.php">Payment</a>
+
                                 <!-- <a href="#">Pages</a>
                             <a href="blog.html">Blog</a>
                             <a href="contact.html">Contact</a> -->

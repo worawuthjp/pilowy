@@ -18,7 +18,7 @@
     header("location:index.php?allow=0");
   }
   require('connectDB.php');
-  $sql = 'SELECT cart.id , payment.date ,payment.id AS p_id , product.name , cart_product.quantity , cart_product.id AS cp_id , payment.money_received , payment.status ,tracking.id AS t_id , tracking.t_status , tracking.track_code FROM 
+  $sql = 'SELECT cart.id ,cart.total_price, payment.date ,payment.id AS p_id , product.name , cart_product.quantity , cart_product.id AS cp_id , payment.money_received , payment.status ,tracking.id AS t_id , tracking.t_status , tracking.track_code FROM 
 cart INNER JOIN cart_product ON cart.id = cart_product.cart_id
 INNER JOIN product ON cart_product.product_id = product.id
 INNER JOIN payment ON payment.cart_id = cart.id
@@ -56,9 +56,11 @@ INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = ca
                  <li class="nav-item">
                    <a class="nav-link" href="./order.php">Order</a>
                  </li>
-
                  <li class="nav-item">
-                   <a class="nav-link" href="adminlogout">
+                                    <a class="nav-link" href="./updatepayment.php">Payment</a>
+                                </li>
+                 <li class="nav-item">
+                   <a class="nav-link" href="adminlogout.php">
                      logout
                    </a>
 
@@ -103,7 +105,7 @@ INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = ca
                    <th scope="col">วันที่ทำรายการ</th>
                    <th scope="col">สินค้า</th>
                    <th scope="col">จำนวน</th>
-                   <th scope="col">ยอดชำระ</th>
+                   <th scope="col">ยอดที่ต้องชำระ</th>
                    <th scope="col">สถานะการชำระเงิน</th>
                    <th scope="col">สถานะการจัดส่งสินค้า</th>
                    <th scope="col">เลขพัสดุ</th>
@@ -119,11 +121,12 @@ INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = ca
 
                   ?>
                    <tr>
+                     
                      <th colspan="2"><span><?php echo $record[$i]['id'] ?></span></th>
                      <th> <span><?php echo $record[$i]['date'] ?></span></th>
                      <th><?php echo $record[$i]['name'] ?></th>
                      <th>x <?php echo $record[$i]['quantity'] ?></th>
-                     <th> <span><?php echo $record[$i]['money_received'] ?> บาท</span></th>
+                     <th> <span><?php echo $record[$i]['total_price'] ?> บาท</span></th>
                      <th> <span><?php echo $record[$i]['status'] ?></span></th>
                      <input type="hidden" id="p_id" name="p_id" value="<?php echo $record[$i]['p_id']; ?>" />
                      <input type="hidden" id="t_id" name="t_id" value="<?php echo $record[$i]['t_id']; ?>" />
@@ -245,7 +248,7 @@ INNER JOIN tracking ON (tracking.pay_id = payment.id) AND (tracking.cart_id = ca
                <div class="footer_menu_item">
                  <a href="admin.php">Home</a>
                  <a href="order.php">Order</a>
-
+                 <a href="updatepayment.php">Payment</a>
                  <!-- <a href="#">Pages</a>
                             <a href="blog.html">Blog</a>
                             <a href="contact.html">Contact</a> -->
