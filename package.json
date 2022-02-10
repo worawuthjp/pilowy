@@ -7,7 +7,7 @@
     "@fortawesome/fontawesome-free": "^5.13.1",
     "bootstrap-input-spinner": "^1.13.9",
     "bootstrap4": "^0.0.1-security",
-    "node-sass": "^4.14.1"
+    "node-sass": "^7.0.0"
   },
   "devDependencies": {},
   "scripts": {
